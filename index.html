@@ -1514,7 +1514,7 @@ html[data-theme="dark"] .badge.hydra{color:#5eead4}
 .dg-ptabs{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:8px;border-bottom:1px solid var(--line);background:var(--surface-2)}
 .dg-ptabs button{height:36px;border-radius:10px;font-size:12.5px;font-weight:650;color:var(--text-3);background:none;transition:all .15s}
 .dg-ptabs button:hover{color:var(--text)}
-.dg-ptabs button.active{background:var(--surface);color:var(--text);box-shadow:0 0 0 1px var(--accent-line)}
+.dg-ptabs button.active{background:var(--accent-soft);color:var(--text);box-shadow:inset 0 0 0 1px var(--accent);transition:none}.dg-ptabs button.active .ic{color:var(--accent)}
 .dg-pane{overflow-y:auto;min-height:0;flex:1;scrollbar-gutter:stable}
 .dg-sc{padding:16px 16px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .dg-sc:last-child{border-bottom:0}
@@ -1823,7 +1823,7 @@ html[data-theme="dark"] .badge.hydra{color:#5eead4}
 .dg-fh .icon-btn .ic{transition:transform .2s}
 #view-diagram .no-dock .dg-dock .dg-fh .icon-btn .ic,#view-diagram .no-panel .dg-panel .dg-fh .icon-btn .ic{transform:rotate(180deg)}
 #view-diagram .no-dock .dg-dock{width:auto;min-width:168px}#view-diagram .no-dock .dg-dock .dg-fbody{display:none}#view-diagram .no-dock .dg-dock .dg-fh,#view-diagram .no-panel .dg-panel .dg-fh{border-bottom:0}
-#view-diagram .no-panel .dg-panel{bottom:auto;width:auto;min-width:168px}#view-diagram .no-panel .dg-panel .dg-ptabs,#view-diagram .no-panel .dg-panel .dg-pane{display:none}
+#view-diagram .no-panel .dg-panel{bottom:auto;width:auto;min-width:168px}#view-diagram .no-panel .dg-panel .dg-ptabs,#view-diagram .no-panel .dg-panel .dg-pane,#view-diagram .no-panel .dg-panel .dg-phead{display:none}
 #view-diagram .dg-layout.no-panel .dg-top{max-width:calc(100% - 208px)}
 /* bottom bar */
 #view-diagram .dg-bottom{position:absolute;left:12px;right:12px;bottom:12px;z-index:730;display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap-reverse;pointer-events:none}
@@ -1936,6 +1936,130 @@ html[data-theme="dark"] .badge.hydra{color:#5eead4}
 /* settings / layer cards must scroll on every viewport (older <1100px rules switched the pane to overflow:visible) */
 #view-diagram .dg-pane,#view-diagram .dg-fbody{overflow-y:auto!important;overflow-x:hidden;min-height:0;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y}
 #view-diagram .dg-panel,#view-diagram .dg-dock{min-height:0}
+/* ---- diagram editor v2: layer cards · context header · 4 tabs · collapsible sections ---- */
+#view-diagram .dg-dock .dg-lcard{flex-wrap:wrap}
+.dg-lcard .dg-chip-n{flex:1 1 0;min-width:0}
+.dg-lcard.sel .dg-lacts{flex:1 1 100%;justify-content:flex-end;gap:2px;padding:0 6px 5px;margin:0;border-top:1px solid var(--line);padding-top:4px}
+.dg-lcard.sel .dg-lacts .dg-chip-x{width:30px;height:28px;opacity:.85}
+.dg-lcard:not(.sel) .dg-lacts{position:static}
+#view-diagram .dg-dock{width:300px}
+.dg-lhint{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:var(--text-3);margin:-2px 0 2px}
+.dg-dock .dg-chips{gap:6px}
+#view-diagram .dg-dock .dg-lcard{height:auto;min-height:48px;align-items:center;border-radius:13px}
+.dg-lcard .dg-chip-n{gap:8px;padding:6px 4px;align-items:center}
+.dg-lt{display:flex;flex-direction:column;min-width:0;line-height:1.25;text-align:left}
+.dg-lt b{font-size:12.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dg-lt small{font-size:10.5px;font-weight:500;color:var(--text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dg-lcard.sel .dg-lt small{color:var(--text-2)}
+.dg-lacts{display:inline-flex;align-items:center;flex:0 0 auto;margin-right:2px}
+.dg-lcard:not(.sel) .dg-lacts .dg-chip-x{opacity:0;transition:opacity .15s}.dg-lcard:not(.sel):hover .dg-lacts .dg-chip-x{opacity:.8}
+@media (pointer:coarse){.dg-lcard:not(.sel) .dg-lacts .dg-chip-x{opacity:.55}}
+.dg-addl2{gap:8px}.dg-addl2 .ic:last-child{width:13px;height:13px;opacity:.7}
+.dg-addm{min-width:270px;max-width:340px}
+.dg-addm button{height:auto;min-height:40px;padding:7px 10px;align-items:flex-start}
+.dg-addm button>span{display:flex;flex-direction:column;gap:1px;min-width:0}.dg-addm button b{font-size:12.5px}.dg-addm button small{font-size:11px;color:var(--text-3);font-weight:500;white-space:normal}
+.dg-addm button .ic{margin-top:2px;color:var(--accent)}
+/* panel context header */
+.dg-phead{display:flex;align-items:center;gap:10px;margin:10px 12px 0;padding:9px 10px 9px 12px;border-radius:14px;background:var(--accent-soft);border:1px solid var(--accent-line,var(--accent));flex:0 0 auto;min-width:0}
+.dg-phead.shared{background:var(--surface-2);border-color:var(--line-2)}
+.dg-ph-ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--surface);flex:0 0 auto;color:var(--accent)}.dg-ph-ic .dg-mi,.dg-ph-ic .ic{width:18px;height:18px}
+.dg-ph-t{display:flex;flex-direction:column;min-width:0;flex:1;line-height:1.3}.dg-ph-t small{font-size:10.5px;color:var(--text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dg-ph-t b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dg-ph-nav{display:inline-flex;gap:2px;flex:0 0 auto}.dg-ph-nav .icon-btn{width:28px;height:28px}
+#view-diagram .dg-ptabs{margin-top:8px}
+#view-diagram .dg-ptabs button{display:inline-flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;padding:0 4px}
+#view-diagram .dg-ptabs button .ic{width:14px;height:14px;flex:0 0 auto}
+/* collapsible sections */
+.dg-acc{border-bottom:1px solid var(--line)}
+.dg-acc>summary{list-style:none;display:flex;align-items:center;gap:9px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text);user-select:none}
+.dg-acc>summary::-webkit-details-marker{display:none}
+.dg-acc>summary:hover{background:var(--surface-2)}
+.dg-acc>summary>.ic{color:var(--accent)}
+.dg-acc>summary>span{flex:1;min-width:0}
+.dg-acc>summary>em{font-style:normal;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:9px;background:var(--surface-3);color:var(--text-2)}
+.dg-chev{display:inline-flex;color:var(--text-3)}.dg-chev .ic{width:14px;height:14px;transition:transform .18s}
+.dg-acc[open]>summary .dg-chev .ic{transform:rotate(180deg)}
+.dg-accb{display:flex;flex-direction:column;gap:12px;padding:2px 16px 16px}
+.dg-sc-top{display:flex;flex-direction:column;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.dg-dsrow{display:flex;gap:6px;align-items:center}.dg-dsrow .select{flex:1;min-width:0}
+.dg-rec-k{font-weight:500;color:var(--text-3);font-size:10.5px;margin-left:4px}
+.dg-gal3{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:4px 0 0;border:0;overflow:visible}
+.dg-gal3 .dg-gb{width:100%;height:36px;justify-content:flex-start;padding:0 8px;gap:6px;font-size:12px;min-width:0}
+.dg-gal3 .dg-gb span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dg-reco2{display:flex;align-items:flex-start;gap:8px;padding:9px 11px;border-radius:12px;font-size:12px;line-height:1.5;background:var(--good-bg,rgba(52,199,89,.12));color:var(--text-2)}
+.dg-reco2 .ic{flex:0 0 auto;margin-top:2px;color:var(--good)}
+.dg-reco2.warn{background:var(--warn-bg,rgba(255,159,10,.14))}.dg-reco2.warn .ic{color:var(--warn)}
+.dg-acts{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--text-3)}
+.dg-acts .btn{height:30px;gap:6px}
+/* names tab */
+.dg-nprev{display:flex;flex-direction:column;gap:8px;margin:14px 16px 4px;padding:12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.dg-np{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dg-np small{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--text-3);font-weight:600}.dg-np small .ic{width:12px;height:12px}
+.dg-np b{font-size:13px;line-height:1.4;word-break:break-word}.dg-np b.mono{font-family:var(--font-mono);font-size:11.5px;font-weight:600;color:var(--text-2)}
+#dg-pane>.dg-hintx{margin:8px 16px 0}
+#dg-pane>.dg-tokens{margin:10px 16px 4px}
+#dg-pane>.btn{margin:12px 16px 16px}
+.dg-tokens>span{font-size:11px;color:var(--text-3);margin-right:2px}
+.dg-tok{font:600 11px inherit;font-family:inherit}
+.mono{font-family:var(--font-mono)}
+@media (max-width:759px){
+  #view-diagram .dg-dock{width:auto}
+  .dg-gal3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dg-phead{margin:8px 10px 0}
+  #view-diagram .dg-ptabs button span{font-size:12px}
+}
+/* ===== Diagram responsive v3: sm-wide / sm-sheet / sm-narrow (set from the real map size, not the viewport) ===== */
+/* top bar: labels drop off when they would not fit */
+#view-diagram .dg-top.tb-c .seg button span,#view-diagram .dg-top.tb-c .dg-tb-actions .btn span{display:none}
+#view-diagram .dg-top.tb-c .seg button,#view-diagram .dg-top.tb-c .dg-tb-actions .btn{width:38px;padding:0;justify-content:center}
+#view-diagram .dg-top{overflow:hidden}
+/* ---- sheet mode: tablets & landscape phones — one full-height side sheet, the bars share what is left ---- */
+#view-diagram .dg-layout.sm-sheet .dg-top{left:calc(var(--dg-lx,0px) + 10px)!important;right:auto!important;top:8px!important;max-width:calc(100% - var(--dg-lx,0px) - var(--dg-rx,0px) - 20px - 50px)!important;flex-wrap:nowrap!important;padding:5px;gap:6px}
+#view-diagram .dg-layout.sm-sheet .dg-top .dg-vsep{display:none}
+#view-diagram .dg-layout.sm-sheet .dg-dock{left:10px!important;right:auto!important;width:min(300px,calc(100% - 300px))!important;top:var(--dg-pi)!important;bottom:auto!important;max-height:calc(100% - var(--dg-pi) - var(--dg-bi) - 4px)!important;border-radius:18px}
+#view-diagram .dg-layout.sm-sheet:not(.no-dock) .dg-dock{top:8px!important;bottom:8px!important;max-height:none!important}
+#view-diagram .dg-layout.sm-sheet .dg-panel{left:auto!important;right:10px!important;width:min(360px,calc(100% - 300px))!important;top:var(--dg-pi)!important;bottom:auto!important;max-height:none!important;border-radius:18px}
+#view-diagram .dg-layout.sm-sheet:not(.no-panel) .dg-panel{top:8px!important;bottom:8px!important}
+#view-diagram .dg-layout.sm-sheet.no-dock .dg-dock,#view-diagram .dg-layout.sm-sheet.no-panel .dg-panel{width:auto!important;min-width:0!important}
+#view-diagram .dg-layout.sm-sheet .dg-fh::before{display:none}
+#view-diagram .dg-layout.sm-sheet:not(.no-dock) .dg-dock .dg-fh .icon-btn .ic,#view-diagram .dg-layout.sm-sheet:not(.no-panel) .dg-panel .dg-fh .icon-btn .ic{transform:none}
+#view-diagram .dg-layout.sm-sheet .dg-fh{padding:8px 8px 8px 14px!important}
+#view-diagram .dg-layout.sm-sheet .dg-bottom{left:calc(var(--dg-lx,0px) + 10px)!important;right:calc(var(--dg-rx,0px) + 10px)!important;flex-wrap:nowrap}
+#view-diagram .dg-layout.sm-sheet .dg-tools{flex:1 1 auto;min-width:0;width:auto;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;justify-content:flex-start}
+#view-diagram .dg-layout.sm-sheet .dg-tools::-webkit-scrollbar{display:none}
+#view-diagram .dg-layout.sm-sheet .dg-tools button{flex:0 0 auto}
+#view-diagram .dg-layout.sm-sheet .dg-statbar{display:none}
+#view-diagram .dg-layout.sm-sheet .dg-hint{display:none}
+#view-diagram .dg-layout.sm-sheet .dg-reveal{left:auto!important;right:calc(var(--dg-rx,0px) + 10px)!important;top:8px!important;bottom:auto!important;transform:none!important;width:40px;height:40px;padding:0;justify-content:center}
+#view-diagram .dg-layout.sm-sheet .dg-reveal b{display:none}
+#view-diagram .dg-layout.sm-sheet.hide-ui .dg-reveal{right:10px!important}
+/* short screens (landscape phones): tighter everything */
+#view-diagram .dg-layout.sm-short .dg-top{padding:4px}
+#view-diagram .dg-layout.sm-short .dg-top .btn-sm,#view-diagram .dg-layout.sm-short .dg-top .seg button{height:32px}
+#view-diagram .dg-layout.sm-short .dg-tools button{width:36px;height:34px}
+#view-diagram .dg-layout.sm-short .dg-phead{margin:6px 10px 0;padding:6px 8px 6px 10px}
+#view-diagram .dg-layout.sm-short .dg-ptabs{margin-top:4px}#view-diagram .dg-layout.sm-short .dg-ptabs button{height:32px}
+#view-diagram .dg-layout.sm-short .dg-ph-t small{display:none}
+/* ---- wide mode: keep the top-centre toggle clear of the cards ---- */
+#view-diagram .dg-layout.sm-wide.rv-low:not(.hide-ui) .dg-reveal{top:auto;bottom:calc(var(--dg-bi) + 6px)}
+#view-diagram .dg-layout.sm-wide .dg-hint{left:calc(50% - var(--dg-ri,0px) / 2);max-width:calc(100% - var(--dg-ri,0px) - 340px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ---- narrow (phone portrait) ---- */
+@media (max-width:759px){
+  #view-diagram .dg-layout.sm-narrow .dg-bottom{bottom:calc(var(--tab-h) + 14px)}
+  #view-diagram .dg-layout.sm-narrow .dg-panel,#view-diagram .dg-layout.sm-narrow .dg-dock{max-width:calc(100% - 16px)}
+  /* landscape phones keep the app tab bar small */
+  #view-diagram .dg-layout.sm-sheet .dg-bottom{bottom:calc(var(--tab-h) + 14px)!important}
+  #view-diagram .dg-layout.sm-sheet:not(.no-dock) .dg-dock,#view-diagram .dg-layout.sm-sheet:not(.no-panel) .dg-panel{bottom:calc(var(--tab-h) + 14px)!important}
+}
+/* landscape phones: a slimmer app tab bar leaves room for the map */
+@media (max-width:759px) and (max-height:500px) and (orientation:landscape){
+  :root{--tab-h:calc(50px + env(safe-area-inset-bottom))}
+  .tabbar,.tabbar.five{height:46px!important;padding:4px!important;bottom:calc(6px + env(safe-area-inset-bottom))!important;border-radius:16px!important}
+  .tab span{display:none!important}.tab{min-height:0}
+  .topbar{height:48px}
+}
+@media (max-width:1100px) and (min-width:760px){.dg-lh,.dg-lr{grid-template-columns:minmax(160px,1fr) 56px 84px 104px 40px!important}.dg-more{display:grid!important}.dg-lh .dg-lc.mo{display:block!important}}
+#view-diagram .dg-layout.sm-short .dg-phead{display:none}#view-diagram .dg-layout.sm-short .dg-fh{padding:4px 6px 4px 12px!important}#view-diagram .dg-layout.sm-short .dg-fh .icon-btn{width:30px;height:30px}#view-diagram .dg-layout.sm-short .dg-ptabs{padding:4px}#view-diagram .dg-layout.sm-short .dg-acc>summary{padding:9px 14px}
+#view-diagram .dg-top.tb-cc #dg-copy{display:none}
 /* alerts page: header, stats and filters stay put; only the list scrolls */
 .al-toolbar .tb-filters{display:flex;gap:10px;flex-wrap:wrap}
 .al-toolbar .tb-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -7387,7 +7511,7 @@ function withG(l, fn){ const o = S.g; S.g = effG(l); try{ return fn(); } finally
 const fixLayers = G => { if(!Array.isArray(G.layers)) G.layers = defLayers([.5, 1, 2]); if(!G.layers.some(x => x.v === 1)) G.layers.push({ v:1, on:true, c:'#ffffff', d:true, w:1.4 }); G.layers.sort((a, b) => a.v - b.v); return G.layers; };
 const defG = () => ({
   nd:'zero', cap:5, scaleFn:'sqrt', alpha:.95, lw:2.4, font:12, mark:5, markC:'#ffffff', showMarks:true, showGlyph:true,
-  showId:true, labelGap:0, showName:false, showVal:false, showExceed:true, leader:true, back:true, grid:true, ring:true, axisLab:false, valLab:false, auto:true,
+  showId:true, labelGap:0, sideBy:true, showName:false, showVal:false, showExceed:true, leader:true, back:true, grid:true, ring:true, axisLab:false, valLab:false, auto:true,
   wcolor:'param', layers:defLayers([.5, 1, 2]), tick:'off', tickWho:'all', tickFs:1, div:false, divT:'sector', divW:1.2, divC:'#ffffff', divD:false, divOff:{}, seq:'viridis', surf:.8, surfM:'idw', idwP:2, fade:1.6, clip:'none', contour:false, contN:6,
   zoomScale:false, zoomRef:13, dim:.12, sat:1.1, labels:false, base:'imagery', text:1, boxA:.82,
   tc:{ id:'#ffffff', name:'#dbe9f7', val:'#ffe9a8', exc:'#ff9d96', axis:'#ffffff', tick:'#dbe9f7', tickRef:'#ffe9a8', halo:'#000a14' },
@@ -7422,34 +7546,106 @@ function ensureSel(l){
   }
 }
 function mkLayer(dsId, mode, extra){
-  const l = Object.assign({ id:S.nid++, name:'', on:true, ds:dsId, mode:mode || 'maucha', norm:'auto', sel:null, single:null, glyph:34, hidden:{}, manual:{}, colors:{}, refv:{}, labels:{}, colorN:0, top:{ on:false, dir:'max', k:3, sec:'' }, sg:mkSg(S.g) }, extra || {});
+  const l = Object.assign({ id:S.nid++, name:'', on:true, ds:dsId, mode:mode || 'maucha', norm:'auto', sel:null, single:null, glyph:34, hidden:{}, manual:{}, colors:{}, refv:{}, labels:{}, colorN:0, top:{ on:false, dir:'max', k:3, sec:'' }, txt:{ title:'', sub:'', note:'', file:'' }, sg:mkSg(S.g) }, extra || {});
   fixLayers(l.sg); ensureSel(l); return l;
 }
 const getLayer = id => S.layers.find(l => l.id === id);
 const selLayer = () => getLayer(S.sel) || S.layers[0] || null;
 const HOOKS = { res:null };
 const cleanSec = sec => { let t = String(sec || '').replace(/^\s*\d+[\.\)]\s*/, '').trim(); const m = t.match(/^(.*?)\s*\((.+)\)\s*$/); if(m){ t = LANG === 'th' ? (m[1] || m[2]) : m[2].replace(/\w\S*/g, w => w[0] + w.slice(1).toLowerCase()); } return t; };
-function autoCtx(l){
-  const ds = l ? getDs(l.ds) : null; if(!ds) return { res:'', sample:'', group:'', param:'', params:[], n:0, pts:0, ds:null };
-  const ps = SINGLE.has(l.mode) ? [ds.params.find(q => q.id === l.single)].filter(Boolean) : selectedParams(l), th = LANG === 'th';
-  const secs = [...new Set(ps.map(p => p.sec || ''))].filter(Boolean), gnames = [...new Set(secs.map(cleanSec))], vs = th ? ' เทียบ ' : ' vs ';
-  const group = gnames.length === 1 ? gnames[0] : gnames.length ? (gnames.length <= 2 ? gnames.join(vs) : gnames.slice(0, 2).join(vs) + ` +${gnames.length - 2}`) : '';
-  const names = ps.map(sname); let param;
-  if(!names.length) param = '—'; else if(names.length === 1) param = names[0]; else if(group) param = group; else param = names.length <= 3 ? names.join(', ') : names.slice(0, 2).join(', ') + ` +${names.length - 2}`;
-  const sample = ds.builtin ? `${MED_N[ds.med][th ? 0 : 1]} (${PERIOD_N[ds.period || 'pre'][th ? 0 : 1]})` : (ds.sample || ''), res = ds.builtin ? RES_N[ds.res][th ? 0 : 1] : (HOOKS.res ? HOOKS.res(ds) : '');
-  return { res, sample, group, param, cross:gnames.length > 1, params:names, n:ps.length, pts:ds.points.length, ds };
+/* ---- smart naming: every title / legend heading / file name is built from the same facets of each layer ---- */
+const isLatinEnd = s => /[A-Za-z0-9)\]]$/.test(s || '');
+const pName = (l, p) => lblOv(l, p) || p.name.replace(/\s*\(on site\)\s*/i, ' ').replace(/\s+/g, ' ').trim();
+function layerParams(l){ const ds = getDs(l.ds); return SINGLE.has(l.mode) ? [ds.params.find(q => q.id === l.single)].filter(Boolean) : selectedParams(l); }
+/* what the layer shows: one parameter → its name · several in one group → the group · across groups → “A vs B” */
+function subjectOf(l, short){
+  const ps = layerParams(l), th = LANG === 'th'; if(!ps.length) return '';
+  const pn = p => short ? sname(p) : pName(l, p);
+  let subj;
+  if(ps.length === 1) subj = pn(ps[0]);
+  else {
+    const by = new Map(); ps.forEach(p => { const k = p.sec || ''; if(!by.has(k)) by.set(k, []); by.get(k).push(p); });
+    const multi = by.size > 1;
+    const parts = [...by].map(([sec, arr]) => arr.length === 1 ? (multi ? sname(arr[0]) : pn(arr[0])) : (sec ? cleanSec(sec) : (arr.length <= 3 ? arr.map(pn).join(', ') : arr.slice(0, 2).map(pn).join(', ') + ` +${arr.length - 2}`)));
+    subj = listJoin(parts, true);
+  }
+  if(!SINGLE.has(l.mode) && l.top && l.top.on){ const k = Math.round(l.top.k) || 3, hi = l.top.dir !== 'min'; subj = th ? `${k} อันดับ${hi ? 'สูงสุด' : 'ต่ำสุด'}ของ${subj}` : `${hi ? 'Top' : 'Bottom'} ${k} · ${subj}`; }
+  return subj;
+}
+function facets(l){
+  const ds = getDs(l.ds), th = LANG === 'th', b = !!ds.builtin;
+  return { res:b ? RES_N[ds.res][th ? 0 : 1] : (HOOKS.res ? HOOKS.res(ds) : ''), sample:b ? MED_N[ds.med][th ? 0 : 1] : (ds.sample || ''),
+    period:b ? PERIOD_N[ds.period || 'pre'][th ? 0 : 1] : '', periodKey:b ? (ds.period || 'pre') : '', subject:subjectOf(l, false), subjectShort:subjectOf(l, true), dsName:b ? '' : (ds.name || ''), n:layerParams(l).length, pts:ds.points.length, params:layerParams(l).map(sname) };
+}
+/* one value per facet across several layers: identical → that value · pre + post → “before and after the rainy season” · otherwise “A vs B” */
+function combine(F, k, vsWord){
+  const u = [...new Set(F.map(f => f[k]).filter(Boolean))], th = LANG === 'th';
+  if(u.length <= 1) return u[0] || '';
+  if(k === 'period'){ const ks = new Set(F.map(f => f.periodKey).filter(Boolean)); if(ks.size === 2 && ks.has('pre') && ks.has('post')) return th ? 'ก่อนและหลังหน้าฝน' : 'before and after the rainy season'; }
+  const vs = vsWord || (th ? ' เทียบ ' : ' vs ');
+  return u.length <= 3 ? u.join(vs) : u.slice(0, 2).join(vs) + ` +${u.length - 2}`;
+}
+/* 2 items → “A vs B” (a comparison) · 3–4 → “A, B and C” · more → “A, B and n more” */
+function listJoin(a, compare){
+  const th = LANG === 'th'; a = a.filter(Boolean); if(a.length <= 1) return a[0] || '';
+  if(a.length === 2) return compare ? a.join(th ? ' เทียบ ' : ' vs ') : a.join(th ? ' และ ' : ' and ');
+  if(a.length <= 4) return a.slice(0, -1).join(', ') + (th ? ' และ ' : ' and ') + a[a.length - 1];
+  return a.slice(0, 2).join(', ') + (th ? ` และอีก ${a.length - 2} รายการ` : ` and ${a.length - 2} more`);
 }
 const joinNZ = (a, sep) => a.filter(x => x && String(x).trim()).join(sep || ' · ');
-function expandTokens(str, l){
-  if(!str || str.indexOf('{') < 0) return str; const c = autoCtx(l), th = LANG === 'th';
-  return String(str).replace(/\{(reservoir|sample|group|param|params|count|points)\}/gi, (m, k) => ({ reservoir:c.res, sample:c.sample, group:c.group, param:c.param, params:c.params.join(', '), count:String(c.n), points:String(c.pts) })[k.toLowerCase()] || '');
+const inWord = (t, smp) => LANG === 'th' ? (isLatinEnd(t) ? ' ใน' : 'ใน') + smp : ' in ' + smp.toLowerCase();
+const perTxt = p => LANG === 'th' ? p : p.charAt(0).toLowerCase() + p.slice(1);
+function composeTitle(layers){
+  const L = (layers || []).filter(Boolean); if(!L.length) return Lg('ไดอะแกรมเชิงพื้นที่', 'Spatial diagram');
+  const F = L.map(facets), th = LANG === 'th', uq = k => [...new Set(F.map(f => f[k]).filter(Boolean))];
+  const diff = ['subject', 'sample', 'period', 'res'].filter(k => uq(k).length > 1);
+  let t = '';
+  if(diff.length <= 1){                                          /* one thing differs (or nothing): say it once — “A vs B” */
+    const subj = combine(F, 'subject'), smp = combine(F, 'sample');
+    t = subj; if(smp) t = t ? t + inWord(t, smp) : smp;
+  } else {                                                        /* several things differ: describe each layer, then what they share */
+    const phrase = f => { let p = diff.includes('subject') ? f.subject : ''; if(diff.includes('sample')) p = p ? p + inWord(p, f.sample) : f.sample; if(diff.includes('period') && f.period) p += ` (${perTxt(f.period)})`; if(diff.includes('res') && f.res) p += th ? ' ' + f.res : ' — ' + f.res; return p; };
+    const ph = [...new Set(F.map(phrase))], joined = listJoin(ph, true), cs = diff.includes('subject') ? '' : uq('subject')[0] || '', cm = diff.includes('sample') ? '' : uq('sample')[0] || '';
+    t = cs ? cs + (diff.includes('sample') ? (th ? ' — ' : ': ') : ' — ') + joined : joined;
+    if(cm) t += inWord(t, cm);
+  }
+  const res = diff.includes('res') && diff.length > 1 ? '' : combine(F, 'res'), per = diff.includes('period') && diff.length > 1 ? '' : combine(F, 'period'), dn = combine(F, 'dsName');
+  if(res) t = t ? (th ? `${t} ${res}` : `${t} — ${res}`) : res; else if(dn) t = t ? `${t} — ${dn}` : dn;
+  if(per) t += ` (${perTxt(per)})`;
+  return t || Lg('ไดอะแกรมเชิงพื้นที่', 'Spatial diagram');
 }
+const visLayers = () => S.layers.filter(x => x.on);
+const txtOf = l => (l && l.txt) || {};
+function mapTitle(sl, vis){ const v = expandTokens((txtOf(sl).title || '').trim(), sl); return v || composeTitle(vis && vis.length ? vis : [sl]); }
+/* the heading of one layer inside the legend: only what tells it apart from the other visible layers */
+function legendAuto(l, vis){
+  let L = (vis && vis.length ? vis : [l]).slice(); if(!L.includes(l)) L.push(l);
+  const me = facets(l);
+  if(L.length <= 1) return S.boxes.title.on ? (me.subject || layerName(l)) : composeTitle([l]);
+  const F = L.map(facets), keys = ['subject', 'sample', 'period', 'res', 'dsName'].filter(k => new Set(F.map(f => f[k])).size > 1);
+  return joinNZ(keys.map(k => me[k])) || joinNZ([MODE_N[l.mode][LANG === 'th' ? 0 : 1], me.subject]);
+}
+function legendHead(l, vis){ const v = (l.name || '').trim(); return v ? expandTokens(v, l) : legendAuto(l, vis); }
+function autoFile(layers){
+  const L = (layers || []).filter(Boolean); if(!L.length) return 'diagram';
+  const F = L.map(facets), vs = ' vs ';
+  return joinNZ([combine(F, 'res', vs) || combine(F, 'dsName', vs), combine(F, 'sample', vs), combine(F, 'period', vs), combine(F, 'subjectShort', vs)], '_');
+}
+function autoCtx(l){
+  if(!l) return { res:'', sample:'', period:'', group:'', param:'', params:[], n:0, pts:0 };
+  const f = facets(l); return { res:f.res, sample:f.sample, period:f.period, group:f.subject, param:f.subject, params:f.params, n:f.n, pts:f.pts };
+}
+function expandTokens(str, l){
+  if(!str || String(str).indexOf('{') < 0) return str; const f = l ? facets(l) : { params:[] };
+  return String(str).replace(/\{(reservoir|sample|period|group|param|params|count|points)\}/gi, (m, k) => ({ reservoir:f.res, sample:f.sample, period:f.period, group:f.subject, param:f.subject, params:(f.params || []).join(', '), count:String(f.n || 0), points:String(f.pts || 0) })[k.toLowerCase()] || '');
+}
+/* the name of a layer in the layer list / panel header */
 function layerName(l){
   if(l.name && l.name.trim()) return expandTokens(l.name.trim(), l);
-  const c = autoCtx(l), mode = MODE_N[l.mode][LANG === 'th' ? 0 : 1];
-  return joinNZ([c.param, c.sample]) || `${mode} · ${dsLabel(getDs(l.ds))}`;
+  const f = facets(l); return joinNZ([f.subject, f.sample, f.period]) || f.dsName || dsLabel(getDs(l.ds));
 }
-function autoName(l){ const c = autoCtx(l); return joinNZ([c.res, c.sample, c.param], '_'); }
+const layerSub = l => { const f = facets(l); return joinNZ([f.res || f.dsName, f.sample, f.period]); };
+function autoName(l){ return autoFile([l]); }
 function defaultState(){
   S = { layers:[], sel:null, nid:1, g:defG(), boxes:defBoxes(), poly:{}, ptEdit:{}, view:null, tab:'layer', xScale:2, xFmt:'png', xName:'', xBase:true };
   const a = mkLayer('BP|sed', 'maucha');
@@ -7474,9 +7670,12 @@ function loadState(){
     S = Object.assign({ nid:1, poly:{}, ptEdit:{}, view:null, tab:'layer', xScale:2, xFmt:'png', xName:'', xBase:true }, o);
     S.g = Object.assign(d, o.g || {}); if(o.g && o.g.lyr && !o.g.layers) S.g.layers = defLayers(o.g.lyr.concat(o.g.lyr.includes(1) ? [] : [1])); delete S.g.lyr; fixLayers(S.g); S.g.divOff = S.g.divOff || {}; S.g.tc = Object.assign(d.tc, (o.g || {}).tc || {}); S.g.bc = Object.assign(d.bc, (o.g || {}).bc || {});
     S.boxes = Object.assign(b, o.boxes || {}); ['title', 'legend', 'summary', 'avg', 'scale'].forEach(k => { S.boxes[k] = Object.assign(b[k], (o.boxes || {})[k] || {}); });
-    S.layers.forEach(l => { if(!l.sg) l.sg = mkSg(S.g); fixLayers(l.sg); Object.assign(l, Object.assign({ top:{ on:false, dir:'max', k:3, sec:'' }, hidden:{}, manual:{}, colors:{}, refv:{}, labels:{}, colorN:0, glyph:34, norm:'auto', name:'', on:true }, l)); ensureSel(l); });
+    S.layers.forEach(l => { if(!l.sg) l.sg = mkSg(S.g); fixLayers(l.sg); Object.assign(l, Object.assign({ top:{ on:false, dir:'max', k:3, sec:'' }, txt:{ title:'', sub:'', note:'', file:'' }, hidden:{}, manual:{}, colors:{}, refv:{}, labels:{}, colorN:0, glyph:34, norm:'auto', name:'', on:true }, l)); ensureSel(l); });
     S.nid = Math.max(S.nid, ...S.layers.map(l => l.id + 1));
     if(!getLayer(S.sel)) S.sel = S.layers[0].id;
+    { const t = S.boxes.title, L = getLayer(S.sel), X = L.txt;            /* v1 kept one title / file name for everything → move them to the selected layer */
+      if(t.text || t.sub || t.note){ X.title = X.title || t.text || ''; X.sub = X.sub || t.sub || ''; X.note = X.note || t.note || ''; t.text = t.sub = t.note = ''; }
+      if(S.xName){ X.file = X.file || S.xName; S.xName = ''; } }
   } else defaultState();
 }
 
@@ -7781,8 +7980,14 @@ function autoLayout(anchors, R, ext){
   return g.map((q, i) => [q.x - anchors[i].x, q.y - anchors[i].y]);
 }
 function glyphRadius(l, zoom){ const G = S.g; return l.glyph * (G.zoomScale ? Math.pow(2, (zoom - G.zoomRef) * .55) : 1); }
-function placements(l, B, anchors, vis, R, zoom, proj){
-  const G = S.g, single = SINGLE.has(l.mode), n = anchors.length;
+const ptsKey = ds => ds._pk || (ds._pk = ds.points.map(p => p.id).join(','));
+function sideOffset(l, R){                /* layers drawn on the same points (e.g. before / after the rains) sit next to each other */
+  if(S.g.sideBy === false || l.mode === 'surface') return 0;
+  const k0 = ptsKey(getDs(l.ds)), sib = S.layers.filter(x => x.on && x.mode !== 'surface' && ptsKey(getDs(x.ds)) === k0), k = sib.indexOf(l);
+  return sib.length > 1 && k >= 0 ? (k - (sib.length - 1) / 2) * R * 2.25 : 0;
+}
+function placements(l, B, anchors0, vis, R, zoom, proj){
+  const G = S.g, single = SINGLE.has(l.mode), n = anchors0.length, off = sideOffset(l, R), anchors = off ? anchors0.map(a => ({ x:a.x + off, y:a.y })) : anchors0;
   const ext = anchors.map((a, i) => {
     if(single) return l.mode === 'surface' ? R * .4 : Math.max(R * .62 * Math.sqrt(G.cap) * .6, R * .5);
     let m = 1; B.items.forEach(it => { const v = it.gv[i]; if(v != null) m = Math.max(m, fscale(v, G.cap)); });
@@ -7791,7 +7996,7 @@ function placements(l, B, anchors, vis, R, zoom, proj){
   let disp;
   const idxs = []; for(let i = 0; i < n; i++) if(vis[i]) idxs.push(i);
   if(G.auto && !single && idxs.length > 1){
-    const sig = [l.id, zoom.toFixed(2), Math.round(R), l.mode, G.cap, G.scaleFn, B.items.map(it => it.p.id).join(','), B.norm, G.nd, idxs.join(','), B.pts.map(p => p.lat.toFixed(5) + p.lon.toFixed(5)).join('')].join('|');
+    const sig = [l.id, zoom.toFixed(2), Math.round(R), Math.round(off), l.mode, G.cap, G.scaleFn, B.items.map(it => it.p.id).join(','), B.norm, G.nd, idxs.join(','), B.pts.map(p => p.lat.toFixed(5) + p.lon.toFixed(5)).join('')].join('|');
     let c = layoutCache.get(l.id);
     if(!c || c.sig !== sig){
       const sub = autoLayout(idxs.map(i => anchors[i]), R, idxs.map(i => ext[i])); disp = new Array(n).fill(null); idxs.forEach((i, k) => { disp[i] = sub[k]; });
@@ -7814,25 +8019,14 @@ function wrapLines(ctx, text, maxW){
 }
 function fitText(ctx, tx, maxW){ if(ctx.measureText(tx).width <= maxW) return tx; let s = tx; while(s.length > 1 && ctx.measureText(s + '…').width > maxW) s = s.slice(0, -1); return s + '…'; }
 function wrapText(ctx, text, maxW){ const out = []; String(text || '').split('\n').forEach(l => { if(!l.trim()) out.push(''); else wrapLines(ctx, l, maxW).forEach(x => out.push(x)); }); return out; }
-function autoTitle(sl){
-  if(!sl) return Lg('ไดอะแกรมเชิงพื้นที่', 'Spatial diagram');
-  const c = autoCtx(sl); return joinNZ([c.param, c.sample]) || layerName(sl);
-}
-function autoLegendHead(models){
-  const sl = models[0] && models[0].l, c = autoCtx(sl); return joinNZ([c.res, c.sample]);
-}
-function autoSub(sl, B){
-  if(!sl || !B) return '';
-  const tail = B.norm === 'std' ? Lg('เทียบค่ามาตรฐาน', 'vs. the standard') : B.norm === 'max' ? Lg('% ของค่าสูงสุด', '% of maximum') : B.norm === 'minmax' ? 'Min–Max' : Lg('ค่าจริง', 'actual values');
-  const c = autoCtx(sl); return joinNZ([c.res, c.group, c.n > 3 || !c.group ? '' : '', Lg(B.pts.length + ' จุดเก็บตัวอย่าง', B.pts.length + ' sampling points'), tail]);
-}
+function autoTitle(sl){ return composeTitle(sl ? [sl] : []); }
 function mkBoxes(ctx, models, sl, opts){
   const G = S.g, BX = S.boxes, u = 12 * G.text, boxes = [], sc = k => (BX[k] && BX[k].size) || 1;
   const bc = G.bc;
   const slm = models.find(m => m.l === sl) || models[0];
   /* title */
   if(BX.title.on){
-    const tk = x => expandTokens(x, sl), title = tk(BX.title.text) || autoTitle(sl), sub = tk(BX.title.sub) || '', note = tk(BX.title.note) || '';
+    const vis = models.map(m => m.l), T = txtOf(sl), title = mapTitle(sl, vis), sub = expandTokens((T.sub || '').trim(), sl) || '', note = expandTokens((T.note || '').trim(), sl) || '';
     ctx.font = `700 ${u * 1.4}px ${FONT}`; const tl = wrapText(ctx, title, 380); let w = 0; tl.forEach(q => w = Math.max(w, ctx.measureText(q).width));
     ctx.font = `500 ${u * .85}px ${FONT}`; const sls = sub ? wrapText(ctx, sub, 360) : []; sls.forEach(q => w = Math.max(w, ctx.measureText(q).width));
     ctx.font = `400 ${u * .78}px ${FONT}`; const nl = note ? wrapText(ctx, note, 360) : []; nl.forEach(q => w = Math.max(w, ctx.measureText(q).width));
@@ -7849,7 +8043,7 @@ function mkBoxes(ctx, models, sl, opts){
     const secs = []; const sz = u * .9; let w = 150;
     models.forEach(m => {
       const { l, B } = m; if(!B.items.length) return;
-      const head = layerName(l), Gl = effG(l);
+      const head = legendHead(l, models.map(q => q.l)), Gl = effG(l);
       if(SINGLE.has(l.mode)){
         const it = B.items[0], std = B.norm === 'std', bw = 170;
         const lab = std ? Lg('สี = ค่า ÷ มาตรฐาน', 'colour = value ÷ standard') : B.norm === 'max' ? Lg('สี = % ของค่าสูงสุด', 'colour = % of maximum') : B.norm === 'minmax' ? 'colour = Min–Max' : Lg('สี = ค่าจริง', 'colour = actual value');
@@ -7875,7 +8069,7 @@ function mkBoxes(ctx, models, sl, opts){
       ctx.font = `700 ${u}px ${FONT}`; secs.forEach(s => { if(!noSub) w = Math.max(w, ctx.measureText(s.head).width + 28); });
       w = Math.min(w, 440); const wholeW = w + 4; ctx.font = `500 ${u * .8}px ${FONT}`;
       secs.forEach(s => { if(s.notes){ const nl = []; s.notes.forEach(n => wrapLines(ctx, n, wholeW - 28).forEach(q => nl.push(q))); s.nl = nl; s.h += (nl.length - s.notes.length) * u * 1.05; } });
-      const head0 = expandTokens(BX.legend.head, sl) || (models.length > 1 ? autoLegendHead(models) : ''), hh = head0 ? u * 1.4 : 0, h = 10 + hh + secs.reduce((a, s) => a + s.h, 0) - (noSub ? u * 1.55 : 0) + 6;
+      const head0 = expandTokens((BX.legend.head || '').trim(), sl) || (!BX.title.on && models.length > 1 ? composeTitle(models.map(q => q.l)) : ''), hh = head0 ? u * 1.4 : 0, h = 10 + hh + secs.reduce((a, s) => a + s.h, 0) - (noSub ? u * 1.55 : 0) + 6;
       boxes.push({ key:'legend', pos:BX.legend.pos, sc:sc('legend'), w:wholeW, h, draw(x, y){
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; let yy = y + 10;
         if(head0){ ctx.fillStyle = bc.head; ctx.font = `700 ${u * 1.05}px ${FONT}`; ctx.fillText(fitText(ctx, head0, wholeW - 28), x + 14, yy + u * .55); yy += hh; }
@@ -7919,7 +8113,7 @@ function mkBoxes(ctx, models, sl, opts){
     const labW = Math.max(40, ...rows.map(r => ctx.measureText(r.nm).width)) + sz * 1.2 + 8;
     const tx = r => r.m == null ? Lg('ND / ไม่มีค่า', 'ND / no value') : `${fmt(r.m)} ${unitOf(r.it.p)}`.trim() + `  (${r.n}/${r.tot})`;
     ctx.font = `600 ${sz}px ${FONT}`; const valW = Math.max(60, ...rows.map(r => ctx.measureText(tx(r)).width));
-    const hdr = expandTokens(BX.avg.head, sl) || Lg('ค่าเฉลี่ยของแต่ละพารามิเตอร์', 'Average of each parameter'); ctx.font = `700 ${u}px ${FONT}`;
+    const hdr = expandTokens(BX.avg.head, sl) || (Lg('ค่าเฉลี่ยของแต่ละพารามิเตอร์', 'Average of each parameter') + (models.length > 1 ? ' · ' + legendHead(slm.l, models.map(q => q.l)) : '')); ctx.font = `700 ${u}px ${FONT}`;
     const w = Math.max(14 + labW + valW + 14, ctx.measureText(hdr).width + 28), h = 10 + u * 1.3 + rows.length * rowH + 8;
     boxes.push({ key:'avg', pos:BX.avg.pos, sc:sc('avg'), w, h, draw(x, y){
       ctx.textBaseline = 'middle'; ctx.textAlign = 'left'; ctx.fillStyle = bc.head; ctx.font = `700 ${u}px ${FONT}`; ctx.fillText(hdr, x + 14, y + 10 + u * .55);
@@ -7946,7 +8140,7 @@ function mkBoxes(ctx, models, sl, opts){
   if(BX.summary.on && slm && slm.B.items.length){
     const B = slm.B, items = B.items.slice(0, 12), sz = u * .86, rowH = sz * 1.85, barW = 110 * G.text; ctx.font = `700 ${sz}px ${FONT}`;
     const snm = it => lblOv(slm.l, it.p) || sname(it.p), labW = Math.max(50, ...items.map(it => ctx.measureText(snm(it)).width)) + sz * 1.2 + 10, hasStd = B.norm === 'std';
-    const w = 14 + labW + barW + 10 + sz * 9.5 + 14, hdr = expandTokens(BX.summary.head, sl) || (hasStd ? Lg('ค่าสูงสุดของแต่ละพารามิเตอร์ ÷ มาตรฐาน', 'Maximum of each parameter ÷ standard') : Lg('ค่าสูงสุดของแต่ละพารามิเตอร์', 'Maximum of each parameter')), h = 10 + u * 1.3 + items.length * rowH + 8;
+    const w = 14 + labW + barW + 10 + sz * 9.5 + 14, hdr = expandTokens(BX.summary.head, sl) || ((hasStd ? Lg('ค่าสูงสุด ÷ มาตรฐาน', 'Maximum ÷ standard') : Lg('ค่าสูงสุดของแต่ละพารามิเตอร์', 'Maximum of each parameter')) + (models.length > 1 ? ' · ' + legendHead(slm.l, models.map(q => q.l)) : '')), h = 10 + u * 1.3 + items.length * rowH + 8;
     boxes.push({ key:'summary', pos:BX.summary.pos, sc:sc('summary'), w, h, draw(x, y){
       ctx.textBaseline = 'middle'; ctx.textAlign = 'left'; ctx.fillStyle = bc.head; ctx.font = `700 ${u}px ${FONT}`; ctx.fillText(hdr, x + 14, y + 10 + u * .55);
       const yy = y + 10 + u * 1.3 + rowH * .35, bx = x + 14 + labW, capv = hasStd ? Math.max(2, Math.min(effG(slm.l).cap, Math.max(...items.map(q => Math.max(...q.nv.filter(v => v != null), 0)))) * 1.05) : 1;
@@ -7976,21 +8170,41 @@ function mkBoxes(ctx, models, sl, opts){
   return boxes;
 }
 const INSET = { t:0, r:0, b:0, l:0 };   /* area covered by the floating UI cards (px) */
+let OBST = [];                                /* rectangles of the floating UI in map-container px — text boxes keep clear of them on screen */
+const setObst = a => { OBST = a || []; };
 function placeBoxes(ctx, boxes, W, H, hits, sel){
   const mf = W < 560 ? .78 : 1, M = W < 560 ? 12 : 18, Gp = 10, stack = { tl:[], tr:[], bl:[], br:[] }, frees = [], BX = S.boxes;
   for(const b of boxes){ const f = BX.free[b.key]; if(b.custom){ const n = b.custom; b.fx = n.fx != null ? n.fx : .5; b.fy = n.fy != null ? n.fy : .5; frees.push(b); } else if(f) frees.push(b); else if(stack[b.pos]) stack[b.pos].push(b); }
-  const put = (b, x, y) => {
-    const s = b.fixed ? 1 : (b.sc || 1) * mf, w = b.w * s, h = b.h * s; ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const put = (b, x, y, k) => {
+    const s = (b.fixed ? 1 : (b.sc || 1) * mf) * (k || 1), w = b.w * s, h = b.h * s; ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
     if(b.bg !== false){ const bg = hex2rgb(S.g.bc.bg); ctx.fillStyle = `rgba(${bg[0]},${bg[1]},${bg[2]},${S.g.boxA})`; rrect(ctx, 0, 0, b.w, b.h, 12); ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = 1; ctx.stroke(); }
     b.draw(0, 0); ctx.restore();
     if(hits){ hits.boxes.push({ key:b.key, x, y, w, h }); if(sel === b.key){ ctx.save(); ctx.setLineDash([6, 4]); ctx.lineWidth = 1.6; ctx.strokeStyle = '#5ce1ff'; rrect(ctx, x - 3, y - 3, w + 6, h + 6, 14); ctx.stroke(); ctx.restore(); } }
   };
-  if(W < 560){ stack.tl = stack.tl.concat(stack.tr); stack.tr = []; stack.bl = stack.bl.concat(stack.br); stack.br = []; }   /* phones: one column, clear of the floating bars while they are shown */
-  const mT = W < 560 ? INSET.t : 0, mB = W < 560 ? INSET.b : 0;
+  if(W < 560){ stack.tl = stack.tl.concat(stack.tr); stack.tr = []; stack.bl = stack.bl.concat(stack.br); stack.br = []; }   /* phones: one column */
+  const obs = hits ? OBST.slice() : [], GAP = 8, placed = [];
+  const hit = (x, y, w, h, hard) => obs.concat(placed).find(o => (!hard || !o.soft) && x < o.r + GAP && x + w > o.l - GAP && y < o.b + GAP && y + h > o.t - GAP);
+  const inb = (x, y, w, h) => x >= 4 && y >= 4 && x + w <= W - 4 && y + h <= H - 4;
+  let HARD = false; const free = (x, y, w, h) => inb(x, y, w, h) && !hit(x, y, w, h, HARD);
+  const find = (x0, y0, w, h, top, left) => {           /* nearest spot clear of the floating cards (corner first, then beside / below them) */
+    if(free(x0, y0, w, h) || (!obs.length && !placed.length)) return [x0, y0];
+    const ob2 = obs.concat(placed).filter(o => !HARD || !o.soft), xs = [x0, ...ob2.map(o => left ? o.r + GAP : o.l - w - GAP)], ys = [y0, ...ob2.map(o => top ? o.b + GAP : o.t - h - GAP)];
+    let best = null, bd = 1e9; for(const x of xs) for(const y of ys){ if(!free(x, y, w, h)) continue; const d = Math.hypot(x - x0, y - y0); if(d < bd){ bd = d; best = [x, y]; } }
+    return best;
+  };
   for(const pos of Object.keys(stack)){
-    let off = 0; const arr = pos[0] === 'b' ? stack[pos].slice().reverse() : stack[pos];
-    for(const b of arr){ const s = b.fixed ? 1 : (b.sc || 1) * mf, w = b.w * s, h = b.h * s, x = pos[1] === 'l' ? M : W - M - w, y = pos[0] === 't' ? M + mT + off : H - M - mB - h - off; put(b, x, y); off += h + Gp; }
+    const top = pos[0] === 't', left = pos[1] === 'l', arr = top ? stack[pos] : stack[pos].slice().reverse(); let cur = top ? M : H - M;
+    for(const b of arr){
+      const s0 = b.fixed ? 1 : (b.sc || 1) * mf; let done = false;
+      for(const pass of [false, true]) for(const k of b.fixed ? [1] : [1, .86, .74, .62]){   /* shrink a little; then allow sitting behind an open side sheet (never behind the bars) */
+        if(done) break; HARD = pass;
+        const w = b.w * s0 * k, h = b.h * s0 * k, p = find(left ? M : W - M - w, top ? cur : cur - h, w, h, top, left);
+        if(p){ put(b, p[0], p[1], k); placed.push({ l:p[0], t:p[1], r:p[0] + w, b:p[1] + h }); cur = top ? p[1] + h + Gp : p[1] - Gp; done = true; break; }
+      }
+      if(!done){ const w = b.w * s0, h = b.h * s0, x = left ? M : W - M - w, y = top ? cur : cur - h; put(b, x, y); placed.push({ l:x, t:y, r:x + w, b:y + h }); cur = top ? y + h + Gp : y - Gp; }
+    }
   }
+
   frees.forEach(b => { const s = b.fixed ? 1 : (b.sc || 1) * mf, w = b.w * s, h = b.h * s, f = b.custom ? { fx:b.fx, fy:b.fy } : BX.free[b.key]; put(b, clamp(f.fx * W, 20 - w, W - 20), clamp(f.fy * H, 14 - h, H - 14)); });
 }
 
@@ -8046,7 +8260,7 @@ function renderScene(ctx, W, H, proj, zoom, hits, opts){
 window.DGCore = {
   Lg, FONT, RES_N, MED_N, PERIOD_N, MODES, MODE_N, MODE_FULL, MODE_NOTE, GLYPHS, SINGLE, PALETTE, PRESETS, PRESET_N, SEQ, BINS, BINL,
   DS, buildBuiltin, prepDs, dsLabel, getDs, judge, statusOf, plotted, paramBad, fmt, fmtR, abbr, sname, stdText, unitOf, ptId,
-  get S(){ return S; }, set S(v){ S = v; }, persist, loadState, loadImports, saveImports, applyPtEdits, defaultState, defG, defBoxes, INSET, fixLayers, defLayers, setHover, autoCtx, autoName, expandTokens, HOOKS, joinNZ, cleanSec, effG, mkSg, LKEYS,
+  get S(){ return S; }, set S(v){ S = v; }, persist, loadState, loadImports, saveImports, applyPtEdits, defaultState, defG, defBoxes, INSET, setObst, fixLayers, defLayers, setHover, autoCtx, autoName, expandTokens, HOOKS, joinNZ, cleanSec, facets, composeTitle, mapTitle, legendHead, legendAuto, autoFile, layerSub, visLayers, effG, mkSg, LKEYS,
   mkLayer, getLayer, selLayer, layerName, ensureSel, defaultSel, selectedParams, bundle, colorOf, renderScene, lastSurf, fieldCache, layoutCache,
   setSC(v){ SC = v; }, hex2rgb, rampColor, valueRamp, lblOv, resolveNorm
 };
@@ -8104,7 +8318,6 @@ function buildShell(){
 
     <div class="dg-top dg-glass" id="dg-top">
       <div class="seg" id="dg-views" role="tablist"><button data-v="map" class="active" title="${tip('แผนที่', 'Map')}">${ico('map', 'sm')}<span>${Lg('แผนที่', 'Map')}</span></button><button data-v="table" title="${tip('ตารางข้อมูล', 'Data table')}">${ico('table', 'sm')}<span>${Lg('ตาราง', 'Table')}</span></button></div>
-      <div class="dg-ds"><select class="select sm" id="dg-ds" aria-label="${tip('ชุดข้อมูลของชั้นที่เลือก', 'Dataset of the selected layer')}" title="${tip('ชุดข้อมูลของชั้นที่เลือก', 'Dataset of the selected layer')}"></select><button class="icon-btn sm danger" id="dg-ds-del" hidden title="${tip('ลบชุดข้อมูลที่นำเข้า', 'Delete this imported dataset')}">${ico('trash', 'sm')}</button></div>
       <i class="dg-vsep"></i>
       <div class="dg-tb-actions">
         <button class="btn btn-sm" id="dg-import" title="${tip('นำเข้า / จัดการข้อมูล Excel', 'Import / manage Excel data')}">${ico('download', 'sm')}<span>${Lg('นำเข้า', 'Import')}</span></button>
@@ -8115,20 +8328,22 @@ function buildShell(){
     </div>
 
     <aside class="dg-dock dg-glass" id="dg-dock" aria-label="${tip('ชั้นและชนิดแผนภาพ', 'Layers and diagram type')}">
-      <div class="dg-fh" data-fl="dock" title="${tip('ย่อ / ขยาย', 'Collapse / expand')}"><b>${ico('layers', 'sm')}${Lg('แผนภาพ', 'Diagram')}</b><button type="button" class="icon-btn sm" aria-label="${tip('ย่อ / ขยาย', 'Collapse / expand')}">${ico('up', 'sm')}</button></div>
+      <div class="dg-fh" data-fl="dock" title="${tip('ย่อ / ขยาย', 'Collapse / expand')}"><b>${ico('layers', 'sm')}${Lg('ชั้นแผนภาพ', 'Layers')} <em id="dg-lcount" class="dg-cnt2">0</em></b><button type="button" class="icon-btn sm" aria-label="${tip('ย่อ / ขยาย', 'Collapse / expand')}">${ico('up', 'sm')}</button></div>
       <div class="dg-fbody">
-        <div class="dg-fs"><div class="dg-fk dg-fkrow"><span>${Lg('ชั้นแผนภาพ', 'Layers')} <em id="dg-lcount" class="dg-cnt2">0</em></span><span class="dg-fkact"><button type="button" data-act="showall" title="${tip('แสดงทุกชั้น', 'Show all layers')}">${ico('eye', 'sm')}</button><button type="button" data-act="hideall" title="${tip('ซ่อนทุกชั้น', 'Hide all layers')}">${ico('eyeoff', 'sm')}</button></span></div><div class="dg-chips" id="dg-chips"></div><button type="button" class="dg-chip add dg-addl2" data-act="add" title="${tip('เพิ่มชั้นแผนภาพ', 'Add a diagram layer')}">${ico('plus', 'sm')}<span>${Lg('เพิ่มชั้นแผนภาพ', 'Add a diagram layer')}</span></button></div>
-        <div class="dg-fs" id="dg-typesec"><div class="dg-fk">${Lg('ชนิดแผนภาพ', 'Diagram type')}</div><div class="dg-gallery" id="dg-gallery" aria-label="${tip('รูปแบบแผนภาพ', 'Diagram type')}"></div></div>
+        <div class="dg-fkrow dg-lhint"><span>${Lg('เลือกชั้นเพื่อแก้ไขในแผงตั้งค่า', 'Pick a layer to edit it in Settings')}</span><span class="dg-fkact"><button type="button" data-act="showall" title="${tip('แสดงทุกชั้น', 'Show all layers')}">${ico('eye', 'sm')}</button><button type="button" data-act="hideall" title="${tip('ซ่อนทุกชั้น', 'Hide all layers')}">${ico('eyeoff', 'sm')}</button></span></div>
+        <div class="dg-chips" id="dg-chips"></div>
+        <button type="button" class="dg-chip add dg-addl2" data-act="addmenu" title="${tip('เพิ่มชั้นแผนภาพ', 'Add a diagram layer')}">${ico('plus', 'sm')}<span>${Lg('เพิ่มชั้น', 'Add a layer')}</span>${ico('down', 'sm')}</button>
       </div>
     </aside>
 
     <aside class="dg-panel dg-glass" id="dg-panel" aria-label="${tip('ตั้งค่า', 'Settings')}">
       <div class="dg-fh" data-fl="panel" title="${tip('ย่อ / ขยาย', 'Collapse / expand')}"><b>${ico('panel', 'sm')}${Lg('ตั้งค่า', 'Settings')}</b><button type="button" class="icon-btn sm" aria-label="${tip('ย่อ / ขยาย', 'Collapse / expand')}">${ico('up', 'sm')}</button></div>
+      <div class="dg-phead" id="dg-phead"></div>
       <div class="dg-ptabs" id="dg-ptabs" role="tablist">
-        <button type="button" data-tab="layer">${Lg('พารามิเตอร์', 'Parameters')}</button>
-        <button type="button" data-tab="style">${Lg('รูปแบบ', 'Style')}</button>
-        <button type="button" data-tab="text">${Lg('ข้อความ', 'Text')}</button>
-        <button type="button" data-tab="export">${Lg('ส่งออก', 'Export')}</button>
+        <button type="button" data-tab="data" title="${tip('ชุดข้อมูล ชนิดแผนภาพ และพารามิเตอร์ของชั้นนี้', 'Dataset, diagram type and parameters of this layer')}">${ico('flask', 'sm')}<span>${Lg('ข้อมูล', 'Data')}</span></button>
+        <button type="button" data-tab="style" title="${tip('หน้าตาของชั้นนี้', 'How this layer looks')}">${ico('sliders', 'sm')}<span>${Lg('รูปแบบ', 'Style')}</span></button>
+        <button type="button" data-tab="name" title="${tip('หัวข้อ คำอธิบาย และชื่อไฟล์ของชั้นนี้', 'Title, legend and file name of this layer')}">${ico('edit', 'sm')}<span>${Lg('ชื่อ', 'Names')}</span></button>
+        <button type="button" data-tab="map" title="${tip('ใช้ร่วมกันทุกชั้น: กล่องบนแผนที่ พื้นหลัง ส่งออก', 'Shared: boxes, base map, export')}">${ico('map', 'sm')}<span>${Lg('แผนที่', 'Map')}</span></button>
       </div>
       <div class="dg-pane" id="dg-pane"></div>
     </aside>
@@ -8178,7 +8393,7 @@ function initMap(){
   cont.addEventListener('pointerleave', () => hideTip());
   cont.addEventListener('dblclick', onDbl);
   cont.addEventListener('contextmenu', onCtx);
-  new ResizeObserver(() => { if(D.map && $('#view-diagram').classList.contains('active')){ measureInset(); D.map.invalidateSize(); draw(); } }).observe($('#dg-wrap'));
+  new ResizeObserver(() => { if(D.map && $('#view-diagram').classList.contains('active')){ syncFloat(); measureInset(); D.map.invalidateSize(); draw(); } }).observe($('#dg-wrap'));
 }
 function setBase(){
   const G = st().g;
@@ -8330,13 +8545,13 @@ function polyBar(){
 }
 
 /* ---------------------------------------------------------------- layers & dataset */
-function selectLayer(id){ st().sel = id; C.persist(); renderChips(); renderGallery(); renderPane(); syncDs(); statbar(); draw(); }
+function selectLayer(id){ st().sel = id; C.persist(); renderChips(); renderPane(); statbar(); draw(); }
 function addLayer(mode){
   if(st().layers.length >= MAXL){ toast(Lg(`เพิ่มได้สูงสุด ${MAXL} ชั้น — ลบชั้นเดิมก่อน`, `Up to ${MAXL} layers — delete one first`), 'err'); return; }
   const base = sel(), S = st(), l = C.mkLayer(base ? base.ds : 'BP|water', mode || 'bubble');
   S.layers.push(l); S.sel = l.id; C.persist(); renderAll(); fitPoints(true);
 }
-function dupLayer(id){ const l = C.getLayer(id); if(!l) return; if(st().layers.length >= MAXL){ toast(Lg(`เพิ่มได้สูงสุด ${MAXL} ชั้น`, `Up to ${MAXL} layers`), 'err'); return; } const S = st(), c = JSON.parse(JSON.stringify(l)); c.id = S.nid++; c.name = (l.name || C.layerName(l)) + (LANG === 'th' ? ' (สำเนา)' : ' (copy)'); S.layers.splice(S.layers.indexOf(l) + 1, 0, c); S.sel = c.id; C.persist(); renderAll(); }
+function dupLayer(id){ const l = C.getLayer(id); if(!l) return; const S = st(), c = JSON.parse(JSON.stringify(l)); c.id = S.nid++; c.name = l.name ? l.name + (LANG === 'th' ? ' (สำเนา)' : ' (copy)') : ''; c.manual = {}; S.layers.splice(S.layers.indexOf(l) + 1, 0, c); S.sel = c.id; C.persist(); renderAll(); }
 async function delLayer(id){
   const S = st(); if(S.layers.length <= 1){ toast(Lg('ต้องมีอย่างน้อย 1 ชั้น', 'At least one layer is required'), 'err'); return; }
   const l = C.getLayer(id); if(!l) return;
@@ -8348,10 +8563,42 @@ const MAXL = Infinity;
 function renderChips(){
   const S = st(), box = $('#dg-chips'); if(!box) return; const one = S.layers.length <= 1, n = S.layers.length, nOn = S.layers.filter(l => l.on).length;
   const ib = (act, ic, t, id, off) => `<button type="button" class="dg-chip-x" data-act="${act}" data-id="${id}" ${off ? 'disabled' : ''} title="${esc(t)}">${ico(ic, 'sm')}</button>`;
-  box.innerHTML = S.layers.map((l, i) => { const sl = l.id === S.sel, nm = C.layerName(l); return `<div class="dg-chip${sl ? ' sel' : ''}${l.on ? '' : ' off'}" data-lid="${l.id}"><button type="button" class="dg-eye" data-act="eye" data-id="${l.id}" aria-pressed="${l.on}" title="${esc(l.on ? Lg('ซ่อนชั้นนี้', 'Hide this layer') : Lg('แสดงชั้นนี้', 'Show this layer'))}">${ico(l.on ? 'eye' : 'eyeoff', 'sm')}</button><button type="button" class="dg-chip-n" data-act="pick" data-id="${l.id}" title="${esc(nm)}"><b class="dg-ln">${i + 1}</b>${modeIcon(l.mode)}<span>${esc(nm)}</span></button>${sl ? ib('up', 'up', Lg('เลื่อนขึ้น (วาดทีหลัง)', 'Move up'), l.id, i === 0) + ib('down', 'down', Lg('เลื่อนลง', 'Move down'), l.id, i === n - 1) + ib('dup', 'copy', Lg('ทำสำเนาชั้น', 'Duplicate'), l.id) : ''}${ib('del', 'trash', one ? Lg('ต้องมีอย่างน้อย 1 ชั้น', 'At least one layer is required') : Lg('ลบชั้นนี้', 'Delete this layer'), l.id, one)}</div>`; }).join('');
+  box.innerHTML = S.layers.map((l, i) => { const sl = l.id === S.sel, nmv = C.layerName(l), sub = C.layerSub(l); return `<div class="dg-chip dg-lcard${sl ? ' sel' : ''}${l.on ? '' : ' off'}" data-lid="${l.id}"><button type="button" class="dg-eye" data-act="eye" data-id="${l.id}" aria-pressed="${l.on}" title="${esc(l.on ? Lg('ซ่อนชั้นนี้', 'Hide this layer') : Lg('แสดงชั้นนี้', 'Show this layer'))}">${ico(l.on ? 'eye' : 'eyeoff', 'sm')}</button><button type="button" class="dg-chip-n" data-act="pick" data-id="${l.id}" title="${esc(nmv + ' — ' + sub)}"><b class="dg-ln">${i + 1}</b>${modeIcon(l.mode)}<span class="dg-lt"><b>${esc(nmv)}</b><small>${esc(sub)}</small></span></button><span class="dg-lacts">${sl && n > 1 ? ib('up', 'up', Lg('เลื่อนขึ้น', 'Move up'), l.id, i === 0) + ib('down', 'down', Lg('เลื่อนลง', 'Move down'), l.id, i === n - 1) : ''}${sl ? ib('dup', 'copy', Lg('ทำสำเนาชั้น', 'Duplicate'), l.id) : ''}${ib('del', 'trash', one ? Lg('ต้องมีอย่างน้อย 1 ชั้น', 'At least one layer is required') : Lg('ลบชั้นนี้', 'Delete this layer'), l.id, one)}</span></div>`; }).join('');
   const cnt = $('#dg-lcount'); if(cnt) cnt.textContent = n > 1 ? `${nOn}/${n}` : String(n);
-  box.classList.toggle('many', n > 5);
-  const s = box.querySelector('.dg-chip.sel'); if(s && n > 5) s.scrollIntoView({ block:'nearest' });
+  box.classList.toggle('many', n > 4);
+  const s = box.querySelector('.dg-chip.sel'); if(s && n > 4) s.scrollIntoView({ block:'nearest' });
+}
+/* “add a layer” menu: the smart choices first (compare with the other period, other sample types) */
+function addMenu(btn){
+  const l = sel(), ok = visibleDsSet(), items = [];
+  if(l){
+    const d = C.getDs(l.ds);
+    if(d.builtin){
+      const other = d.period === 'post' ? `${d.res}|${d.med}` : `${d.res}|${d.med}|post`, op = d.period === 'post' ? 'pre' : 'post';
+      if(C.DS.has(other) && ok.has(other) && C.getDs(other).params.some(p => p.nPlot > 0)) items.push({ k:'cmp', ds:other, ic:'chart', t:Lg(`เทียบกับ${nm(C.PERIOD_N[op])}`, `Compare with ${nm(C.PERIOD_N[op]).toLowerCase()}`), s:Lg('พารามิเตอร์ ชนิด และรูปแบบเดียวกัน วางข้างกันที่จุดเดิม', 'same parameters, type and style — placed side by side') });
+      ['water', 'sed', 'soil'].forEach(mk => { if(mk === d.med) return; const id = d.res + '|' + mk + (d.period === 'post' ? '|post' : ''); if(C.DS.has(id) && ok.has(id) && C.getDs(id).params.some(p => p.nPlot > 0)) items.push({ k:'new', ds:id, ic:'layers', t:`${nm(C.MED_N[mk])} · ${nm(C.PERIOD_N[d.period || 'pre'])}`, s:Lg('ชั้นใหม่ อ่างเดียวกัน', 'new layer, same reservoir') }); });
+    }
+    items.push({ k:'dup', ic:'copy', t:Lg('ทำสำเนาชั้นนี้', 'Duplicate this layer'), s:'' });
+  }
+  items.push({ k:'pick', ic:'folder', t:Lg('จากชุดข้อมูลอื่น…', 'From another dataset…'), s:Lg('เลือกชุดข้อมูลในแท็บข้อมูล', 'choose it in the Data tab') });
+  closeLibMenu(); const m = document.createElement('div'); m.className = 'dg-cm dg-addm'; m.id = 'dg-cm';
+  m.innerHTML = items.map((it, i) => `<button type="button" data-ai="${i}">${ico(it.ic, 'sm')}<span><b>${esc(it.t)}</b>${it.s ? `<small>${esc(it.s)}</small>` : ''}</span></button>`).join('');
+  document.body.appendChild(m); const r = btn.getBoundingClientRect(), w = m.offsetWidth, h = m.offsetHeight;
+  m.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px'; m.style.top = (r.bottom + h + 8 < innerHeight ? r.bottom + 6 : Math.max(8, r.top - h - 6)) + 'px';
+  m.onclick = ev => { const b = ev.target.closest('[data-ai]'); if(!b) return; closeLibMenu(); const it = items[+b.dataset.ai];
+    if(it.k === 'cmp') newLayerFrom(it.ds, sel(), true); else if(it.k === 'new') newLayerFrom(it.ds, null); else if(it.k === 'dup') dupLayer(sel().id);
+    else { newLayerFrom(sel() ? sel().ds : 'BP|water', null); D.tab = 'data'; st().tab = 'data'; if(st().panelOff){ st().panelOff = false; if(oneCard()) st().dockOff = true; applyFloat(); } renderPane(); setTimeout(() => { const s2 = $('#dg-ds'); if(s2){ s2.focus(); try{ s2.showPicker && s2.showPicker(); }catch(_){ } } }, 80); } };
+  setTimeout(() => { document.addEventListener('mousedown', e => { if(!e.target.closest('#dg-cm')) closeLibMenu(); }, { once:true, capture:true }); }, 0);
+}
+function newLayerFrom(dsId, src, compare){
+  const S = st(); if(!C.DS.has(dsId)) return; const d = C.getDs(dsId); let l;
+  if(src){
+    l = JSON.parse(JSON.stringify(src)); l.id = S.nid++; l.ds = dsId; l.name = ''; l.txt = { title:'', sub:'', note:'', file:'' }; l.hidden = {}; l.manual = {}; l.on = true;
+    const sd = C.getDs(src.ds), keyOf = id => (sd.params.find(p => p.id === id) || {}).key, byKey = new Map(d.params.map(p => [p.key, p.id]));
+    l.sel = (src.sel || []).map(i => byKey.get(keyOf(i))).filter(Boolean); l.single = byKey.get(keyOf(src.single)) || null; l.refv = {}; C.ensureSel(l);
+  } else l = C.mkLayer(dsId, sel() && !C.SINGLE.has(sel().mode) ? sel().mode : 'rose');
+  const i = S.layers.indexOf(sel()); S.layers.splice(i < 0 ? S.layers.length : i + 1, 0, l); S.sel = l.id; layoutReset(); C.persist(); renderAll(); fitPoints(true);
+  toast(compare ? Lg('เพิ่มชั้นเปรียบเทียบแล้ว — วางข้างกันที่จุดเดียวกัน', 'Comparison layer added — drawn side by side') : Lg('เพิ่มชั้นแล้ว', 'Layer added'));
 }
 function renderGallery(){
   const l = sel(), box = $('#dg-gallery'); if(!box || !l) return;
@@ -8367,7 +8614,7 @@ function syncDs(){
   });
   walk(null, []);
   sl.innerHTML = [...groups].map(([k, arr]) => `<optgroup label="${esc(k)}">${arr.map(o => `<option value="${esc(o.id)}" ${o.id === l.ds ? 'selected' : ''}>${esc(o.label)}</option>`).join('')}</optgroup>`).join('');
-  const d = C.getDs(l.ds); $('#dg-ds-del').hidden = !(d && d.imported && lcanManage(nodeOfDs(l.ds)));
+  const d = C.getDs(l.ds), dd = $('#dg-ds-del'); if(dd) dd.hidden = !(d && d.imported && lcanManage(nodeOfDs(l.ds)));
 }
 function sanitizeAccess(){
   const ok = visibleDsSet(), S = st(); D.noData = !ok.size; if(D.noData) return;
@@ -8412,104 +8659,103 @@ function onCtl(e){
   if(sc === 'g' && ['dim', 'sat'].includes(k)) applyFilter();
   if(sc === 'g' && ['base', 'labels'].includes(k)){ setBase(); syncTools(); }
   if(sc === 'g' && ['showMarks', 'showGlyph'].includes(k)) syncTools();
-  C.persist(); draw(); if(sc === 'l' && k === 'name') renderChips();
+  C.persist(); draw(); if(sc === 'l' && (k === 'name' || /^txt\./.test(k) || /^top\./.test(k))){ renderChips(); paneHead(); setTimeout(updateNamePrev, 0); }
   if(el.dataset.re){ renderPane(); renderGallery(); }
   if(sc === 'l' && (k === 'norm')) statbar();
 }
 
-/* ---------------------------------------------------------------- panel panes */
+/* ---------------------------------------------------------------- panel panes
+   4 tabs: ข้อมูล (what this layer shows) · รูปแบบ (how this layer looks) · ชื่อ (this layer's names) · แผนที่ (shared by every layer) */
+const TABS = ['data', 'style', 'name', 'map'];
+const normTab = t => ({ layer:'data', text:'name', export:'map' })[t] || (TABS.includes(t) ? t : 'data');
+D.open = {};
+function sec(id, icon, title, body, open, badge){
+  const o = D.open[id] !== undefined ? D.open[id] : !!open;
+  return `<details class="dg-acc" data-acc="${id}" ${o ? 'open' : ''}><summary>${ico(icon, 'sm')}<span>${title}</span>${badge ? `<em>${badge}</em>` : ''}<i class="dg-chev">${ico('down', 'sm')}</i></summary><div class="dg-accb">${body}</div></details>`;
+}
 function renderPane(){
-  const pane = $('#dg-pane'), S = st(); if(!pane) return;
+  const pane = $('#dg-pane'); if(!pane) return; D.tab = normTab(D.tab);
   $$('#dg-ptabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === D.tab));
+  paneHead();
   const scroll = pane.scrollTop;
-  pane.innerHTML = D.tab === 'layer' ? paneLayer() : D.tab === 'style' ? paneStyle() : D.tab === 'text' ? paneText() : paneExport();
+  pane.innerHTML = D.tab === 'data' ? paneData() : D.tab === 'style' ? paneStyle() : D.tab === 'name' ? paneName() : paneMap();
   pane.scrollTop = scroll;
-  if(D.tab === 'export') sizeInfo();
+  if(D.tab === 'data'){ renderGallery(); syncDs(); }
+  if(D.tab === 'map') sizeInfo();
 }
-function syncTextPane(){ if(D.tab === 'text') renderPane(); }
-function layerRows(){
-  const S = st();
-  return `<div class="dg-lyrs">${S.layers.map((l, i) => `<div class="dg-lrow${l.id === S.sel ? ' sel' : ''}" data-lid="${l.id}">
-      <button type="button" class="dg-eye" data-act="eye" data-id="${l.id}" aria-pressed="${l.on}">${ico(l.on ? 'eye' : 'eyeoff', 'sm')}</button>
-      <button type="button" class="dg-lname" data-act="pick" data-id="${l.id}">${modeIcon(l.mode)}<span><b>${esc(C.layerName(l))}</b><small>${esc(C.dsLabel(C.getDs(l.ds)))}</small></span></button>
-      <span class="dg-lact">${iconBtn('up', 'up', Lg('เลื่อนขึ้น (วาดทีหลัง)', 'Move up (drawn later)'), `data-id="${l.id}" ${i === 0 ? 'disabled' : ''}`)}${iconBtn('down', 'down', Lg('เลื่อนลง', 'Move down'), `data-id="${l.id}" ${i === S.layers.length - 1 ? 'disabled' : ''}`)}${iconBtn('dup', 'copy', Lg('ทำสำเนาชั้น', 'Duplicate layer'), `data-id="${l.id}"`)}${iconBtn('del', 'trash', Lg('ลบชั้น', 'Delete layer'), `data-id="${l.id}"`)}</span></div>`).join('')}</div>
-    <button type="button" class="btn btn-sm dg-addl" data-act="add">${ico('plus', 'sm')}${Lg('เพิ่มชั้นแผนภาพ', 'Add a diagram layer')}</button>`;
+function paneHead(){
+  const h = $('#dg-phead'), l = sel(); if(!h || !l) return;
+  const S = st(), shared = D.tab === 'map', i = S.layers.indexOf(l);
+  h.classList.toggle('shared', shared);
+  h.innerHTML = shared
+    ? `<span class="dg-ph-ic">${ico('map', 'sm')}</span><span class="dg-ph-t"><small>${Lg('ใช้ร่วมกันทุกชั้น', 'Shared by every layer')}</small><b>${Lg('แผนที่ · กล่องข้อความ · ส่งออก', 'Map · text boxes · export')}</b></span>`
+    : `<span class="dg-ph-ic">${modeIcon(l.mode)}</span><span class="dg-ph-t"><small>${Lg('กำลังแก้ชั้นที่', 'Editing layer')} ${i + 1}${S.layers.length > 1 ? '/' + S.layers.length : ''} · ${esc(C.layerSub(l))}</small><b>${esc(C.layerName(l))}</b></span>${S.layers.length > 1 ? `<span class="dg-ph-nav"><button type="button" class="icon-btn sm" data-act="lprev" title="${esc(Lg('ชั้นก่อนหน้า', 'Previous layer'))}" ${i === 0 ? 'disabled' : ''}>${ico('left', 'sm')}</button><button type="button" class="icon-btn sm" data-act="lnext" title="${esc(Lg('ชั้นถัดไป', 'Next layer'))}" ${i === S.layers.length - 1 ? 'disabled' : ''}>${ico('right', 'sm')}</button></span>` : ''}`;
 }
+function syncTextPane(){ if(D.tab === 'map') renderPane(); }
 function paramList(l){
   const ds = C.getDs(l.ds), single = C.SINGLE.has(l.mode), q = D.pq.trim().toLowerCase(), cur = new Set(single ? [l.single] : l.sel);
   const secs = []; let last = null;
   ds.params.forEach(p => {
     if(q && !(p.name.toLowerCase().includes(q) || (p.sec || '').toLowerCase().includes(q))) return;
     if(!p.hasData && !D.showND) return;
-    if(p.sec !== last){ secs.push(`<div class="dg-sec">${esc((p.sec || '').replace(/^\d+\.\s*/, ''))}</div>`); last = p.sec; }
+    if(p.sec !== last){ secs.push(`<div class="dg-sec">${esc(C.cleanSec(p.sec) || '')}</div>`); last = p.sec; }
     const nb = C.paramBad(p), on = cur.has(p.id);
     secs.push(`<label class="dg-prow${on ? ' on' : ''}${p.nPlot ? '' : ' dim'}"><input type="${single ? 'radio' : 'checkbox'}" class="${single ? '' : 'check'}" name="dg-p" data-act="par" data-id="${esc(p.id)}" ${on ? 'checked' : ''}><i class="dg-sw" style="background:${C.colorOf(l, p)}"></i><span class="dg-pn">${esc(p.name.replace(/\s*\(on site\)/i, ''))}${C.unitOf(p) ? `<small> ${esc(C.unitOf(p))}</small>` : ''}</span>${p.std ? `<em class="dg-std">${esc(C.stdText(p))}</em>` : ''}${nb ? `<b class="dg-bad" title="${esc(Lg('จุดที่เกินมาตรฐาน', 'points over the standard'))}">${nb}</b>` : ''}${!p.nPlot ? `<small class="dg-nd">${p.nND || p.nCen ? 'ND' : '–'}</small>` : ''}</label>`);
   });
   return secs.join('') || `<div class="empty" style="padding:16px">${Lg('ไม่พบพารามิเตอร์', 'No parameter found')}</div>`;
 }
-function topBlock(l, ds){
+function topBody(l, ds){
   const t = l.top || (l.top = { on:false, dir:'max', k:3, sec:'' }), secs = [...new Set(ds.params.filter(p => p.nPlot > 0).map(p => p.sec || ''))].filter(Boolean);
-  return `<div class="dg-box dg-topbox"><div class="dg-boxh">${ctl.check(`<b>${Lg('แสดงเฉพาะอันดับสูง/ต่ำสุดของแต่ละจุด', 'Show only the highest / lowest per point')}</b>`, 'l', 'top.on', true)}</div>
+  return `${ctl.check(Lg('แสดงเฉพาะพารามิเตอร์อันดับสูง/ต่ำสุดของแต่ละจุด', 'Show only the highest / lowest parameters at each point'), 'l', 'top.on', true)}
     ${t.on ? `<div class="dg-two">${ctl.select(Lg('เรียงตาม', 'Rank by'), 'l', 'top.dir', [['max', Lg('มากที่สุด', 'Highest')], ['min', Lg('น้อยที่สุด', 'Lowest')]], true)}${ctl.select(Lg('จำนวนอันดับ', 'How many'), 'l', 'top.k', [[3, Lg('3 อันดับ', 'Top 3')], [4, Lg('4 อันดับ', 'Top 4')], [5, Lg('5 อันดับ', 'Top 5')]], true)}</div>
-    ${ctl.select(Lg('เลือกจากกลุ่ม', 'From the group'), 'l', 'top.sec', [['', Lg('พารามิเตอร์ที่เลือกไว้ด้านล่าง', 'the parameters ticked below')], ...secs.map(x => [x, C.cleanSec(x)])], true)}
-    <div class="dg-hintx">${Lg('แต่ละจุดจะวาดเฉพาะพารามิเตอร์ที่ค่า (หลังปรับให้เทียบกันได้) สูง/ต่ำสุด · เลือกกลุ่มแล้วระบบหยิบพารามิเตอร์ในกลุ่มให้อัตโนมัติ', 'Each point draws only its highest / lowest parameters (after normalising) · pick a group and its parameters are chosen for you')}</div>` : ''}</div>`;
+    ${ctl.select(Lg('เลือกจากกลุ่ม', 'From the group'), 'l', 'top.sec', [['', Lg('พารามิเตอร์ที่ติ๊กไว้', 'the ticked parameters')], ...secs.map(x => [x, C.cleanSec(x)])], true)}` : ''}
+    <div class="dg-hintx">${Lg('แต่ละจุดวาดเฉพาะพารามิเตอร์ที่ติดอันดับ (หลังปรับให้เทียบกันได้) · เลือกกลุ่มแล้วระบบหยิบพารามิเตอร์ในกลุ่มให้เอง', 'Each point draws only its ranked parameters (after normalising) · pick a group and its parameters are chosen for you')}</div>`;
 }
-function paneLayer(){
-  const l = sel(), S = st(); if(!l) return '';
-  const ds = C.getDs(l.ds), single = C.SINGLE.has(l.mode), n = C.selectedParams(l).length, g = C.GLYPHS[l.mode];
-  const okList = Object.keys(C.GLYPHS).filter(k => n >= C.GLYPHS[k][0] && n <= C.GLYPHS[k][1]).map(ML).join(', ') || Lg('— (มากไป ลดเหลือ ≤ 8)', '— (too many, keep ≤ 8)');
-  const reco = single ? Lg('โหมดนี้ใช้ 1 พารามิเตอร์ · หากต้องการเทียบหลายตัวบนจุดเดียว ให้เลือก Radar / Rose / Rings / Bars', 'This type uses 1 parameter · to compare several at one point use Radar / Rose / Rings / Bars')
-    : `${Lg('เลือก', 'Selected')} <b>${n}</b> ${Lg('พารามิเตอร์ → เหมาะกับ:', 'parameters → suits:')} ${esc(okList)}` + (g ? (n >= g[0] && n <= g[1] ? `<br><span class="ok">✓ ${ML(l.mode)} ${Lg('เหมาะ', 'fits')} (${g[0]}–${g[1]})</span>` : `<br><span class="warnc">⚠ ${ML(l.mode)} ${Lg('เหมาะกับ', 'suits')} ${g[0]}–${g[1]} ${Lg('ตัว', 'parameters')} · ${Lg('ตอนนี้', 'now')} ${n}</span>`) : '');
-  const sp = C.selectedParams(l);
-  const norms = [['auto', Lg('อัตโนมัติ (เทียบมาตรฐานถ้าทุกตัวมี)', 'Auto (vs. standard when all have one)')], ['std', Lg('เทียบค่ามาตรฐาน (ค่า ÷ มาตรฐาน)', 'vs. standard (value ÷ standard)')], ['max', Lg('% ของค่าสูงสุดในพื้นที่', '% of the maximum')], ['minmax', 'Min–Max (0–1)'], ['raw', Lg('ค่าจริง (เหมาะกับพารามิเตอร์เดียว)', 'Actual value (single parameter)')]];
-  return `<div class="dg-ctx">${modeIcon(l.mode)}<span><small>${Lg('กำลังตั้งค่าชั้น', 'Editing layer')}</small><b>${esc(C.layerName(l))}</b></span><em>${esc(C.dsLabel(ds))}</em></div>
-  <section class="dg-sc"><h4>${ico('flask', 'sm')}${Lg('พารามิเตอร์', 'Parameters')} <small>${single ? Lg('(เลือก 1)', '(pick 1)') : Lg(`(เลือกแล้ว ${n})`, `(${n} selected)`)}</small></h4>
-    ${single ? '' : topBlock(l, ds)}
-    ${single ? '' : `<div class="dg-pre">${C.PRESETS.map((p, i) => `<button type="button" class="dg-pbtn" data-act="preset" data-i="${i}">${nm(C.PRESET_N[p[0]])}</button>`).join('')}<button type="button" class="dg-pbtn" data-act="pnone">${Lg('ล้าง', 'Clear')}</button></div>`}
-    <div class="search dg-psearch"><svg class="ic"><use href="#i-search"/></svg><input type="search" id="dg-pq" value="${esc(D.pq)}" placeholder="${esc(Lg('ค้นหาพารามิเตอร์…', 'Search parameters…'))}" autocomplete="off"></div>
-    <div class="dg-plist" id="dg-plist">${paramList(l)}</div>
-    <label class="dg-tg"><input type="checkbox" class="check" id="dg-nd" ${D.showND ? 'checked' : ''}><span>${Lg('แสดงพารามิเตอร์ที่เป็น ND ทั้งหมดด้วย', 'Also list parameters that are all ND')}</span></label>
-    ${ctl.select(Lg('ค่า ND / ต่ำกว่า LOD ให้เป็น', 'Treat ND / below LOD as'), 'l', 'sg.nd', [['zero', '0'], ['half', Lg('ครึ่งหนึ่งของ LOD', 'half of the LOD')], ['full', Lg('เท่ากับ LOD', 'the LOD')]])}
-  </section>
-  <section class="dg-sc"><h4>${ico('gear', 'sm')}${Lg('ตั้งค่าชั้นที่เลือก', 'Selected layer')}</h4>
-    ${ctl.text(Lg('ชื่อชั้น (เว้นว่าง = อัตโนมัติ)', 'Layer name (blank = automatic)'), 'l', 'name', Lg('อัตโนมัติ', 'automatic'))}
-    <div class="dg-note">${esc(nm(C.MODE_NOTE[l.mode]))}</div><div class="dg-reco">${reco}</div>
-    ${ctl.select(Lg('การปรับค่าให้เทียบกันได้', 'Normalisation'), 'l', 'norm', norms, true)}
-    ${ctl.range(Lg('ขนาดสัญลักษณ์ (px)', 'Symbol size (px)'), 'l', 'glyph', 14, 110, 1)}
-  </section>
-  ${sp.length ? `<section class="dg-sc"><h4>${ico('sliders', 'sm')}${Lg('สี · ชื่อที่แสดง · สเกลอ้างอิง', 'Colour · label · reference scale')}</h4>
-    <div class="dg-hintx">${Lg('สเกลอ้างอิง = ค่าจริงที่ให้ตรงกับวงประ (1×) · เว้นว่าง = อัตโนมัติ', 'Reference = the real value that sits on the dashed ring (1×) · blank = automatic')}</div>
-    <div class="dg-ped">${sp.map(p => `<div class="dg-pe"><input type="color" data-pc="${esc(p.id)}" value="${C.colorOf(l, p)}" title="${esc(Lg('สี', 'Colour'))}"><span class="dg-pen">${esc(C.sname(p))}</span><input class="input sm" type="text" data-pl="${esc(p.id)}" placeholder="${esc(Lg('ชื่อที่แสดง', 'label'))}" value="${esc(l.labels[p.id] || '')}"><input class="input sm num" type="number" step="any" min="0" data-pr="${esc(p.id)}" placeholder="${esc(p.std && p.std.t === 'max' ? String(p.std.v) : 'auto')}" value="${l.refv[p.id] || ''}" title="${esc(Lg('สเกลอ้างอิง', 'Reference'))}"></div>`).join('')}</div>
-    <button type="button" class="btn btn-sm" data-act="resetref">${Lg('ล้างสเกลและชื่อที่ตั้งเอง', 'Clear custom scales and labels')}</button></section>` : ''}
-  <section class="dg-sc"><h4>${ico('pin', 'sm')}${Lg('จุดตัวอย่าง', 'Sampling points')} <small>${ds.points.filter(p => !l.hidden[p.id]).length}/${ds.points.length}</small></h4>
-    <div class="dg-pre"><button type="button" class="dg-pbtn" data-act="ptall">${Lg('แสดงทั้งหมด', 'Show all')}</button><button type="button" class="dg-pbtn" data-act="ptnone">${Lg('ซ่อนหมด', 'Hide all')}</button><button type="button" class="dg-pbtn" data-act="ptinv">${Lg('สลับ', 'Invert')}</button><button type="button" class="dg-pbtn" data-act="ptreset">${Lg('คืนตำแหน่งแผนภาพ', 'Reset positions')}</button></div>
-    <div class="dg-ptl">${ds.points.map(p => `<label class="dg-pt"><input type="checkbox" class="check" data-act="pt" data-id="${esc(p.id)}" ${l.hidden[p.id] ? '' : 'checked'}><span><b>${esc(p.id)}</b>${p.name ? `<small>${esc(p.name)}</small>` : ''}</span></label>`).join('')}</div>
-    <div class="dg-hintx">${Lg('ซ่อนมีผลเฉพาะการแสดงผล ไม่กระทบการคำนวณพื้นผิว', 'Hiding affects display only — the surface still uses all points')}</div></section>`;
+function paneData(){
+  const l = sel(); if(!l) return ''; const ds = C.getDs(l.ds), single = C.SINGLE.has(l.mode), n = C.selectedParams(l).length, g = C.GLYPHS[l.mode];
+  const okList = Object.keys(C.GLYPHS).filter(k => n >= C.GLYPHS[k][0] && n <= C.GLYPHS[k][1]).map(ML).join(', ');
+  const reco = single ? `${ico('info', 'sm')}<span>${Lg('ชนิดนี้แสดงทีละ 1 พารามิเตอร์ · ถ้าต้องการเทียบหลายตัวในจุดเดียว เลือก Maucha / Radar / Rose / แท่ง', 'This type shows one parameter · to compare several at a point pick Maucha / Radar / Rose / Bars')}</span>`
+    : !n ? `${ico('warn', 'sm')}<span>${Lg('ยังไม่ได้เลือกพารามิเตอร์', 'No parameter selected yet')}</span>`
+    : g && (n < g[0] || n > g[1]) ? `${ico('warn', 'sm')}<span>${ML(l.mode)} ${Lg('เหมาะกับ', 'suits')} ${g[0]}–${g[1]} ${Lg('พารามิเตอร์ · ตอนนี้', 'parameters · now')} ${n}${okList ? ` · ${Lg('ลอง', 'try')} ${esc(okList)}` : ''}</span>`
+    : `${ico('check', 'sm')}<span>${n} ${Lg('พารามิเตอร์ เหมาะกับ', 'parameters suit')} ${ML(l.mode)}</span>`;
+  const bad = !single && (!n || (g && (n < g[0] || n > g[1])));
+  const vis = ds.points.filter(p => !l.hidden[p.id]).length;
+  return `<section class="dg-sc dg-sc-top">
+      <div class="dg-f"><span>${Lg('ชุดข้อมูล', 'Dataset')}</span><div class="dg-dsrow"><select class="select sm" id="dg-ds" aria-label="${esc(Lg('ชุดข้อมูลของชั้นนี้', 'Dataset of this layer'))}"></select><button type="button" class="icon-btn sm danger" data-act="dsdel" id="dg-ds-del" hidden title="${esc(Lg('ลบชุดข้อมูลที่นำเข้า', 'Delete this imported dataset'))}">${ico('trash', 'sm')}</button></div></div>
+      <div class="dg-f"><span>${Lg('ชนิดแผนภาพ', 'Diagram type')} <small class="dg-rec-k">✓ = ${Lg('เหมาะกับจำนวนพารามิเตอร์ที่เลือก', 'suits the selection')}</small></span><div class="dg-gallery dg-gal3" id="dg-gallery"></div></div>
+      <div class="dg-reco2${bad ? ' warn' : ''}">${reco}</div></section>
+    ${sec('params', 'flask', Lg('พารามิเตอร์', 'Parameters'), `
+      ${single ? '' : `<div class="dg-pre">${C.PRESETS.map((p, i) => `<button type="button" class="dg-pbtn" data-act="preset" data-i="${i}">${nm(C.PRESET_N[p[0]])}</button>`).join('')}<button type="button" class="dg-pbtn" data-act="pnone">${Lg('ล้าง', 'Clear')}</button></div>`}
+      <div class="search dg-psearch"><svg class="ic"><use href="#i-search"/></svg><input type="search" id="dg-pq" value="${esc(D.pq)}" placeholder="${esc(Lg('ค้นหาพารามิเตอร์…', 'Search parameters…'))}" autocomplete="off"></div>
+      <div class="dg-plist" id="dg-plist">${paramList(l)}</div>
+      <label class="dg-tg"><input type="checkbox" class="check" id="dg-nd" ${D.showND ? 'checked' : ''}><span>${Lg('แสดงพารามิเตอร์ที่ไม่พบค่าด้วย', 'Also list parameters without values')}</span></label>`, true, single ? Lg('เลือก 1', 'pick 1') : `${n}`)}
+    ${single ? '' : sec('top', 'chart', Lg('อันดับสูง/ต่ำสุดของแต่ละจุด', 'Highest / lowest per point'), topBody(l, ds), !!(l.top && l.top.on), l.top && l.top.on ? Lg('เปิด', 'on') : '')}
+    ${sec('points', 'pin', Lg('จุดตัวอย่าง', 'Sampling points'), `
+      <div class="dg-pre"><button type="button" class="dg-pbtn" data-act="ptall">${Lg('แสดงทั้งหมด', 'Show all')}</button><button type="button" class="dg-pbtn" data-act="ptnone">${Lg('ซ่อนหมด', 'Hide all')}</button><button type="button" class="dg-pbtn" data-act="ptinv">${Lg('สลับ', 'Invert')}</button><button type="button" class="dg-pbtn" data-act="ptreset">${Lg('คืนตำแหน่งแผนภาพ', 'Reset positions')}</button></div>
+      <div class="dg-ptl">${ds.points.map(p => `<label class="dg-pt"><input type="checkbox" class="check" data-act="pt" data-id="${esc(p.id)}" ${l.hidden[p.id] ? '' : 'checked'}><span><b>${esc(p.id)}</b>${p.name ? `<small>${esc(p.name)}</small>` : ''}</span></label>`).join('')}</div>
+      <div class="dg-hintx">${Lg('ซ่อนมีผลเฉพาะการแสดงผล ไม่กระทบการคำนวณพื้นผิว', 'Hiding affects display only — the surface still uses all points')}</div>`, false, `${vis}/${ds.points.length}`)}`;
 }
 const LY_PRES = [[Lg('เดิม 0.5 / 1 / 2', 'Default 0.5 / 1 / 2'), [.5, 1, 2]], [Lg('ละเอียด 0.25–3', 'Fine 0.25–3'), [.25, .5, 1, 1.5, 2, 3]], [Lg('ขยาย 1 / 2 / 3 / 5', 'Wide 1 / 2 / 3 / 5'), [1, 2, 3, 5]], [Lg('ตรงกลาง 0.25 / 0.5 / 0.75 / 1', 'Inner 0.25 / 0.5 / 0.75 / 1'), [.25, .5, .75, 1]]];
-function paneRings(){
+function ringsBody(){
   const G = sel().sg, L = C.fixLayers(G);
-  return `<section class="dg-sc"><h4>${ico('gauge', 'sm')}${Lg('ชั้นวงกลมอ้างอิง (Layers)', 'Reference ring layers')}</h4>
-    <div class="dg-hintx">${Lg('วงกลมหลายชั้นที่กำหนดเองเป็น “กี่เท่าของค่าอ้างอิง” ของแต่ละแกน (1× = วงประหลัก = มาตรฐาน/ค่าสูงสุด/ค่าที่ตั้งเอง) ใช้กับ Radar, Maucha, Rose และแท่ง', 'Custom rings drawn at “× the reference value” of each axis (1× = the main dashed ring = standard / maximum / your own value). Works with Radar, Maucha, Rose and Bars')}</div>
+  return `<div class="dg-hintx">${Lg('วงกลมที่ “กี่เท่าของค่าอ้างอิง” (1× = วงประหลัก = มาตรฐาน / ค่าสูงสุด / ค่าที่ตั้งเอง)', 'Rings at “× the reference value” (1× = the main dashed ring = standard / maximum / your value)')}</div>
     <div class="dg-lyl">${L.map((x, i) => `<div class="dg-lyr${x.v === 1 ? ' ref' : ''}">
       <input type="checkbox" class="check" data-ly="on" data-i="${i}" ${x.on ? 'checked' : ''} title="${esc(Lg('เปิด/ปิดชั้นนี้', 'Show / hide this ring'))}">
       <input class="input sm num" type="number" step="any" min="0.01" data-ly="v" data-i="${i}" value="${x.v}" ${x.v === 1 ? 'disabled' : ''} title="${esc(Lg('กี่เท่าของค่าอ้างอิง', '× of the reference'))}"><span class="dg-lyx">×</span>
       <input type="color" data-ly="c" data-i="${i}" value="${x.c || '#ffffff'}" title="${esc(Lg('สีเส้น', 'Line colour'))}">
       <label class="dg-lyd"><input type="checkbox" class="check" data-ly="d" data-i="${i}" ${x.d ? 'checked' : ''}><span>${Lg('ประ', 'Dash')}</span></label>
-      <button type="button" class="icon-btn sm" data-act="lydel" data-i="${i}" ${x.v === 1 ? 'style="visibility:hidden"' : ''} title="${esc(Lg('ลบชั้นนี้', 'Remove this ring'))}">${ico('x', 'sm')}</button></div>`).join('')}</div>
-    <div class="dg-two"><button type="button" class="btn sm" data-act="lyadd">${ico('plus', 'sm')}${Lg('เพิ่มชั้น', 'Add ring')}</button><button type="button" class="btn sm" data-act="lyclear">${Lg('ล้างเหลือ 1×', 'Reset to 1×')}</button></div>
+      <button type="button" class="icon-btn sm" data-act="lydel" data-i="${i}" ${x.v === 1 ? 'style="visibility:hidden"' : ''} title="${esc(Lg('ลบวงนี้', 'Remove this ring'))}">${ico('x', 'sm')}</button></div>`).join('')}</div>
+    <div class="dg-two"><button type="button" class="btn sm" data-act="lyadd">${ico('plus', 'sm')}${Lg('เพิ่มวง', 'Add ring')}</button><button type="button" class="btn sm" data-act="lyclear">${Lg('เหลือเฉพาะ 1×', 'Only 1×')}</button></div>
     <div class="dg-pre">${LY_PRES.map((p, i) => `<button type="button" class="dg-pbtn" data-act="lypre" data-i="${i}">${p[0]}</button>`).join('')}</div>
-    <div class="dg-tgs">${ctl.check(Lg('วงอ้างอิง 1× (ชั้นหลัก)', 'Main 1× ring'), 'l', 'sg.ring')}${ctl.check(Lg('ชั้นอื่นๆ ทั้งหมด', 'All other rings'), 'l', 'sg.grid')}</div>
-    ${ctl.select(Lg('ตัวเลขสเกลตามแกน', 'Scale numbers along the axes'), 'l', 'sg.tick', [['off', Lg('ปิด', 'Off')], ['ref', Lg('เฉพาะวงอ้างอิง (1×)', 'Reference ring only (1×)')], ['all', Lg('ทุกวง (0.5× / 1× / 2×)', 'Every ring (0.5× / 1× / 2×)')]], true)}
-    ${G.tick !== 'off' ? `${ctl.select(Lg('แสดงตัวเลขสเกลที่', 'Show the scale numbers on'), 'l', 'sg.tickWho', [['all', Lg('ทุกจุด', 'every point')], ['hover', Lg('เฉพาะจุดที่ชี้เมาส์ (ไม่ติดในรูปที่บันทึก)', 'only the hovered point (not in the saved image)')]])}${ctl.range(Lg('ขนาดตัวเลขสเกล', 'Scale number size'), 'l', 'sg.tickFs', .6, 1.8, .05)}<div class="dg-hintx">${Lg('เป็นค่าจริงตามหน่วยเมื่อสเกลอ้างอิงมีค่า (มาตรฐาน/ค่าสูงสุด/ตั้งเอง) ไม่เช่นนั้นแสดงเป็น “เท่า”', 'Shown in real units when the reference has a value (standard / maximum / custom), otherwise as “×”')}</div>` : ''}</section>`;
+    <div class="dg-tgs">${ctl.check(Lg('วงอ้างอิง 1×', 'Main 1× ring'), 'l', 'sg.ring')}${ctl.check(Lg('วงอื่นๆ', 'Other rings'), 'l', 'sg.grid')}</div>
+    ${ctl.select(Lg('ตัวเลขสเกลตามแกน', 'Scale numbers along the axes'), 'l', 'sg.tick', [['off', Lg('ปิด', 'Off')], ['ref', Lg('เฉพาะวง 1×', '1× ring only')], ['all', Lg('ทุกวง', 'Every ring')]], true)}
+    ${G.tick !== 'off' ? `${ctl.select(Lg('แสดงที่', 'Show on'), 'l', 'sg.tickWho', [['all', Lg('ทุกจุด', 'every point')], ['hover', Lg('เฉพาะจุดที่ชี้เมาส์ (ไม่ติดในรูป)', 'the hovered point only (not in the image)')]])}${ctl.range(Lg('ขนาดตัวเลข', 'Number size'), 'l', 'sg.tickFs', .6, 1.8, .05)}` : ''}`;
 }
-function paneDividers(){
-  const G = st().g, l = sel(), ps = l ? C.selectedParams(l) : [], off = G.divOff || {};
-  return `<section class="dg-sc"><h4>${ico('sliders', 'sm')}${Lg('เส้นแบ่งวงของแต่ละพารามิเตอร์', 'Dividers between parameters')}</h4>
-    <div class="dg-tgs">${ctl.check(Lg('แสดงเส้นแบ่งวง', 'Show dividers'), 'l', 'sg.div')}</div>
-    ${ctl.select(Lg('ชนิดเส้น', 'Line type'), 'l', 'sg.divT', [['sector', Lg('เส้นขอบเขตของแต่ละพารามิเตอร์ (แบ่งวงเป็นช่อง)', 'Sector borders (split the disc into slices)')], ['axis', Lg('เส้นแกนกลางของแต่ละพารามิเตอร์', 'Centre axis of each parameter')], ['both', Lg('ทั้งขอบเขตและแกนกลาง', 'Both borders and axes')]])}
-    <div class="dg-two">${ctl.range(Lg('ความหนาเส้น', 'Line width'), 'l', 'sg.divW', .5, 5, .1)}${ctl.color(Lg('สีเส้น', 'Line colour'), 'l', 'sg.divC')}</div>
-    <div class="dg-tgs">${ctl.check(Lg('เส้นประ', 'Dashed'), 'l', 'sg.divD')}</div></section>`;
+function divBody(){
+  return `${ctl.check(Lg('แสดงเส้นแบ่งวง', 'Show dividers'), 'l', 'sg.div')}
+    ${ctl.select(Lg('ชนิดเส้น', 'Line type'), 'l', 'sg.divT', [['sector', Lg('ขอบเขตของแต่ละพารามิเตอร์', 'Sector borders')], ['axis', Lg('แกนกลางของแต่ละพารามิเตอร์', 'Centre axes')], ['both', Lg('ทั้งสองแบบ', 'Both')]])}
+    <div class="dg-two">${ctl.range(Lg('ความหนา', 'Width'), 'l', 'sg.divW', .5, 5, .1)}${ctl.color(Lg('สี', 'Colour'), 'l', 'sg.divC')}</div>
+    ${ctl.check(Lg('เส้นประ', 'Dashed'), 'l', 'sg.divD')}`;
 }
 function lyEdit(el){
   const G = sel().sg, L = G.layers[+el.dataset.i]; if(!L) return; const k = el.dataset.ly;
@@ -8517,94 +8763,103 @@ function lyEdit(el){
   else if(k === 'v'){ const v = parseFloat(el.value); if(!(v > 0) || !isFinite(v)) return; L.v = v; }
   C.persist(); draw();
 }
-function lyHead(){ const l = sel(); return `<div class="dg-ctx">${modeIcon(l.mode)}<span><small>${Lg('การตั้งค่าเฉพาะชั้นนี้', 'Settings of this layer only')}</small><b>${esc(C.layerName(l))}</b></span><button type="button" class="btn btn-sm" data-act="sgall" title="${esc(Lg('ใช้การตั้งค่าของชั้นนี้กับทุกชั้น', 'Copy this layer’s settings to every layer'))}">${Lg('ใช้กับทุกชั้น', 'Apply to all')}</button></div>`; }
 function paneStyle(){
-  const S = st(), Gg = S.g, l = sel(), G = Object.assign({}, Gg, l.sg), hasSurf = l.mode === 'surface';
-  const yn = [[true, Lg('เปิด', 'On')], [false, Lg('ปิด', 'Off')]];
-  return `<section class="dg-sc"><h4>${ico('globe', 'sm')}${Lg('แผนที่พื้นหลัง', 'Base map')} <small>${Lg('ใช้ร่วมกันทุกชั้น', 'shared by all layers')}</small></h4>
-    ${ctl.select(Lg('ชนิดแผนที่', 'Map type'), 'g', 'base', [['imagery', Lg('ภาพถ่ายดาวเทียม', 'Satellite imagery')], ['topo', Lg('แผนที่ภูมิประเทศ', 'Topographic')], ['street', Lg('แผนที่ถนน', 'Street map')]])}
-    ${ctl.check(Lg('แสดงชื่อสถานที่/ขอบเขตทับภาพถ่าย', 'Place names and borders over the imagery'), 'g', 'labels')}
-    ${ctl.range(Lg('ความมืดของพื้นหลัง', 'Background dimming'), 'g', 'dim', 0, .85, .01)}
-    ${ctl.range(Lg('ความสดของสี', 'Colour saturation'), 'g', 'sat', 0, 1.6, .05)}</section>
-  <section class="dg-sc"><h4>${ico('pin', 'sm')}${Lg('จุดพิกัดและป้ายชื่อ', 'Points and labels')}</h4>
-    <div class="dg-tgs">${ctl.check(Lg('จุดพิกัดจริง', 'Sampling points'), 'g', 'showMarks')}${ctl.check(Lg('สัญลักษณ์แผนภาพ', 'Diagram symbols'), 'g', 'showGlyph')}${ctl.check(Lg('ป้ายชื่อจุด', 'Point ID'), 'g', 'showId')}${ctl.check(Lg('ชื่อสถานที่', 'Location name'), 'g', 'showName')}${ctl.check(Lg('ค่าตัวเลข', 'Values'), 'g', 'showVal')}${ctl.check(Lg('ป้าย “เกิน: …”', '“over: …” tag'), 'g', 'showExceed')}${ctl.check(Lg('เส้นชี้ไปจุดจริง', 'Leader lines'), 'g', 'leader')}${ctl.check(Lg('จัดตำแหน่งอัตโนมัติ (กันทับ)', 'Auto placement (no overlap)'), 'g', 'auto', true)}</div>
-    ${ctl.range(Lg('ขนาดจุดพิกัดจริง', 'Point size'), 'g', 'mark', 0, 14, .5)}${ctl.color(Lg('สีจุดพิกัดจริง', 'Point colour'), 'g', 'markC')}${ctl.range(Lg('ขนาดตัวอักษรบนแผนที่', 'Label size'), 'g', 'font', 8, 26, 1)}${ctl.range(Lg('ระยะป้ายชื่อห่างจากสัญลักษณ์ (px)', 'Label distance from the symbol (px)'), 'g', 'labelGap', -10, 60, 1)}</section>
-  ${lyHead()}
-  <section class="dg-sc"><h4>${ico('layers', 'sm')}${Lg('หน้าตาสัญลักษณ์', 'Symbol look')}</h4>
-    <div class="dg-tgs">${ctl.check(Lg('พื้นหลังสัญลักษณ์', 'Symbol background'), 'l', 'sg.back')}${ctl.check(Lg('ป้ายชื่อแกน/กลีบ', 'Axis labels'), 'l', 'sg.axisLab')}${ctl.check(Lg('ค่าจริงที่ปลายแกน/แท่ง', 'Values at tips'), 'l', 'sg.valLab')}${ctl.check(Lg('ขนาดแปรตามการซูม', 'Scale with zoom'), 'g', 'zoomScale', true)}</div>
-    ${G.zoomScale ? ctl.range(Lg('ระดับซูมที่ขนาดเท่ากับที่ตั้งไว้', 'Zoom level at the set size'), 'g', 'zoomRef', 5, 19, .5) : ''}
-    ${ctl.range(Lg('เพดานค่าที่แสดง (เท่าของวงอ้างอิง)', 'Display cap (× reference ring)'), 'l', 'sg.cap', 1.5, 12, .5)}
-    ${ctl.select(Lg('ขนาดแฉกแปรตาม', 'Size follows the value as'), 'l', 'sg.scaleFn', [['sqrt', Lg('รากที่สอง (พื้นที่ ∝ ค่า)', 'square root (area ∝ value)')], ['linear', Lg('เส้นตรง (ความยาว ∝ ค่า)', 'linear (length ∝ value)')]])}
-    ${ctl.range(Lg('ความทึบสี', 'Opacity'), 'l', 'sg.alpha', .3, 1, .05)}${ctl.range(Lg('ความหนาเส้นขอบแดง (เกินมาตรฐาน)', 'Red edge width (over the standard)'), 'l', 'sg.lw', 0, 6, .2)}
-    ${ctl.select(Lg('สีของกลีบ (Rose)', 'Petal colour (Rose)'), 'l', 'sg.wcolor', [['param', Lg('ตามพารามิเตอร์', 'by parameter')], ['status', Lg('ตามระดับเทียบมาตรฐาน', 'by standard class')]])}</section>
-  ${paneRings()}
-  ${paneDividers()}
-  <section class="dg-sc"><h4>${ico('chart', 'sm')}${Lg('สีสำหรับ Bubble / จุด / พื้นผิว', 'Colours for Bubble / Dots / Surface')}</h4>
-    ${ctl.select(Lg('โทนสี (เมื่อไม่เทียบมาตรฐาน)', 'Ramp (when not vs. the standard)'), 'l', 'sg.seq', [['viridis', 'Viridis'], ['ylorrd', Lg('เหลือง–ส้ม–แดง', 'Yellow–orange–red')], ['blues', Lg('ฟ้า', 'Blues')], ['magma', 'Magma']])}</section>
-  ${hasSurf ? `<section class="dg-sc"><h4>${ico('waves', 'sm')}${Lg('พื้นผิว (Surface)', 'Surface')}</h4>
-    ${ctl.range(Lg('ความทึบพื้นผิว', 'Surface opacity'), 'l', 'sg.surf', .2, 1, .05)}
-    ${ctl.select(Lg('วิธีประมาณค่าระหว่างจุด', 'Interpolation'), 'l', 'sg.surfM', [['idw', Lg('IDW — ถ่วงน้ำหนักตามระยะทาง (เร็ว)', 'IDW — inverse distance (fast)')], ['krig', Lg('Kriging — ใช้ semivariogram', 'Kriging — semivariogram')]], true)}
-    ${G.surfM === 'idw' ? ctl.range(Lg('กำลังของระยะทาง (p)', 'Distance power (p)'), 'l', 'sg.idwP', 1, 5, .5) : ''}
-    ${ctl.select(Lg('ตัดพื้นผิวให้อยู่ในขอบน้ำ', 'Clip to the water body'), 'l', 'sg.clip', [['none', Lg('ไม่ตัด (จางตามระยะจากจุด)', 'No clip (fade with distance)')], ['poly', Lg('วาดขอบน้ำเองบนแผนที่ (แม่นที่สุด)', 'Draw the shoreline on the map (most accurate)')]], true)}
-    ${G.clip === 'none' ? ctl.range(Lg('ระยะจาง (× ระยะห่างจุดใกล้สุดเฉลี่ย)', 'Fade distance (× nearest-point spacing)'), 'l', 'sg.fade', .5, 5, .1) : `<div class="dg-pre"><button type="button" class="btn btn-sm" data-act="polystart">${ico('edit', 'sm')}${D.polyMode ? Lg('กำลังวาด…', 'Drawing…') : Lg('วาด/วาดใหม่ขอบน้ำ', 'Draw / redraw shoreline')}</button><button type="button" class="btn btn-sm" data-act="polyclear">${Lg('ล้างขอบน้ำ', 'Clear shoreline')}</button></div>`}
-    ${ctl.check(Lg('เส้นชั้นค่า (contour)', 'Contour lines'), 'l', 'sg.contour', true)}${G.contour ? ctl.range(Lg('จำนวนเส้นชั้นค่าโดยประมาณ', 'Approximate number of contours'), 'l', 'sg.contN', 3, 14, 1) : ''}
-    <div class="dg-hintx" id="dg-surfinfo">${(() => { const f = l && C.lastSurf[l.id]; return f ? esc(f.info) : ''; })()}</div></section>` : ''}
-  <section class="dg-sc"><h4>${ico('edit', 'sm')}${Lg('สีตัวหนังสือ', 'Text colours')}</h4>
-    <div class="dg-cgrid">${ctl.color(Lg('ป้ายชื่อจุด', 'Point ID'), 'g', 'tc.id')}${ctl.color(Lg('ชื่อสถานที่', 'Location'), 'g', 'tc.name')}${ctl.color(Lg('ตัวเลขค่า', 'Values'), 'g', 'tc.val')}${ctl.color(Lg('ป้าย “เกิน”', '“over” tag'), 'g', 'tc.exc')}${ctl.color(Lg('ชื่อแกน', 'Axis'), 'g', 'tc.axis')}${ctl.color(Lg('ตัวเลขสเกลตามแกน', 'Scale numbers'), 'g', 'tc.tick')}${ctl.color(Lg('ตัวเลขสเกล 1×', '1× scale number'), 'g', 'tc.tickRef')}${ctl.color(Lg('ขอบตัวอักษร', 'Halo'), 'g', 'tc.halo')}</div>
-    <div class="dg-cgrid">${ctl.color(Lg('หัวข้อกล่อง', 'Box heading'), 'g', 'bc.head')}${ctl.color(Lg('เนื้อหากล่อง', 'Box body'), 'g', 'bc.body')}${ctl.color(Lg('หมายเหตุ', 'Box note'), 'g', 'bc.mute')}${ctl.color(Lg('พื้นกล่อง', 'Box fill'), 'g', 'bc.bg')}</div></section>`;
+  const S = st(), l = sel(); if(!l) return ''; const G = Object.assign({}, S.g, l.sg), m = l.mode, radial = ['maucha', 'radar', 'rose'].includes(m), single = C.SINGLE.has(m), sp = single ? [] : C.selectedParams(l);
+  const norms = [['auto', Lg('อัตโนมัติ (เทียบมาตรฐานถ้าทุกตัวมี)', 'Auto (vs. standard when all have one)')], ['std', Lg('เทียบค่ามาตรฐาน (ค่า ÷ มาตรฐาน)', 'vs. standard (value ÷ standard)')], ['max', Lg('% ของค่าสูงสุดในพื้นที่', '% of the maximum')], ['minmax', 'Min–Max (0–1)'], ['raw', Lg('ค่าจริง (พารามิเตอร์เดียว)', 'Actual value (one parameter)')]];
+  return `<div class="dg-acts"><span>${Lg('มีผลเฉพาะชั้นนี้', 'This layer only')}</span>${S.layers.length > 1 ? `<button type="button" class="btn btn-sm" data-act="sgall">${ico('copy', 'sm')}${Lg('ใช้รูปแบบนี้กับทุกชั้น', 'Use for every layer')}</button>` : ''}</div>
+    ${sec('val', 'gauge', Lg('การแสดงค่า', 'Values'), `
+      ${ctl.select(Lg('ปรับค่าให้เทียบกันได้โดย', 'Normalise by'), 'l', 'norm', norms, true)}
+      ${ctl.range(Lg('ขนาดสัญลักษณ์ (px)', 'Symbol size (px)'), 'l', 'glyph', 14, 110, 1)}
+      ${m !== 'surface' && m !== 'dots' ? `${ctl.range(Lg('เพดานค่าที่แสดง (เท่าของวงอ้างอิง)', 'Display cap (× reference)'), 'l', 'sg.cap', 1.5, 12, .5)}${ctl.select(Lg('ขนาดแปรตามค่าแบบ', 'Size follows the value as'), 'l', 'sg.scaleFn', [['sqrt', Lg('รากที่สอง (พื้นที่ ∝ ค่า)', 'square root (area ∝ value)')], ['linear', Lg('เส้นตรง (ความยาว ∝ ค่า)', 'linear (length ∝ value)')]])}` : ''}
+      ${ctl.select(Lg('ค่า ND / ต่ำกว่า LOD ให้เป็น', 'Treat ND / below LOD as'), 'l', 'sg.nd', [['zero', '0'], ['half', Lg('ครึ่งหนึ่งของ LOD', 'half of the LOD')], ['full', Lg('เท่ากับ LOD', 'the LOD')]])}`, true)}
+    ${sec('look', 'layers', Lg('หน้าตาสัญลักษณ์', 'Symbol look'), `
+      <div class="dg-tgs">${m !== 'surface' ? ctl.check(Lg('พื้นหลังสัญลักษณ์', 'Background'), 'l', 'sg.back') : ''}${radial || m === 'bars' ? ctl.check(Lg('ชื่อแกน/กลีบ', 'Axis labels'), 'l', 'sg.axisLab') + ctl.check(Lg('ค่าที่ปลายแกน', 'Values at tips'), 'l', 'sg.valLab') : ''}</div>
+      ${ctl.range(Lg('ความทึบสี', 'Opacity'), 'l', 'sg.alpha', .3, 1, .05)}${ctl.range(Lg('ขอบแดงเมื่อเกินมาตรฐาน', 'Red edge when over the standard'), 'l', 'sg.lw', 0, 6, .2)}
+      ${m === 'rose' ? ctl.select(Lg('สีของกลีบ', 'Petal colour'), 'l', 'sg.wcolor', [['param', Lg('ตามพารามิเตอร์', 'by parameter')], ['status', Lg('ตามระดับเทียบมาตรฐาน', 'by standard class')]]) : ''}`, true)}
+    ${sp.length ? sec('pcol', 'sliders', Lg('สี ชื่อย่อ และสเกลของพารามิเตอร์', 'Parameter colours, labels & scales'), `
+      <div class="dg-hintx">${Lg('ชื่อที่แสดง = ใช้แทนชื่อในคำอธิบาย · สเกลอ้างอิง = ค่าจริงที่อยู่บนวงประ 1× (ว่าง = อัตโนมัติ)', 'Label = shown in the legend instead of the name · reference = the real value on the dashed 1× ring (blank = automatic)')}</div>
+      <div class="dg-ped">${sp.map(p => `<div class="dg-pe"><input type="color" data-pc="${esc(p.id)}" value="${C.colorOf(l, p)}" title="${esc(Lg('สี', 'Colour'))}"><span class="dg-pen">${esc(C.sname(p))}</span><input class="input sm" type="text" data-pl="${esc(p.id)}" placeholder="${esc(Lg('ชื่อที่แสดง', 'label'))}" value="${esc(l.labels[p.id] || '')}"><input class="input sm num" type="number" step="any" min="0" data-pr="${esc(p.id)}" placeholder="${esc(p.std && p.std.t === 'max' ? String(p.std.v) : 'auto')}" value="${l.refv[p.id] || ''}" title="${esc(Lg('สเกลอ้างอิง', 'Reference'))}"></div>`).join('')}</div>
+      <button type="button" class="btn btn-sm" data-act="resetref">${Lg('ล้างค่าที่ตั้งเอง', 'Clear custom values')}</button>`, false) : ''}
+    ${radial || m === 'bars' ? sec('rings', 'gauge', Lg('วงอ้างอิงและตัวเลขสเกล', 'Reference rings & scale numbers'), ringsBody(), false, G.tick !== 'off' ? Lg('มีตัวเลข', 'numbers') : '') : ''}
+    ${radial ? sec('div', 'sliders', Lg('เส้นแบ่งวง', 'Dividers'), divBody(), false, G.div ? Lg('เปิด', 'on') : '') : ''}
+    ${single ? sec('ramp', 'chart', Lg('โทนสี', 'Colour ramp'), ctl.select(Lg('โทนสี (เมื่อไม่เทียบมาตรฐาน)', 'Ramp (when not vs. the standard)'), 'l', 'sg.seq', [['viridis', 'Viridis'], ['ylorrd', Lg('เหลือง–ส้ม–แดง', 'Yellow–orange–red')], ['blues', Lg('ฟ้า', 'Blues')], ['magma', 'Magma']]), true) : ''}
+    ${m === 'surface' ? sec('surf', 'waves', Lg('พื้นผิว', 'Surface'), `
+      ${ctl.range(Lg('ความทึบพื้นผิว', 'Surface opacity'), 'l', 'sg.surf', .2, 1, .05)}
+      ${ctl.select(Lg('วิธีประมาณค่าระหว่างจุด', 'Interpolation'), 'l', 'sg.surfM', [['idw', Lg('IDW — ถ่วงน้ำหนักตามระยะทาง', 'IDW — inverse distance')], ['krig', Lg('Kriging — semivariogram', 'Kriging — semivariogram')]], true)}
+      ${G.surfM === 'idw' ? ctl.range(Lg('กำลังของระยะทาง (p)', 'Distance power (p)'), 'l', 'sg.idwP', 1, 5, .5) : ''}
+      ${ctl.select(Lg('ตัดพื้นผิวให้อยู่ในขอบน้ำ', 'Clip to the water body'), 'l', 'sg.clip', [['none', Lg('ไม่ตัด (จางตามระยะจากจุด)', 'No clip (fade with distance)')], ['poly', Lg('วาดขอบน้ำเองบนแผนที่', 'Draw the shoreline on the map')]], true)}
+      ${G.clip === 'none' ? ctl.range(Lg('ระยะจาง (× ระยะห่างจุดเฉลี่ย)', 'Fade distance (× point spacing)'), 'l', 'sg.fade', .5, 5, .1) : `<div class="dg-pre"><button type="button" class="btn btn-sm" data-act="polystart">${ico('edit', 'sm')}${D.polyMode ? Lg('กำลังวาด…', 'Drawing…') : Lg('วาด/วาดใหม่ขอบน้ำ', 'Draw / redraw shoreline')}</button><button type="button" class="btn btn-sm" data-act="polyclear">${Lg('ล้างขอบน้ำ', 'Clear shoreline')}</button></div>`}
+      ${ctl.check(Lg('เส้นชั้นค่า (contour)', 'Contour lines'), 'l', 'sg.contour', true)}${G.contour ? ctl.range(Lg('จำนวนเส้นโดยประมาณ', 'Approximate count'), 'l', 'sg.contN', 3, 14, 1) : ''}
+      <div class="dg-hintx" id="dg-surfinfo">${(() => { const f = C.lastSurf[l.id]; return f ? esc(f.info) : ''; })()}</div>`, true) : ''}`;
 }
 const POS = () => [['tl', Lg('ซ้ายบน', 'Top left')], ['tr', Lg('ขวาบน', 'Top right')], ['bl', Lg('ซ้ายล่าง', 'Bottom left')], ['br', Lg('ขวาล่าง', 'Bottom right')]];
-const tokHelp = k => ({ reservoir:Lg('อ่างเก็บน้ำ', 'Reservoir'), sample:Lg('ชนิดของตัวอย่าง', 'Sample type'), group:Lg('กลุ่มพารามิเตอร์', 'Parameter group'), param:Lg('พารามิเตอร์', 'Parameter(s)') })[k];
-function autoPh(k){
-  const l = sel(), c = C.autoCtx(l), models = D.models || [];
-  if(k === 'title') return C.joinNZ([c.param, c.sample]);
-  if(k === 'sub'){ const B = (models.find(m => m.l === l) || {}).B; return B ? autoSubPreview(l, B) : ''; }
-  if(k === 'legend') return st().layers.filter(x => x.on).length > 1 ? C.joinNZ([c.res, c.sample]) : Lg('ไม่มี (ใช้ชื่อชั้น)', 'none (layer name is used)');
-  return '';
+const TOKS = () => [['reservoir', Lg('อ่างเก็บน้ำ', 'Reservoir')], ['sample', Lg('ชนิดตัวอย่าง', 'Sample type')], ['period', Lg('ช่วงเวลา', 'Period')], ['group', Lg('กลุ่ม/พารามิเตอร์', 'Group / parameter')]];
+const tokBar = () => `<div class="dg-tokens"><span>${Lg('แทรกคำอัตโนมัติ:', 'Insert:')}</span>${TOKS().map(([k, t]) => `<button type="button" class="dg-tok" data-act="tok" data-t="{${k}}" title="{${k}}">${esc(t)}</button>`).join('')}</div>`;
+const visL = () => C.visLayers();
+function nameInfo(l){
+  const vis = visL(), on = vis.length ? vis : [l], ext = st().xFmt === 'jpeg' ? '.jpg' : '.png';
+  return { titleAuto:C.composeTitle(on), title:C.mapTitle(l, on), legAuto:C.legendAuto(l, on), leg:l.on ? C.legendHead(l, on) : C.layerName(l), fileAuto:(fileSafe(C.autoFile(on)) || 'diagram').slice(0, 100) + '_' + stamp(), file:exportBase() + ext };
 }
-const autoSubPreview = (l, B) => { const c = C.autoCtx(l), tail = B.norm === 'std' ? Lg('เทียบค่ามาตรฐาน', 'vs. the standard') : B.norm === 'max' ? Lg('% ของค่าสูงสุด', '% of maximum') : B.norm === 'minmax' ? 'Min–Max' : Lg('ค่าจริง', 'actual values'); return C.joinNZ([c.res, c.group, c.pts + ' ' + Lg('จุด', 'pts'), tail]); };
-function paneText(){
-  const S = st(), B = S.boxes;
-  return `<section class="dg-sc"><h4>${ico('file', 'sm')}${Lg('กล่องข้อความบนแผนที่', 'Text boxes on the map')}</h4>
-    <div class="dg-hintx">${Lg('ลากกล่องบนแผนที่เพื่อย้ายได้อิสระ · ดับเบิลคลิกกล่องที่ย้ายแล้ว = กลับไปมุมเดิม', 'Drag a box on the map to move it freely · double-click a moved box = back to its corner')}</div>
-    <div class="dg-box"><div class="dg-boxh">${ctl.check(`<b>${Lg('หัวข้อ', 'Title')}</b>`, 'b', 'title.on')}${ctl.select('', 'b', 'title.pos', POS())}</div>
-      ${ctl.text(Lg('หัวข้อ (เว้นว่าง = อัตโนมัติ)', 'Title (blank = automatic)'), 'b', 'title.text', autoPh('title'), true)}${ctl.text(Lg('คำบรรยายรอง (ไม่บังคับ)', 'Sub-title (optional)'), 'b', 'title.sub', '', true)}${ctl.text(Lg('หมายเหตุ / แหล่งข้อมูล / วันที่เก็บตัวอย่าง', 'Note / source / sampling date'), 'b', 'title.note', '', true)}${ctl.range(Lg('ขนาดกล่อง', 'Box size'), 'b', 'title.size', .5, 2, .05)}</div>
-    <div class="dg-box"><div class="dg-boxh">${ctl.check(`<b>${Lg('คำอธิบาย (Legend)', 'Legend')}</b>`, 'b', 'legend.on')}${ctl.select('', 'b', 'legend.pos', POS())}</div>
-      ${ctl.text(Lg('หัวข้อกล่องคำอธิบาย (เว้นว่าง = อัตโนมัติ)', 'Legend heading (blank = automatic)'), 'b', 'legend.head', autoPh('legend'))}${ctl.range(Lg('ขนาดกล่อง', 'Box size'), 'b', 'legend.size', .5, 2, .05)}<div class="dg-hintx">${Lg('แสดงทุกชั้นที่เปิดอยู่ · แก้ชื่อพารามิเตอร์ได้ที่แท็บ “ชั้นแผนภาพ”', 'Lists every visible layer · rename parameters in the Layers tab')}</div></div>
-    <div class="dg-box"><div class="dg-boxh">${ctl.check(`<b>${Lg('สรุปค่าสูงสุด (ชั้นที่เลือก)', 'Maximum summary (selected layer)')}</b>`, 'b', 'summary.on')}${ctl.select('', 'b', 'summary.pos', POS())}</div>
-      ${ctl.text(Lg('หัวข้อกล่องสรุป', 'Summary heading'), 'b', 'summary.head', Lg('อัตโนมัติ', 'automatic'))}${ctl.range(Lg('ขนาดกล่อง', 'Box size'), 'b', 'summary.size', .5, 2, .05)}</div>
-    <div class="dg-box"><div class="dg-boxh">${ctl.check(`<b>${Lg('ค่าเฉลี่ยของพารามิเตอร์ (ชั้นที่เลือก)', 'Parameter averages (selected layer)')}</b>`, 'b', 'avg.on')}${ctl.select('', 'b', 'avg.pos', POS())}</div>
-      ${ctl.text(Lg('หัวข้อกล่องค่าเฉลี่ย', 'Averages heading'), 'b', 'avg.head', Lg('อัตโนมัติ', 'automatic'))}${ctl.range(Lg('ขนาดกล่อง', 'Box size'), 'b', 'avg.size', .5, 2, .05)}<div class="dg-hintx">${Lg('เฉลี่ยเฉพาะค่าที่วัดได้ (ไม่รวม ND) · ตัวเลขในวงเล็บ = จำนวนจุดที่ใช้ / ทั้งหมด · สีแดง = เฉลี่ยเกินมาตรฐาน', 'Mean of the measured values only (ND excluded) · brackets = points used / total · red = mean over the standard')}</div></div>
-    <div class="dg-box"><div class="dg-boxh">${ctl.check(`<b>${Lg('สเกลแผนที่', 'Map scale bar')}</b>`, 'b', 'scale.on')}${ctl.select('', 'b', 'scale.pos', POS())}</div>
-      ${ctl.select(Lg('ความยาวสเกล', 'Scale length'), 'b', 'scale.mode', [['auto', Lg('อัตโนมัติ (ตามระดับซูม)', 'Automatic (follows the zoom)')], ['custom', Lg('กำหนดเอง', 'Custom')]], true)}
-      ${st().boxes.scale.mode === 'custom' ? `<div class="dg-two"><label class="dg-f"><span>${Lg('ระยะจริง', 'Real distance')}</span><input class="input sm" type="number" min="0.001" step="any" data-s="b" data-k="scale.val" value="${st().boxes.scale.val}"></label>${ctl.select(Lg('หน่วย', 'Unit'), 'b', 'scale.unit', [['m', Lg('เมตร', 'metres')], ['km', Lg('กิโลเมตร', 'kilometres')]])}</div><div class="dg-hintx">${Lg('แถบยาวตามระยะที่ตั้ง ณ ระดับซูมปัจจุบัน — ถ้าสั้นหรือยาวเกินจอ จะกลับไปใช้อัตโนมัติจนกว่าจะซูมให้เหมาะ', 'The bar shows the distance you set at the current zoom — if it would be too short or too long for the screen it falls back to automatic until you zoom to suit')}</div>` : ''}
-      ${ctl.range(Lg('ขนาดตัวอักษร', 'Text size'), 'b', 'scale.size', .7, 1.6, .05)}<div class="dg-hintx">${Lg('ลากสเกลบนแผนที่ไปวางที่ใดก็ได้ · ความยาวแถบตรงกับระยะจริงตามระดับซูมเสมอ (ปรับได้เฉพาะขนาดตัวอักษร)', 'Drag the scale bar anywhere on the map · the bar always matches the real distance at the current zoom (only the text size is adjustable)')}</div></div>
-    <div class="dg-hintx dg-tokens">${Lg('ใส่ตัวแปรในข้อความได้ แล้วระบบจะแทนค่าให้อัตโนมัติ: ', 'Use these variables in any text, filled in automatically: ')}${['reservoir', 'sample', 'group', 'param'].map(k => `<button type="button" class="dg-tok" data-act="tok" data-t="{${k}}" title="${esc(tokHelp(k))}">{${k}}</button>`).join('')}</div>
-    <div class="dg-box"><div class="dg-boxh"><b>${Lg('กล่องข้อความที่เพิ่มเอง', 'Your text boxes')}</b><button type="button" class="btn btn-sm" data-act="addtext">${ico('plus', 'sm')}${Lg('เพิ่ม', 'Add')}</button></div>
-      ${B.custom.length ? B.custom.map(n => `<div class="dg-crow${D.selBox === 'c' + n.id ? ' sel' : ''}"><button type="button" class="dg-cpick" data-act="ctext" data-id="${n.id}"><span>${esc((n.text || '').split('\n')[0].slice(0, 40) || Lg('(ว่าง)', '(empty)'))}</span></button>${iconBtn('cedit', 'edit', Lg('แก้ไข', 'Edit'), `data-id="${n.id}"`)}${iconBtn('cdel', 'trash', Lg('ลบ', 'Delete'), `data-id="${n.id}"`)}</div>`).join('') : `<div class="dg-hintx">${Lg('ยังไม่มี — กด “เพิ่ม”', 'None yet — press “Add”')}</div>`}</div>
-    ${ctl.range(Lg('ขนาดตัวอักษรทุกกล่อง', 'Text size (all boxes)'), 'g', 'text', .7, 1.8, .05)}${ctl.range(Lg('ความทึบพื้นกล่อง', 'Box opacity'), 'g', 'boxA', 0, 1, .02)}
-    <button type="button" class="btn btn-sm" data-act="boxreset">${Lg('จัดกล่องกลับมุมเดิมทั้งหมด', 'Put all boxes back in their corners')}</button></section>`;
+function updateNamePrev(){
+  const l = sel(); if(!l || D.tab !== 'name') return; const N = nameInfo(l);
+  const set = (id, v) => { const e = $(id); if(e) e.textContent = v; };
+  set('#dg-np-title', N.title); set('#dg-np-leg', N.leg); set('#dg-np-file', N.file);
 }
-const fileSafe = t => String(t || '').replace(/[\\/:*?"<>|]+/g, ' ').replace(/\s+/g, '_').replace(/^_+|_+$/g, '');
-function exportBase(){ const S = st(), l = sel(), v = (S.xName || '').trim(), base = v ? C.expandTokens(v, l) : C.autoName(l); return (fileSafe(base) || 'diagram').slice(0, 90) + (v ? '' : '_' + stamp()); }
-function paneExport(){
-  const S = st();
-  return `<section class="dg-sc"><h4>${ico('image', 'sm')}${Lg('บันทึกรูปภาพ', 'Save image')}</h4>
-    <div class="dg-hintx">${Lg('รูปที่บันทึกคือมุมมองแผนที่ปัจจุบัน ความละเอียดสูงขึ้นจะโหลดภาพดาวเทียมละเอียดขึ้นให้ด้วย', 'The saved image is the current map view. Higher resolution also fetches sharper satellite tiles.')}</div>
-    <div class="dg-sizeinfo" id="dg-sizeinfo"></div>
-    ${ctl.select(Lg('ความละเอียด', 'Resolution'), 'x', 'xScale', [[1, '1×'], [2, '2×'], [3, '3×'], [4, '4×']], true)}
-    ${ctl.select(Lg('รูปแบบไฟล์', 'File type'), 'x', 'xFmt', [['png', 'PNG'], ['jpeg', 'JPEG']])}
-    ${ctl.check(Lg('รวมภาพถ่ายดาวเทียมเป็นพื้นหลัง', 'Include the satellite background'), 'x', 'xBase')}
-    ${ctl.text(Lg('ชื่อไฟล์ (เว้นว่าง = อัตโนมัติ · ใช้ {reservoir} {sample} {group} {param} ได้)', 'File name (blank = automatic · {reservoir} {sample} {group} {param} allowed)'), 'x', 'xName', exportBase())}
-    <div class="dg-hintx">${Lg('จะบันทึกเป็น: ', 'Will be saved as: ')}<b>${esc(exportBase())}</b>.${S.xFmt === 'jpeg' ? 'jpg' : 'png'}</div>
-    <div class="dg-two"><button class="btn btn-primary" data-act="save">${ico('image', 'sm')}${Lg('บันทึกรูป', 'Save image')}</button><button class="btn" data-act="copy">${ico('copy', 'sm')}${Lg('คัดลอกรูป', 'Copy image')}</button></div></section>
-  <section class="dg-sc"><h4>${ico('table', 'sm')}${Lg('ข้อมูล', 'Data')}</h4>
-    <div class="dg-two"><button class="btn" data-act="xlsx">${ico('download', 'sm')}${Lg('ส่งออกข้อมูล .xlsx', 'Export data .xlsx')}</button><button class="btn" data-act="csv">${ico('download', 'sm')}${Lg('ส่งออก .csv', 'Export .csv')}</button></div>
-    <button class="btn" data-act="import">${ico('download', 'sm')}${Lg('นำเข้า Excel / CSV', 'Import Excel / CSV')}</button></section>
-  <section class="dg-sc"><h4>${ico('gear', 'sm')}${Lg('การตั้งค่า', 'Settings')}</h4>
-    <div class="dg-two"><button class="btn" data-act="cfgsave">${Lg('บันทึกการตั้งค่า (.json)', 'Save settings (.json)')}</button><button class="btn" data-act="cfgload">${Lg('โหลดการตั้งค่า', 'Load settings')}</button></div>
-    <button class="btn btn-danger" data-act="reset">${ico('reset', 'sm')}${Lg('รีเซ็ตแผนภาพเป็นค่าเริ่มต้น', 'Reset the diagram to defaults')}</button><input type="file" id="dg-cfgfile" accept="application/json,.json" hidden>
-    <div class="dg-hintx">${Lg('การตั้งค่า ชั้น ตำแหน่งที่ลากย้าย และชุดข้อมูลที่นำเข้า จะถูกจำไว้ในเบราว์เซอร์นี้', 'Settings, layers, dragged positions and imported datasets are remembered in this browser')}</div></section>`;
+function paneName(){
+  const l = sel(); if(!l) return ''; const N = nameInfo(l), S = st(), many = visL().length > 1;
+  return `<div class="dg-nprev">
+      <div class="dg-np"><small>${ico('file', 'sm')}${Lg('หัวข้อบนแผนที่', 'Map title')}</small><b id="dg-np-title">${esc(N.title)}</b></div>
+      <div class="dg-np"><small>${ico('layers', 'sm')}${Lg('ชั้นนี้ในคำอธิบาย', 'This layer in the legend')}</small><b id="dg-np-leg">${esc(N.leg)}</b></div>
+      <div class="dg-np"><small>${ico('download', 'sm')}${Lg('ชื่อไฟล์เมื่อบันทึกรูป', 'Image file name')}</small><b id="dg-np-file" class="mono">${esc(N.file)}</b></div></div>
+    <div class="dg-hintx">${Lg('ระบบตั้งชื่อให้เองจาก กลุ่ม/พารามิเตอร์ · ชนิดตัวอย่าง · ช่วงเวลา · อ่างเก็บน้ำ — เมื่อแสดงหลายชั้น ชื่อจะบอกว่าอะไรเทียบกับอะไร · พิมพ์ในช่องด้านล่างเพื่อใช้ชื่อของคุณ (เก็บแยกเฉพาะชั้นนี้) · ลบให้ว่าง = กลับไปใช้อัตโนมัติ', 'Names are built from group / parameter · sample type · period · reservoir — with several layers they say what is compared with what · type below to use your own (kept for this layer only) · clear a field to go back to automatic')}</div>
+    ${tokBar()}
+    ${sec('nm-layer', 'layers', Lg('ชื่อชั้น', 'Layer name'), `${ctl.text('', 'l', 'name', N.legAuto)}<div class="dg-hintx">${Lg('ใช้ในรายการชั้นและเป็นหัวข้อของชั้นนี้ในกล่องคำอธิบาย', 'Used in the layer list and as this layer’s heading in the legend')}</div>`, true, l.name ? Lg('ตั้งเอง', 'custom') : Lg('อัตโนมัติ', 'auto'))}
+    ${sec('nm-title', 'file', Lg('หัวข้อแผนที่', 'Map title'), `${ctl.text(Lg('หัวข้อ', 'Title'), 'l', 'txt.title', N.titleAuto, true)}${ctl.text(Lg('คำบรรยายรอง (ไม่บังคับ)', 'Sub-title (optional)'), 'l', 'txt.sub', '', true)}${ctl.text(Lg('หมายเหตุ / แหล่งข้อมูล / วันที่เก็บตัวอย่าง (ไม่บังคับ)', 'Note / source / sampling date (optional)'), 'l', 'txt.note', '', true)}<div class="dg-hintx">${many ? Lg('มีหลายชั้นบนแผนที่ — หัวข้อที่แสดงคือของชั้นที่เลือกอยู่ ถ้าเว้นว่างระบบรวมชื่อจากทุกชั้นให้', 'Several layers are shown — the map shows the selected layer’s title; leave it blank to combine every layer automatically') : Lg('หัวข้อบนแผนที่ใช้ของชั้นที่เลือกอยู่', 'The map shows the selected layer’s title')}${S.boxes.title.on ? '' : ' · ' + Lg('กล่องหัวข้อถูกปิดอยู่ (เปิดได้ที่แท็บแผนที่)', 'the title box is off (turn it on in the Map tab)')}</div>`, true, (txtOf(l).title || txtOf(l).sub || txtOf(l).note) ? Lg('ตั้งเอง', 'custom') : Lg('อัตโนมัติ', 'auto'))}
+    ${sec('nm-file', 'download', Lg('ชื่อไฟล์รูป', 'Image file name'), `${ctl.text('', 'l', 'txt.file', N.fileAuto)}<div class="dg-hintx">${Lg('ชื่ออัตโนมัติจะต่อท้ายด้วยวันเวลาที่บันทึก · ใช้ชื่อนี้เมื่อบันทึกขณะเลือกชั้นนี้', 'Automatic names end with the save time · used when you save with this layer selected')}</div>`, true, txtOf(l).file ? Lg('ตั้งเอง', 'custom') : Lg('อัตโนมัติ', 'auto'))}
+    <button type="button" class="btn btn-sm" data-act="nmreset">${ico('reset', 'sm')}${Lg('ใช้ชื่ออัตโนมัติทั้งหมดของชั้นนี้', 'Automatic names for this layer')}</button>`;
+}
+const txtOf = l => (l && l.txt) || {};
+const fileSafe = t => String(t || '').replace(/[\\/:*?"<>|·]+/g, ' ').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '');
+function exportBase(){
+  const l = sel(), v = (txtOf(l).file || '').trim(), vis = visL(), base = v ? C.expandTokens(v, l) : C.autoFile(vis.length ? vis : [l]);
+  return (fileSafe(base) || 'diagram').slice(0, 100) + (v ? '' : '_' + stamp());
+}
+function paneMap(){
+  const S = st(), G = S.g, B = S.boxes;
+  const box = (k, title, body) => `<div class="dg-box"><div class="dg-boxh">${ctl.check(`<b>${title}</b>`, 'b', k + '.on', true)}${B[k].on ? ctl.select('', 'b', k + '.pos', POS()) : ''}</div>${B[k].on ? body : ''}</div>`;
+  return `${sec('mp-boxes', 'file', Lg('กล่องบนแผนที่', 'Boxes on the map'), `
+      <div class="dg-hintx">${Lg('ลากกล่องบนแผนที่เพื่อย้าย · ดับเบิลคลิกกล่องที่ย้ายแล้ว = กลับมุมเดิม · ข้อความหัวข้อแก้ได้ที่แท็บ “ชื่อ” ของแต่ละชั้น', 'Drag a box to move it · double-click a moved box = back to its corner · title text is set per layer in the “Names” tab')}</div>
+      ${box('title', Lg('หัวข้อ', 'Title'), ctl.range(Lg('ขนาด', 'Size'), 'b', 'title.size', .5, 2, .05))}
+      ${box('legend', Lg('คำอธิบาย (Legend)', 'Legend'), `${ctl.text(Lg('หัวข้อรวมของคำอธิบาย (ไม่บังคับ)', 'Overall legend heading (optional)'), 'b', 'legend.head', B.title.on ? Lg('ไม่มี — แต่ละชั้นมีหัวข้อของตัวเอง', 'none — each layer has its own heading') : C.composeTitle(visL()))}${ctl.range(Lg('ขนาด', 'Size'), 'b', 'legend.size', .5, 2, .05)}`)}
+      ${box('summary', Lg('ค่าสูงสุดของแต่ละพารามิเตอร์', 'Maximum of each parameter'), `${ctl.text(Lg('หัวข้อ (ไม่บังคับ)', 'Heading (optional)'), 'b', 'summary.head', Lg('อัตโนมัติ', 'automatic'))}${ctl.range(Lg('ขนาด', 'Size'), 'b', 'summary.size', .5, 2, .05)}`)}
+      ${box('avg', Lg('ค่าเฉลี่ยของแต่ละพารามิเตอร์', 'Average of each parameter'), `${ctl.text(Lg('หัวข้อ (ไม่บังคับ)', 'Heading (optional)'), 'b', 'avg.head', Lg('อัตโนมัติ', 'automatic'))}${ctl.range(Lg('ขนาด', 'Size'), 'b', 'avg.size', .5, 2, .05)}<div class="dg-hintx">${Lg('เฉลี่ยเฉพาะค่าที่วัดได้ (ไม่รวม ND) · (ใช้ได้/ทั้งหมด) · สีแดง = เกินมาตรฐาน', 'Mean of measured values (ND excluded) · (used/total) · red = over the standard')}</div>`)}
+      ${box('scale', Lg('สเกลแผนที่', 'Scale bar'), `${ctl.select(Lg('ความยาว', 'Length'), 'b', 'scale.mode', [['auto', Lg('อัตโนมัติตามระดับซูม', 'Automatic (follows the zoom)')], ['custom', Lg('กำหนดเอง', 'Custom')]], true)}${B.scale.mode === 'custom' ? `<div class="dg-two"><label class="dg-f"><span>${Lg('ระยะจริง', 'Real distance')}</span><input class="input sm" type="number" min="0.001" step="any" data-s="b" data-k="scale.val" value="${B.scale.val}"></label>${ctl.select(Lg('หน่วย', 'Unit'), 'b', 'scale.unit', [['m', Lg('เมตร', 'metres')], ['km', Lg('กิโลเมตร', 'kilometres')]])}</div>` : ''}${ctl.range(Lg('ขนาดตัวอักษร', 'Text size'), 'b', 'scale.size', .7, 1.6, .05)}`)}
+      <div class="dg-box"><div class="dg-boxh"><b>${Lg('กล่องข้อความของคุณ', 'Your text boxes')}</b><button type="button" class="btn btn-sm" data-act="addtext">${ico('plus', 'sm')}${Lg('เพิ่ม', 'Add')}</button></div>
+        ${B.custom.length ? B.custom.map(n => `<div class="dg-crow${D.selBox === 'c' + n.id ? ' sel' : ''}"><button type="button" class="dg-cpick" data-act="ctext" data-id="${n.id}"><span>${esc((n.text || '').split('\n')[0].slice(0, 40) || Lg('(ว่าง)', '(empty)'))}</span></button>${iconBtn('cedit', 'edit', Lg('แก้ไข', 'Edit'), `data-id="${n.id}"`)}${iconBtn('cdel', 'trash', Lg('ลบ', 'Delete'), `data-id="${n.id}"`)}</div>`).join('') : `<div class="dg-hintx">${Lg('ยังไม่มี', 'None yet')}</div>`}</div>
+      ${ctl.range(Lg('ขนาดตัวอักษรทุกกล่อง', 'Text size (all boxes)'), 'g', 'text', .7, 1.8, .05)}${ctl.range(Lg('ความทึบพื้นกล่อง', 'Box opacity'), 'g', 'boxA', 0, 1, .02)}
+      <button type="button" class="btn btn-sm" data-act="boxreset">${Lg('จัดกล่องกลับมุมเดิมทั้งหมด', 'Put every box back in its corner')}</button>`, true)}
+    ${sec('mp-pts', 'pin', Lg('จุดและป้ายชื่อ', 'Points & labels'), `
+      <div class="dg-tgs">${ctl.check(Lg('จุดพิกัดจริง', 'Sampling points'), 'g', 'showMarks')}${ctl.check(Lg('สัญลักษณ์แผนภาพ', 'Diagram symbols'), 'g', 'showGlyph')}${ctl.check(Lg('รหัสจุด', 'Point ID'), 'g', 'showId')}${ctl.check(Lg('ชื่อสถานที่', 'Location name'), 'g', 'showName')}${ctl.check(Lg('ค่าตัวเลข', 'Values'), 'g', 'showVal')}${ctl.check(Lg('ป้าย “เกิน: …”', '“over: …” tag'), 'g', 'showExceed')}${ctl.check(Lg('เส้นชี้ไปจุดจริง', 'Leader lines'), 'g', 'leader')}${ctl.check(Lg('จัดวางกันทับอัตโนมัติ', 'Auto placement'), 'g', 'auto', true)}${ctl.check(Lg('ชั้นที่จุดเดียวกันวางเรียงข้างกัน', 'Layers on the same points side by side'), 'g', 'sideBy', true)}${ctl.check(Lg('ขนาดแปรตามการซูม', 'Scale with zoom'), 'g', 'zoomScale', true)}</div>
+      ${G.zoomScale ? ctl.range(Lg('ระดับซูมที่ขนาดตรงกับที่ตั้งไว้', 'Zoom at the set size'), 'g', 'zoomRef', 5, 19, .5) : ''}
+      ${ctl.range(Lg('ขนาดจุดพิกัดจริง', 'Point size'), 'g', 'mark', 0, 14, .5)}${ctl.color(Lg('สีจุดพิกัดจริง', 'Point colour'), 'g', 'markC')}${ctl.range(Lg('ขนาดตัวอักษรบนแผนที่', 'Label size'), 'g', 'font', 8, 26, 1)}${ctl.range(Lg('ระยะป้ายชื่อห่างจากสัญลักษณ์ (px)', 'Label distance from the symbol (px)'), 'g', 'labelGap', -10, 60, 1)}`, false)}
+    ${sec('mp-base', 'globe', Lg('แผนที่พื้นหลัง', 'Base map'), `
+      ${ctl.select(Lg('ชนิดแผนที่', 'Map type'), 'g', 'base', [['imagery', Lg('ภาพถ่ายดาวเทียม', 'Satellite imagery')], ['topo', Lg('แผนที่ภูมิประเทศ', 'Topographic')], ['street', Lg('แผนที่ถนน', 'Street map')]])}
+      ${ctl.check(Lg('ชื่อสถานที่/ขอบเขตทับภาพถ่าย', 'Place names and borders'), 'g', 'labels')}
+      ${ctl.range(Lg('ความมืดของพื้นหลัง', 'Background dimming'), 'g', 'dim', 0, .85, .01)}${ctl.range(Lg('ความสดของสี', 'Colour saturation'), 'g', 'sat', 0, 1.6, .05)}`, false)}
+    ${sec('mp-col', 'edit', Lg('สีตัวหนังสือและกล่อง', 'Text & box colours'), `
+      <div class="dg-cgrid">${ctl.color(Lg('รหัสจุด', 'Point ID'), 'g', 'tc.id')}${ctl.color(Lg('ชื่อสถานที่', 'Location'), 'g', 'tc.name')}${ctl.color(Lg('ตัวเลขค่า', 'Values'), 'g', 'tc.val')}${ctl.color(Lg('ป้าย “เกิน”', '“over” tag'), 'g', 'tc.exc')}${ctl.color(Lg('ชื่อแกน', 'Axis'), 'g', 'tc.axis')}${ctl.color(Lg('ตัวเลขสเกล', 'Scale numbers'), 'g', 'tc.tick')}${ctl.color(Lg('ตัวเลขสเกล 1×', '1× number'), 'g', 'tc.tickRef')}${ctl.color(Lg('ขอบตัวอักษร', 'Halo'), 'g', 'tc.halo')}</div>
+      <div class="dg-cgrid">${ctl.color(Lg('หัวข้อกล่อง', 'Box heading'), 'g', 'bc.head')}${ctl.color(Lg('เนื้อหากล่อง', 'Box body'), 'g', 'bc.body')}${ctl.color(Lg('หมายเหตุ', 'Box note'), 'g', 'bc.mute')}${ctl.color(Lg('พื้นกล่อง', 'Box fill'), 'g', 'bc.bg')}</div>`, false)}
+    ${sec('mp-exp', 'image', Lg('บันทึกรูป', 'Save image'), `
+      <div class="dg-sizeinfo" id="dg-sizeinfo"></div>
+      <div class="dg-two">${ctl.select(Lg('ความละเอียด', 'Resolution'), 'x', 'xScale', [[1, '1×'], [2, '2×'], [3, '3×'], [4, '4×']], true)}${ctl.select(Lg('ชนิดไฟล์', 'File type'), 'x', 'xFmt', [['png', 'PNG'], ['jpeg', 'JPEG']], true)}</div>
+      ${ctl.check(Lg('รวมภาพถ่ายดาวเทียมเป็นพื้นหลัง', 'Include the satellite background'), 'x', 'xBase')}
+      <div class="dg-hintx">${Lg('ชื่อไฟล์: ', 'File name: ')}<b class="mono">${esc(exportBase())}.${S.xFmt === 'jpeg' ? 'jpg' : 'png'}</b> · ${Lg('แก้ได้ที่แท็บ “ชื่อ”', 'change it in the “Names” tab')}</div>
+      <div class="dg-two"><button type="button" class="btn btn-primary" data-act="save">${ico('image', 'sm')}${Lg('บันทึกรูป', 'Save image')}</button><button type="button" class="btn" data-act="copy">${ico('copy', 'sm')}${Lg('คัดลอกรูป', 'Copy image')}</button></div>`, true)}
+    ${sec('mp-data', 'table', Lg('ข้อมูลและการตั้งค่า', 'Data & settings'), `
+      <div class="dg-two"><button type="button" class="btn" data-act="xlsx">${ico('download', 'sm')}${Lg('ส่งออก .xlsx', 'Export .xlsx')}</button><button type="button" class="btn" data-act="csv">${ico('download', 'sm')}${Lg('ส่งออก .csv', 'Export .csv')}</button></div>
+      <div class="dg-two"><button type="button" class="btn" data-act="cfgsave">${Lg('บันทึกการตั้งค่า', 'Save settings')}</button><button type="button" class="btn" data-act="cfgload">${Lg('โหลดการตั้งค่า', 'Load settings')}</button></div>
+      <button type="button" class="btn btn-danger" data-act="reset">${ico('reset', 'sm')}${Lg('รีเซ็ตแผนภาพเป็นค่าเริ่มต้น', 'Reset the diagram')}</button><input type="file" id="dg-cfgfile" accept="application/json,.json" hidden>
+      <div class="dg-hintx">${Lg('ชั้น การตั้งค่า และตำแหน่งที่ลากย้าย ถูกจำไว้ในเบราว์เซอร์นี้', 'Layers, settings and dragged positions are remembered in this browser')}</div>`, false)}`;
 }
 
 /* ---------------------------------------------------------------- panel events */
@@ -8623,19 +8878,21 @@ function bindPanel(){
     if(e.target.dataset.ly === 'v'){ C.fixLayers(sel().sg); C.persist(); renderPaneKeepList(); draw(); return; }
     if(e.target.dataset.act === 'dvp'){ const l = sel(), G = st().g, key = l.ds + '|' + e.target.dataset.id; G.divOff = G.divOff || {}; if(e.target.checked) delete G.divOff[key]; else G.divOff[key] = true; C.persist(); draw(); return; }
     if(e.target.id === 'dg-cfgfile'){ loadCfg(e); return; }
+    if(e.target.id === 'dg-ds'){ setLayerDs(e.target.value); return; }
     if(e.target.id === 'dg-nd'){ D.showND = e.target.checked; $('#dg-plist').innerHTML = paramList(sel()); return; }
     if(e.target.dataset.act === 'par'){ toggleParam(e.target.dataset.id, e.target.checked); return; }
     if(e.target.dataset.act === 'pt'){ const l = sel(); if(e.target.checked) delete l.hidden[e.target.dataset.id]; else l.hidden[e.target.dataset.id] = true; C.persist(); draw(); statbar(); return; }
   });
-  pane.addEventListener('click', e => { const b = e.target.closest('[data-act]'); if(b && b.tagName !== 'INPUT') action(b.dataset.act, b); });
+  pane.addEventListener('click', e => {
+    const sm = e.target.closest('summary'); if(sm){ const dt = sm.parentElement; setTimeout(() => { D.open[dt.dataset.acc] = dt.open; }, 0); return; }
+    const md = e.target.closest('[data-mode]'); if(md){ const l = sel(); l.mode = md.dataset.mode; if(C.SINGLE.has(l.mode)) C.ensureSel(l); C.fieldCache.clear(); C.layoutCache.clear(); C.persist(); renderAll(); return; }
+    const b = e.target.closest('[data-act]'); if(b && b.tagName !== 'INPUT') action(b.dataset.act, b); });
+  $('#dg-phead').addEventListener('click', e => { const b = e.target.closest('[data-act]'); if(b) action(b.dataset.act, b); });
   bindLib();
-  $('.dg-layout').addEventListener('click', e => { const eb = e.target.closest('[data-eb]'); if(eb){ if(eb.dataset.eb === 'lib'){ D.tbTab = 'lib'; setSubview('table'); } else openImport(null); return; } const u = e.target.closest('[data-ui]'); if(u){ setHideUI(!D.hideUI); return; } const b = e.target.closest('[data-fl]'); if(!b) return; const S = st(), k = b.dataset.fl + 'Off'; S[k] = !S[k]; if(!S[k] && innerWidth < 760) S[b.dataset.fl === 'dock' ? 'panelOff' : 'dockOff'] = true; C.persist(); applyFloat(); });
+  $('.dg-layout').addEventListener('click', e => { const eb = e.target.closest('[data-eb]'); if(eb){ if(eb.dataset.eb === 'lib'){ D.tbTab = 'lib'; setSubview('table'); } else openImport(null); return; } const u = e.target.closest('[data-ui]'); if(u){ setHideUI(!D.hideUI); return; } const b = e.target.closest('[data-fl]'); if(!b) return; const S = st(), k = b.dataset.fl + 'Off'; S[k] = !S[k]; if(!S[k] && oneCard()) S[b.dataset.fl === 'dock' ? 'panelOff' : 'dockOff'] = true; C.persist(); applyFloat(); setTimeout(applyFloat, 220); });
   $('#dg-ptabs').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if(!b) return; D.tab = b.dataset.tab; st().tab = D.tab; renderPane(); if(D.tab === 'export') sizeInfo(); });
-  $('#dg-dock').addEventListener('click', e => { const b = e.target.closest('[data-act]'); if(b && b.dataset.act !== 'tok') action(b.dataset.act, b); });
+  $('#dg-dock').addEventListener('click', e => { const b = e.target.closest('[data-act]'); if(!b) return; if(b.dataset.act === 'addmenu'){ addMenu(b); return; } if(b.dataset.act !== 'tok') action(b.dataset.act, b); });
   pane.addEventListener('mousedown', e => { if(e.target.closest('.dg-tok')) e.preventDefault(); });
-  $('#dg-gallery').addEventListener('click', e => { const b = e.target.closest('[data-mode]'); if(!b) return; const l = sel(); l.mode = b.dataset.mode; if(C.SINGLE.has(l.mode)) C.ensureSel(l); C.fieldCache.clear(); C.layoutCache.clear(); C.persist(); renderAll(); });
-  $('#dg-ds').addEventListener('change', e => setLayerDs(e.target.value));
-  $('#dg-ds-del').addEventListener('click', delDataset);
   $('#dg-import').addEventListener('click', openImport);
   $('#dg-save').addEventListener('click', () => doExport(false));
   $('#dg-copy').addEventListener('click', () => doExport(true));
@@ -8665,10 +8922,14 @@ function toggleParam(id, on){
 function renderPaneKeepList(){ const pl = $('#dg-plist'), sc = pl ? pl.scrollTop : 0, pane = $('#dg-pane'), ps = pane.scrollTop; renderPane(); const p2 = $('#dg-plist'); if(p2) p2.scrollTop = sc; pane.scrollTop = ps; }
 async function action(a, b){
   const l = sel(), S = st(), id = b && b.dataset.id !== undefined ? (isNaN(+b.dataset.id) ? b.dataset.id : +b.dataset.id) : null;
-  if(a === 'eye'){ const q = C.getLayer(id); q.on = !q.on; C.persist(); renderChips(); if(D.tab === 'layer') renderPaneKeepList(); draw(); statbar(); }
-  else if(a === 'pick') selectLayer(id);
-  else if(a === 'showall' || a === 'hideall'){ S.layers.forEach(q => { q.on = a === 'showall'; }); C.persist(); renderChips(); if(D.tab === 'layer') renderPaneKeepList(); draw(); statbar(); }
+  if(a === 'eye'){ const q = C.getLayer(id); q.on = !q.on; C.persist(); renderChips(); if(D.tab === 'name') renderPane(); draw(); statbar(); }
+  else if(a === 'pick'){ selectLayer(id); if(S.panelOff && oneCard()){ S.panelOff = false; S.dockOff = true; C.persist(); applyFloat(); } }
+  else if(a === 'lprev' || a === 'lnext'){ const i = S.layers.indexOf(l) + (a === 'lprev' ? -1 : 1); if(S.layers[i]) selectLayer(S.layers[i].id); }
+  else if(a === 'dsdel') delDataset();
+  else if(a === 'nmreset'){ l.name = ''; l.txt = { title:'', sub:'', note:'', file:'' }; C.persist(); renderChips(); renderPane(); draw(); toast(Lg('กลับไปใช้ชื่ออัตโนมัติแล้ว', 'Back to automatic names')); }
+  else if(a === 'showall' || a === 'hideall'){ S.layers.forEach(q => { q.on = a === 'showall'; }); C.persist(); renderChips(); if(D.tab === 'name') renderPane(); draw(); statbar(); }
   else if(a === 'add') addLayer();
+  else if(a === 'addmenu') addMenu(b);
   else if(a === 'up') moveLayer(id, -1); else if(a === 'down') moveLayer(id, 1);
   else if(a === 'dup') dupLayer(id); else if(a === 'del') delLayer(id);
   else if(a === 'preset'){ const p = C.PRESETS[+b.dataset.i], ds = C.getDs(l.ds), ids = ds.params.filter(q => q.nPlot > 0 && p[1](q)).map(q => q.id).slice(0, 12); if(!ids.length) toast(Lg('ไม่พบพารามิเตอร์ในกลุ่มนี้', 'No parameters in this group'), 'err'); else { l.sel = ids; afterParams(); } }
@@ -8703,28 +8964,47 @@ function ptsChanged(){ C.fieldCache.clear(); C.layoutCache.clear(); C.persist();
 function tool(t){
   const G = st().g;
   if(t === 'zin') D.map.zoomIn(.5); else if(t === 'zout') D.map.zoomOut(.5); else if(t === 'fit') fitPoints(true);
-  else if(t === 'marks'){ G.showMarks = !G.showMarks; syncTools(); C.persist(); draw(); if(D.tab === 'style') renderPane(); }
-  else if(t === 'glyph'){ G.showGlyph = !G.showGlyph; syncTools(); C.persist(); draw(); if(D.tab === 'style') renderPane(); }
-  else if(t === 'labels'){ G.labels = !G.labels; setBase(); syncTools(); C.persist(); if(D.tab === 'style') renderPane(); }
+  else if(t === 'marks'){ G.showMarks = !G.showMarks; syncTools(); C.persist(); draw(); if(D.tab === 'map') renderPane(); }
+  else if(t === 'glyph'){ G.showGlyph = !G.showGlyph; syncTools(); C.persist(); draw(); if(D.tab === 'map') renderPane(); }
+  else if(t === 'labels'){ G.labels = !G.labels; setBase(); syncTools(); C.persist(); if(D.tab === 'map') renderPane(); }
   else if(t === 'editpts'){ D.editPts = !D.editPts; syncTools(); if(D.editPts) toast(Lg('ลากจุดสีขาวเพื่อแก้พิกัดตัวอย่าง · ดับเบิลคลิกจุด = คืนพิกัดเดิม', 'Drag a white dot to edit its coordinates · double-click a dot = restore the original')); }
   else if(t === 'addtext') addText();
   else if(t === 'relayout'){ sel().manual = {}; layoutReset(); C.persist(); draw(); }
 }
+/* narrow = phone portrait (bottom sheets) · sheet = tablets & landscape phones (one full-height side sheet at a time) · wide = desktop */
+function sizeMode(){ const lay = $('.dg-layout'); if(!lay) return 'wide'; const w = lay.clientWidth || innerWidth, h = lay.clientHeight || innerHeight; return w < 600 ? 'narrow' : (w < 940 || h < 560) ? 'sheet' : 'wide'; }
+const oneCard = () => sizeMode() !== 'wide';
 function syncFloat(){
-  const lay = $('.dg-layout'); if(!lay) return; lay.classList.toggle('hide-ui', !!D.hideUI); lay.classList.toggle('no-data', !!D.noData); const S = st(), mob = innerWidth < 760;
-  if(S.dockOff === undefined) S.dockOff = mob; if(S.panelOff === undefined) S.panelOff = mob;
+  const lay = $('.dg-layout'); if(!lay) return; lay.classList.toggle('hide-ui', !!D.hideUI); lay.classList.toggle('no-data', !!D.noData); const S = st(), md = sizeMode();
+  ['narrow', 'sheet', 'wide'].forEach(m => lay.classList.toggle('sm-' + m, m === md));
+  lay.classList.toggle('sm-short', (lay.clientHeight || innerHeight) < 520);
+  if(S.dockOff === undefined) S.dockOff = md !== 'wide'; if(S.panelOff === undefined) S.panelOff = md !== 'wide';
+  if(md !== 'wide' && !S.dockOff && !S.panelOff) S.dockOff = true;          /* only one card at a time when space is short */
   lay.classList.toggle('no-dock', !!S.dockOff); lay.classList.toggle('no-panel', !!S.panelOff);
   $$('.dg-tgl').forEach(b => b.setAttribute('aria-pressed', String(!S[b.dataset.fl + 'Off'])));
 }
 function measureInset(){
-  const I = C.INSET, S = st(), mob = innerWidth < 760, lay = $('.dg-layout'), top = $('#dg-top'), dock = $('#dg-dock'), pn = $('#dg-panel'), bt = $('#dg-bottom');
-  if(!lay) return; if(D.hideUI){ I.t = I.b = I.l = I.r = 0; lay.style.setProperty('--dg-ti', '12px'); lay.style.setProperty('--dg-pi', '12px'); lay.style.setProperty('--dg-bi', '0px'); lay.style.setProperty('--dg-ri', '0px'); return; }
+  const I = C.INSET, S = st(), lay = $('.dg-layout'), top = $('#dg-top'), dock = $('#dg-dock'), pn = $('#dg-panel'), bt = $('#dg-bottom'), rv = $('.dg-reveal');
+  if(!lay) return; const md = sizeMode();
+  if(!lay.classList.contains('sm-' + md)) syncFloat();
+  const set = (k, v) => lay.style.setProperty(k, v);
+  if(D.hideUI){ I.t = I.b = I.l = I.r = 0; set('--dg-ti', '12px'); set('--dg-pi', '12px'); set('--dg-bi', '0px'); set('--dg-ri', '0px'); C.setObst([]); return; }
+  /* side sheets (sheet mode): the free map strip starts / ends beside the open sheet */
+  const sheetW = el => el && el.offsetWidth ? el.offsetWidth + 20 : 0;
+  const tv = D.view === 'table'; set('--dg-lx', md === 'sheet' && !S.dockOff && !tv ? sheetW(dock) + 'px' : '0px'); set('--dg-rx', md === 'sheet' && !S.panelOff && !tv ? sheetW(pn) + 'px' : '0px');
+  /* the top bar drops its button labels when it would not fit */
+  if(top){ top.classList.remove('tb-c', 'tb-cc'); if(top.scrollWidth > top.clientWidth + 1) top.classList.add('tb-c'); if(top.scrollWidth > top.clientWidth + 1) top.classList.add('tb-cc'); }
   const lr = lay.getBoundingClientRect();
-  const tb0 = top ? Math.max(0, top.getBoundingClientRect().bottom - lr.top) : 0; I.t = top ? tb0 + 12 : 0; lay.style.setProperty('--dg-pi', (tb0 + 8) + 'px');
-  { const rv = $('.dg-reveal'), tr = top && top.getBoundingClientRect(); if(rv && tr){ const w = rv.offsetWidth || 170, left = lr.left + lr.width / 2 - w / 2; lay.classList.toggle('rv-low', tr.right + 12 > left); } }
+  const tb0 = top ? Math.max(0, top.getBoundingClientRect().bottom - lr.top) : 0; I.t = top ? tb0 + 12 : 0; set('--dg-pi', (tb0 + 8) + 'px');
+  if(rv && top && md === 'wide'){ const tr = top.getBoundingClientRect(), w = rv.offsetWidth || 170, left = lr.left + lr.width / 2 - w / 2, pr = !S.panelOff && pn ? pn.getBoundingClientRect() : null; lay.classList.toggle('rv-low', tr.right + 12 > left || !!(pr && pr.top < tr.bottom && pr.left < left + w + 12)); } else lay.classList.remove('rv-low');
   I.b = bt && bt.offsetHeight ? Math.max(0, lr.bottom - bt.getBoundingClientRect().top) + 12 : 0;
-  I.l = !mob && dock ? dock.offsetWidth + 12 : 0; I.r = !mob && pn ? pn.offsetWidth + 12 : 0; if(mob && D.view !== 'table') I.t += 52;
-  lay.style.setProperty('--dg-ti', I.t + 'px'); lay.style.setProperty('--dg-bi', I.b + 'px'); lay.style.setProperty('--dg-ri', I.r + 'px');
+  I.l = md !== 'narrow' && dock && dock.offsetWidth ? dock.getBoundingClientRect().right - lr.left + 12 : 0; I.r = md !== 'narrow' && pn && pn.offsetWidth ? lr.right - pn.getBoundingClientRect().left + 12 : 0;
+  if(md === 'narrow' && D.view !== 'table') I.t += 52;
+  set('--dg-ti', I.t + 'px'); set('--dg-bi', I.b + 'px'); set('--dg-ri', I.r + 'px');
+  /* every visible floating element, in map coordinates, for the text boxes to avoid */
+  const mc = D.map ? D.map.getContainer().getBoundingClientRect() : lr, ob = [];
+  [top, dock, pn, bt, rv, document.querySelector('.tabbar'), D.map && D.map.getContainer().querySelector('.leaflet-control-attribution')].forEach(el => { if(!el) return; const cs = getComputedStyle(el); if(cs.display === 'none' || cs.visibility === 'hidden' || +cs.opacity === 0) return; const r = el.getBoundingClientRect(); if(r.width && r.height) ob.push({ l:r.left - mc.left, t:r.top - mc.top, r:r.right - mc.left, b:r.bottom - mc.top, soft:(el === dock && !S.dockOff) || (el === pn && !S.panelOff) }); });
+  C.setObst(ob);
 }
 function setHideUI(v){ D.hideUI = v; const lay = $('.dg-layout'); if(!lay) return; lay.classList.toggle('hide-ui', v); measureInset(); drawNow(); }
 function applyFloat(){ syncFloat(); measureInset(); if(D.map){ drawNow(); } }
@@ -8737,9 +9017,9 @@ function syncTools(){
 
 /* ---------------------------------------------------------------- custom text boxes */
 function addText(){
-  const B = st().boxes, n = { id:B.nid++, text:'{reservoir} · {sample}', size:1, bold:false, bg:true, color:'#ffffff', w:260, fx:.4, fy:.45 }; B.custom.push(n); D.selBox = 'c' + n.id; C.persist(); draw(); if(D.tab === 'text') renderPane(); openTextEdit(n.id);
+  const B = st().boxes, n = { id:B.nid++, text:'{reservoir} · {sample}', size:1, bold:false, bg:true, color:'#ffffff', w:260, fx:.4, fy:.45 }; B.custom.push(n); D.selBox = 'c' + n.id; C.persist(); draw(); if(D.tab === 'map') renderPane(); openTextEdit(n.id);
 }
-function delText(id){ const B = st().boxes; B.custom = B.custom.filter(n => n.id !== +id); if(D.selBox === 'c' + id) D.selBox = null; C.persist(); draw(); if(D.tab === 'text') renderPane(); }
+function delText(id){ const B = st().boxes; B.custom = B.custom.filter(n => n.id !== +id); if(D.selBox === 'c' + id) D.selBox = null; C.persist(); draw(); if(D.tab === 'map') renderPane(); }
 function openTextEdit(id){
   const n = st().boxes.custom.find(q => q.id === +id); if(!n) return; D.selBox = 'c' + n.id; draw();
   let ov = $('#overlay-dg-text');
@@ -8755,7 +9035,7 @@ function openTextEdit(id){
     <div class="modal-foot"><button class="btn btn-ghost danger-text" data-dgx="del">${Lg('ลบกล่องนี้', 'Delete')}</button><span class="spacer"></span><button class="btn btn-primary" data-dgx="ok">${Lg('เสร็จสิ้น', 'Done')}</button></div></div>`;
   const live = () => { n.text = $('#dgt-text').value; n.size = parseFloat($('#dgt-size').value) || 1; n.w = parseFloat($('#dgt-w').value) || 260; n.color = $('#dgt-color').value; n.bold = $('#dgt-bold').checked; n.bg = $('#dgt-bg').checked; C.persist(); draw(); };
   ov.oninput = live; ov.onchange = live;
-  ov.onclick = e => { const b = e.target.closest('[data-dgx]'); if(!b) return; if(b.dataset.dgx === 'del'){ closeOverlay('overlay-dg-text'); delText(n.id); } else { closeOverlay('overlay-dg-text'); if(D.tab === 'text') renderPane(); } };
+  ov.onclick = e => { const b = e.target.closest('[data-dgx]'); if(!b) return; if(b.dataset.dgx === 'del'){ closeOverlay('overlay-dg-text'); delText(n.id); } else { closeOverlay('overlay-dg-text'); if(D.tab === 'map') renderPane(); } };
   openOverlay('overlay-dg-text'); setTimeout(() => $('#dgt-text').focus(), 60);
 }
 
@@ -9127,8 +9407,9 @@ function bindLib(){
 /* ---------------------------------------------------------------- sub views (map / table) */
 function setSubview(v){
   D.view = v; $$('#dg-views button').forEach(b => b.classList.toggle('active', b.dataset.v === v));
-  $('#dg-wrap').hidden = v !== 'map'; $('#dg-tablewrap').hidden = v !== 'table'; $('#dg-typesec').hidden = v !== 'map'; $('.dg-layout').classList.toggle('is-table', v === 'table');
+  $('#dg-wrap').hidden = v !== 'map'; $('#dg-tablewrap').hidden = v !== 'table'; $('.dg-layout').classList.toggle('is-table', v === 'table');
   if(v === 'map'){ setTimeout(() => { D.map && D.map.invalidateSize(); drawNow(); }, 30); } else renderTable();
+  setTimeout(measureInset, 0);
 }
 const tb = { sec:'', q:'', num:true, bad:false };
 const vhead = (ds, dsId) => { const n = nodeOfDs(dsId), pth = n ? lpath(n.id).map(lname).join(' › ') : ''; return `<div class="dg-vhead"><button class="btn btn-sm" data-lb="tolib">${ico('left', 'sm')}<span>${Lg('คลังข้อมูล', 'Data library')}</span></button><div class="dg-vname"><b>${esc(C.dsLabel(ds))}</b><small>${esc(pth)}${pth ? ' · ' : ''}${ds.points.length} ${Lg('จุด', 'points')} · ${ds.params.length} ${Lg('พารามิเตอร์', 'parameters')}</small></div><button class="btn btn-sm btn-primary" data-lb="map" data-ds="${esc(dsId)}">${ico('map', 'sm')}<span>${Lg('แสดงบนแผนที่', 'Show on map')}</span></button></div>`; };
@@ -9527,7 +9808,7 @@ function renderAll(){ sanitizeAccess(); { const S = st(); if(S.layers.length > M
 function init(){
   if(D.ready) return; D.ready = true;
   C.buildBuiltin(); C.loadImports(); C.loadState(); C.applyPtEdits(); libInit();
-  D.tab = st().tab || 'layer';
+  D.tab = normTab(st().tab);
   buildShell(); bindPanel(); bindGlobal(); initMap(); renderAll(); applyFilter();
 }
 window.DGUI = {
