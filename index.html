@@ -2060,6 +2060,30 @@ html[data-theme="dark"] .badge.hydra{color:#5eead4}
 @media (max-width:1100px) and (min-width:760px){.dg-lh,.dg-lr{grid-template-columns:minmax(160px,1fr) 56px 84px 104px 40px!important}.dg-more{display:grid!important}.dg-lh .dg-lc.mo{display:block!important}}
 #view-diagram .dg-layout.sm-short .dg-phead{display:none}#view-diagram .dg-layout.sm-short .dg-fh{padding:4px 6px 4px 12px!important}#view-diagram .dg-layout.sm-short .dg-fh .icon-btn{width:30px;height:30px}#view-diagram .dg-layout.sm-short .dg-ptabs{padding:4px}#view-diagram .dg-layout.sm-short .dg-acc>summary{padding:9px 14px}
 #view-diagram .dg-top.tb-cc #dg-copy{display:none}
+/* library rows: no “⋯” button — double-click / double-tap opens, one click selects, right-click / long-press = menu */
+.dg-more{display:none!important}
+@media (pointer:coarse){.dg-lh,.dg-lr{grid-template-columns:minmax(220px,1fr) 70px 90px 112px 100px 140px}}
+@media (pointer:coarse) and (max-width:1100px){.dg-lh,.dg-lr{grid-template-columns:minmax(160px,1fr) 56px 76px 96px}}
+@media (max-width:1100px) and (min-width:760px){.dg-lh,.dg-lr{grid-template-columns:minmax(160px,1fr) 56px 84px 104px!important}}
+@media (max-width:759px){.dg-lh,.dg-lr{grid-template-columns:minmax(0,1fr)!important}}
+.dgi-pv{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.dgi-pvh{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.dgi-pvh .seg button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;font-size:12.5px;white-space:nowrap}
+.dgi-pvh .seg button i{font-style:normal;font-size:10.5px;font-weight:800;padding:1px 7px;border-radius:9px;background:var(--surface-3);color:var(--text-2)}.dgi-pvh .seg button.active i{background:var(--accent-soft);color:var(--accent)}
+.dgi-pvk{font-size:11px;color:var(--text-3)}.dgi-pvk b{font-weight:700;color:var(--text-2)}.dgi-pvk b.bad{color:var(--bad)}.dgi-pvk b.unk{color:var(--warn)}
+.dgi-pvs{max-height:min(52vh,460px);overflow:auto;scrollbar-width:thin}
+.dgi-pvs .dgi-prev{margin:0;width:max-content;min-width:100%}
+.dgi-pvs .dgi-prev td.pn{max-width:260px}
+.dgi-sec td{background:var(--surface-2);color:var(--text-2);font-weight:700;font-size:11.5px;text-align:left!important;position:sticky;left:0}
+.dg-depthinfo{padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:11.5px;line-height:1.6;color:var(--text-2)}.dg-depthinfo b{color:var(--text)}
+.dg-pal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.dg-palb{display:flex;flex-direction:column;gap:4px;padding:6px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);text-align:left;transition:border-color .12s}
+.dg-palb i{display:block;height:12px;border-radius:6px}.dg-palb span{font-size:11px;font-weight:600;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dg-palb:hover{border-color:var(--line-2)}.dg-palb.on{border-color:var(--accent);background:var(--accent-soft)}.dg-palb.on span{color:var(--text)}
+.dg-shore{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2)}
+.dg-shore-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}.dg-shore-h b{display:inline-flex;align-items:center;gap:7px;font-size:13px}.dg-shore-h span{color:var(--text-3)}
+.dg-shore-s{display:flex;flex-direction:column;gap:10px;padding-top:6px;border-top:1px solid var(--line)}
+.dg-shore .btn{gap:7px}
 /* alerts page: header, stats and filters stay put; only the list scrolls */
 .al-toolbar .tb-filters{display:flex;gap:10px;flex-wrap:wrap}
 .al-toolbar .tb-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -7382,9 +7406,9 @@ const FONT = '"Inter","Noto Sans Thai","Sarabun","Leelawadee UI","Segoe UI",Taho
 const RES_N = { BP:['อ่างเก็บน้ำบางพระ','Bang Phra Reservoir'], NA:['เขื่อนน้ำอูน','Nam Un Dam'] };
 const PERIOD_N = { pre:['ก่อนหน้าฝน', 'Before the rainy season'], post:['หลังหน้าฝน', 'After the rainy season'] };
 const MED_N = { water:['น้ำ','Water'], sed:['ตะกอนดิน','Sediment'], soil:['ดิน','Soil'] };
-const MODES = ['maucha', 'radar', 'rose', 'rings', 'bars', 'pie', 'bubble', 'dots', 'surface'];
-const MODE_N = { maucha:['Maucha','Maucha'], radar:['Radar','Radar'], rose:['Rose','Rose'], rings:['วงซ้อน','Rings'], bars:['แท่ง','Bars'], pie:['Donut','Donut'], bubble:['Bubble','Bubble'], dots:['จุดสี','Dots'], surface:['พื้นผิว','Surface'] };
-const MODE_FULL = { maucha:['Maucha','Maucha'], radar:['Radar / Star','Radar / Star'], rose:['Nightingale Rose','Nightingale Rose'], rings:['Concentric Rings','Concentric Rings'], bars:['แท่งเล็กที่จุด','Mini bars'], pie:['Donut / Pie','Donut / Pie'], bubble:['Bubble','Bubble'], dots:['จุดระบายสี','Colour dots'], surface:['Surface (IDW / Kriging) + Contour','Surface (IDW / Kriging) + Contour'] };
+const MODES = ['maucha', 'radar', 'rose', 'rings', 'bars', 'pie', 'bubble', 'dots', 'surface', 'depth'];
+const MODE_N = { maucha:['Maucha','Maucha'], radar:['Radar','Radar'], rose:['Rose','Rose'], rings:['วงซ้อน','Rings'], bars:['แท่ง','Bars'], pie:['Donut','Donut'], bubble:['Bubble','Bubble'], dots:['จุดสี','Dots'], surface:['พื้นผิว','Surface'], depth:['ความลึก','Depth map'] };
+const MODE_FULL = { maucha:['Maucha','Maucha'], radar:['Radar / Star','Radar / Star'], rose:['Nightingale Rose','Nightingale Rose'], rings:['Concentric Rings','Concentric Rings'], bars:['แท่งเล็กที่จุด','Mini bars'], pie:['Donut / Pie','Donut / Pie'], bubble:['Bubble','Bubble'], dots:['จุดระบายสี','Colour dots'], surface:['Surface (IDW / Kriging) + Contour','Surface (IDW / Kriging) + Contour'], depth:['แผนที่ความลึก (Depth map)','Depth map (bathymetry)'] };
 const MODE_NOTE = {
   maucha:['แต่ละแฉก = 1 พารามิเตอร์ · พื้นที่แฉกแปรตามค่า · วงประ = ค่ามาตรฐาน','One kite per parameter · area follows the value · dashed ring = the standard'],
   radar:['แต่ละแกน = 1 พารามิเตอร์ · รูปหลายเหลี่ยมเชื่อมค่า · ค่าพุ่งจะดึงรูปยืดตามแกนนั้น','One axis per parameter · the polygon joins the values · a spike stretches its axis'],
@@ -7394,10 +7418,11 @@ const MODE_NOTE = {
   pie:['สัดส่วนของพารามิเตอร์ ณ จุดนั้น · เหมาะดูองค์ประกอบ ไม่เหมาะดูว่าเกินมาตรฐานหรือไม่','Share of each parameter at the point · good for composition, not for pass / fail'],
   bubble:['ขนาดและสีแปรตามค่า · เลือกได้ทีละ 1 พารามิเตอร์','Size and colour follow the value · one parameter at a time'],
   dots:['จุดระบายสีตามค่า · เลือกได้ทีละ 1 พารามิเตอร์','Dots coloured by value · one parameter at a time'],
-  surface:['พื้นผิวต่อเนื่องจากการประมาณค่าระหว่างจุด + เส้นชั้นค่า · ใช้ดูแนวโน้มเท่านั้น (จุดน้อย) · ควรตัดตามขอบน้ำ','A continuous surface estimated between points + contours · trend only (few points) · clip it to the water body']
+  surface:['พื้นผิวต่อเนื่องจากการประมาณค่าระหว่างจุด + เส้นชั้นค่า · ใช้ดูแนวโน้มเท่านั้น (จุดน้อย) · ควรตัดตามขอบน้ำ','A continuous surface estimated between points + contours · trend only (few points) · clip it to the water body'],
+  depth:['แผนที่ความลึกทั่วอ่างจากจุดวัด · Kriging / Spline / IDW / TIN เลือกวิธีที่แม่นที่สุดให้อัตโนมัติ (ตรวจด้วย leave-one-out) · ตั้งขอบน้ำ = 0 ม. + ปริมาตรน้ำ','Depth over the whole reservoir from measured points · Kriging / Spline / IDW / TIN, the most accurate picked automatically (leave-one-out) · shore = 0 m + water volume']
 };
 const GLYPHS = { radar:[4, 8], rose:[3, 6], rings:[2, 4], bars:[2, 5], maucha:[3, 8] };
-const SINGLE = new Set(['bubble', 'dots', 'surface']);
+const SINGLE = new Set(['bubble', 'dots', 'surface', 'depth']);
 const BINS = [[.5, '#3aa6c9'], [.8, '#6fcf8e'], [1, '#f2c94c'], [2, '#f2853d'], [Infinity, '#d62839']];
 const BINL = ['≤0.5', '0.5–0.8', '0.8–1', '1–2', '>2'];
 const PALETTE = ['#E91E63', '#00BFA5', '#FFB300', '#5C6BC0', '#29B6F6', '#9E9E9E', '#8BC34A', '#FF7043', '#AB47BC', '#26C6DA', '#D4E157', '#8D6E63', '#EC407A', '#66BB6A', '#FFA726', '#7E57C2'];
@@ -7504,7 +7529,7 @@ function paramBad(p){ let n = 0; for(let i = 0; i < p.vals.length; i++) if(statu
 /* ---------------------------------------------------------------- state */
 const LS_STATE = 'rid7.dg.v1', LS_IMP = 'rid7.dg.imports.v1';
 const defLayers = vs => vs.map(v => ({ v, on:true, c:'#ffffff', d:v === 1, w:v === 1 ? 1.4 : 1 }));
-const LKEYS = ['nd', 'cap', 'scaleFn', 'alpha', 'lw', 'wcolor', 'back', 'ring', 'grid', 'layers', 'tick', 'tickWho', 'tickFs', 'div', 'divT', 'divW', 'divC', 'divD', 'axisLab', 'valLab', 'seq', 'surf', 'surfM', 'idwP', 'fade', 'clip', 'contour', 'contN'];
+const LKEYS = ['nd', 'cap', 'scaleFn', 'alpha', 'lw', 'wcolor', 'back', 'ring', 'grid', 'layers', 'tick', 'tickWho', 'tickFs', 'div', 'divT', 'divW', 'divC', 'divD', 'axisLab', 'valLab', 'seq', 'surf', 'surfM', 'idwP', 'fade', 'clip', 'contour', 'contN', 'dpM', 'dpZero', 'dpClamp', 'seqRev', 'shoreOn', 'shoreC', 'shoreW', 'shoreD', 'shoreFill', 'shoreTol', 'shoreOpen'];
 const mkSg = src => { const o = {}; LKEYS.forEach(k => { const v = src[k]; o[k] = v && typeof v === 'object' ? JSON.parse(JSON.stringify(v)) : v; }); return o; };
 const effG = l => (l && l.sg) ? Object.assign({}, S.g, l.sg) : S.g;
 function withG(l, fn){ const o = S.g; S.g = effG(l); try{ return fn(); } finally{ S.g = o; } }
@@ -7512,7 +7537,7 @@ const fixLayers = G => { if(!Array.isArray(G.layers)) G.layers = defLayers([.5, 
 const defG = () => ({
   nd:'zero', cap:5, scaleFn:'sqrt', alpha:.95, lw:2.4, font:12, mark:5, markC:'#ffffff', showMarks:true, showGlyph:true,
   showId:true, labelGap:0, sideBy:true, showName:false, showVal:false, showExceed:true, leader:true, back:true, grid:true, ring:true, axisLab:false, valLab:false, auto:true,
-  wcolor:'param', layers:defLayers([.5, 1, 2]), tick:'off', tickWho:'all', tickFs:1, div:false, divT:'sector', divW:1.2, divC:'#ffffff', divD:false, divOff:{}, seq:'viridis', surf:.8, surfM:'idw', idwP:2, fade:1.6, clip:'none', contour:false, contN:6,
+  wcolor:'param', layers:defLayers([.5, 1, 2]), tick:'off', tickWho:'all', tickFs:1, div:false, divT:'sector', divW:1.2, divC:'#ffffff', divD:false, divOff:{}, seq:'viridis', surf:.8, surfM:'idw', dpM:'auto', dpZero:true, dpClamp:true, seqRev:false, shoreOn:true, shoreC:'#5ce1ff', shoreW:2, shoreD:true, shoreFill:0, shoreTol:26, shoreOpen:40, idwP:2, fade:1.6, clip:'none', contour:false, contN:6,
   zoomScale:false, zoomRef:13, dim:.12, sat:1.1, labels:false, base:'imagery', text:1, boxA:.82,
   tc:{ id:'#ffffff', name:'#dbe9f7', val:'#ffe9a8', exc:'#ff9d96', axis:'#ffffff', tick:'#dbe9f7', tickRef:'#ffe9a8', halo:'#000a14' },
   bc:{ head:'#ffffff', body:'#eef5fc', mute:'#9fb3c8', bg:'#061220' }
@@ -7680,7 +7705,7 @@ function loadState(){
 }
 
 /* ---------------------------------------------------------------- series + normalisation */
-function resolveNorm(l, ps){ if(l.norm !== 'auto') return l.norm; return ps.length && ps.every(p => p.std) ? 'std' : 'max'; }
+function resolveNorm(l, ps){ if(l.mode === 'depth') return 'raw'; if(l.norm !== 'auto') return l.norm; return ps.length && ps.every(p => p.std) ? 'std' : 'max'; }
 function selectedParams(l){
   const ds = getDs(l.ds); ensureSel(l);
   if(!SINGLE.has(l.mode) && l.top && l.top.on && l.top.sec){ const g = ds.params.filter(p => p.sec === l.top.sec && p.nPlot > 0); if(g.length) return g; }
@@ -7721,7 +7746,7 @@ function bundle(l){
 const fscale = (n, cap) => { const v = clamp(n == null ? 0 : n, 0, cap); return S.g.scaleFn === 'sqrt' ? Math.sqrt(v) : v; };
 const binColor = r => { for(const b of BINS) if(r <= b[0]) return b[1]; return BINS[BINS.length - 1][1]; };
 const statusColor = (it, i, B) => { const v = it.nv[i]; if(v == null) return '#2a3547'; return B.norm === 'std' ? binColor(v) : it.color; };
-const rampColor = (norm, v, seq) => norm === 'std' ? lerpStops(DIVR, v) : lerpStops(SEQ[seq || S.g.seq], clamp(v, 0, 1));
+const rampColor = (norm, v, seq, rev) => { if(norm === 'std') return lerpStops(DIVR, v); const t = clamp(v, 0, 1); return lerpStops(SEQ[seq || S.g.seq] || SEQ.viridis, (rev === undefined ? S.g.seqRev : rev) ? 1 - t : t); };
 const valueRamp = (it, B, v) => rampColor(B.norm, B.norm === 'std' ? v : (B.norm === 'raw' ? v / (it.mx || 1) : v));
 const lblOv = (l, p) => ((l.labels && l.labels[p.id]) || '').trim();
 const angleOf = (i, n) => Math.PI / 2 - 2 * Math.PI * i / n;
@@ -7922,6 +7947,145 @@ function buildField(l, it, B){
   const info = method === 'krig' ? `Kriging (spherical) · range ≈ ${Math.round(vg.a)} m · nugget ${(vg.c0 / (vg.c0 + vg.c) * 100).toFixed(0)}%` : `IDW p = ${G.idwP}` + (G.surfM === 'krig' ? Lg(' · ใช้ IDW แทน (จุดน้อยหรือค่าเท่ากัน)', ' · IDW used instead (few points or flat values)') : '');
   return { gw, gh, val, al, north, south, west, east, method, info, off:null, fadeM:Math.round(d1) };
 }
+/* ---------------------------------------------------------------- depth map (bathymetry)
+   One parameter = water depth (m) at the sampling points → a continuous depth surface over the whole water body.
+   Interpolators: ordinary Kriging · thin-plate spline · IDW · TIN (linear).  "Auto" scores each with an exact
+   leave-one-out cross-validation (closed form for Kriging / spline) and uses the one with the smallest RMSE.
+   With a shoreline polygon, the shore can be pinned to depth 0 and area / volume are reported. */
+const DEPTH_RE = /(depth|bathy|ความลึก|ระดับน้ำลึก|^ลึก)/i;
+const DP_NAME = { auto:['อัตโนมัติ', 'Automatic'], krig:['Kriging', 'Kriging'], tps:['Thin-plate spline', 'Thin-plate spline'], idw:['IDW', 'IDW'], tin:['TIN (เชิงเส้น)', 'TIN (linear)'] };
+SEQ.bathy = [[0, '#e3f6ff'], [.18, '#8fd3f4'], [.4, '#3c9be0'], [.65, '#1b56a8'], [.85, '#0d2a6b'], [1, '#050f33']];
+Object.assign(SEQ, {
+  ylgnbu:[[0, '#ffffd9'], [.25, '#c7e9b4'], [.5, '#41b6c4'], [.75, '#225ea8'], [1, '#081d58']],
+  ocean:[[0, '#f1fbf0'], [.25, '#9ddab1'], [.5, '#3aa3a5'], [.75, '#2a5a9e'], [1, '#1b1b5e']],
+  teal:[[0, '#f0fbff'], [.3, '#9fd8d5'], [.6, '#2a9d9f'], [1, '#053b4a']],
+  cividis:[[0, '#00204d'], [.25, '#414d6b'], [.5, '#7c7b78'], [.75, '#bcaf6f'], [1, '#ffea46']],
+  plasma:[[0, '#0d0887'], [.25, '#7e03a8'], [.5, '#cc4778'], [.75, '#f89540'], [1, '#f0f921']],
+  inferno:[[0, '#000004'], [.25, '#57106e'], [.5, '#bc3754'], [.75, '#f98e09'], [1, '#fcffa4']],
+  turbo:[[0, '#30123b'], [.14, '#4662d7'], [.29, '#36aaf9'], [.43, '#1ae4b6'], [.57, '#72fe5e'], [.71, '#c8ef34'], [.86, '#fabb23'], [1, '#d93806']],
+  jet:[[0, '#000080'], [.125, '#0000ff'], [.375, '#00ffff'], [.625, '#ffff00'], [.875, '#ff0000'], [1, '#800000']],
+  spectral:[[0, '#2b83ba'], [.25, '#abdda4'], [.5, '#ffffbf'], [.75, '#fdae61'], [1, '#d7191c']]
+});
+function dpDelaunay(Q){
+  const n = Q.length; if(n < 3) return null;
+  let x0 = 1e18, x1 = -1e18, y0 = 1e18, y1 = -1e18; Q.forEach(p => { x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y); });
+  const d = Math.max(x1 - x0, y1 - y0) || 1, mx = (x0 + x1) / 2, my = (y0 + y1) / 2, V = Q.map(p => ({ x:p.x, y:p.y }));
+  V.push({ x:mx - 20 * d, y:my - d }, { x:mx, y:my + 20 * d }, { x:mx + 20 * d, y:my - d });
+  const mk = (a, b, c) => {
+    const A = V[a], B = V[b], C = V[c], dd = 2 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y)); if(Math.abs(dd) < 1e-12) return { a, b, c, bad:true };
+    const a2 = A.x * A.x + A.y * A.y, b2 = B.x * B.x + B.y * B.y, c2 = C.x * C.x + C.y * C.y, ux = (a2 * (B.y - C.y) + b2 * (C.y - A.y) + c2 * (A.y - B.y)) / dd, uy = (a2 * (C.x - B.x) + b2 * (A.x - C.x) + c2 * (B.x - A.x)) / dd;
+    return { a, b, c, cx:ux, cy:uy, r2:(A.x - ux) * (A.x - ux) + (A.y - uy) * (A.y - uy) };
+  };
+  let T = [mk(n, n + 1, n + 2)];
+  for(let i = 0; i < n; i++){
+    const p = V[i], bad = [], keep = [];
+    T.forEach(t => { if(!t.bad && (p.x - t.cx) * (p.x - t.cx) + (p.y - t.cy) * (p.y - t.cy) < t.r2 * (1 - 1e-12)) bad.push(t); else keep.push(t); });
+    const E = []; bad.forEach(t => [[t.a, t.b], [t.b, t.c], [t.c, t.a]].forEach(e => { const k = E.findIndex(q => (q[0] === e[1] && q[1] === e[0]) || (q[0] === e[0] && q[1] === e[1])); if(k >= 0) E.splice(k, 1); else E.push(e); }));
+    T = keep; E.forEach(e => T.push(mk(e[0], e[1], i)));
+  }
+  return T.filter(t => !t.bad && t.a < n && t.b < n && t.c < n).map(t => [t.a, t.b, t.c]);
+}
+function dpTinAt(X, Y, V, T, x, y){
+  for(const t of T){
+    const ax = X[t[0]], ay = Y[t[0]], bx = X[t[1]], by = Y[t[1]], cx = X[t[2]], cy = Y[t[2]], det = (by - cy) * (ax - cx) + (cx - bx) * (ay - cy); if(Math.abs(det) < 1e-12) continue;
+    const l1 = ((by - cy) * (x - cx) + (cx - bx) * (y - cy)) / det, l2 = ((cy - ay) * (x - cx) + (ax - cx) * (y - cy)) / det, l3 = 1 - l1 - l2;
+    if(l1 >= -1e-9 && l2 >= -1e-9 && l3 >= -1e-9) return l1 * V[t[0]] + l2 * V[t[1]] + l3 * V[t[2]];
+  }
+  return NaN;
+}
+function buildDepthField(l, it, B){
+  const G = effG(l), ds = B.ds, pts = ds.points, th = LANG === 'th';
+  const idx = []; pts.forEach((p, i) => { const v = it.nv[i]; if(v != null && isFinite(v)) idx.push(i); });
+  if(idx.length < 3) return null;
+  const lat0 = pts.reduce((s, p) => s + p.lat, 0) / pts.length, lon0 = pts.reduce((s, p) => s + p.lon, 0) / pts.length, mLat = 110574, mLon = 111320 * Math.cos(lat0 * Math.PI / 180);
+  const P = idx.map(i => ({ x:(pts[i].lon - lon0) * mLon, y:(pts[i].lat - lat0) * mLat, v:Math.max(0, it.nv[i]) }));
+  const nn = P.map((a, i) => Math.min(...P.map((b, j) => i === j ? 1e12 : Math.hypot(a.x - b.x, a.y - b.y)))).sort((a, b) => a - b), med = nn[Math.floor(nn.length / 2)] || 500;
+  const poly = G.clip === 'poly' ? (S.poly[l.ds] || []) : [], usePoly = poly.length >= 3, polyXY = poly.map(q => [(q[1] - lon0) * mLon, (q[0] - lat0) * mLat]);
+  const d1 = Math.max(60, med * G.fade), d0 = d1 * .3;
+  let xs = P.map(p => p.x), ys = P.map(p => p.y); if(usePoly){ xs = xs.concat(polyXY.map(q => q[0])); ys = ys.concat(polyXY.map(q => q[1])); }
+  const mg = usePoly ? med * .1 : d1, xmin = Math.min(...xs) - mg, xmax = Math.max(...xs) + mg, ymin = Math.min(...ys) - mg, ymax = Math.max(...ys) + mg;
+  const cell = Math.max(5, Math.max(xmax - xmin, ymax - ymin) / 170), gw = Math.max(2, Math.ceil((xmax - xmin) / cell)), gh = Math.max(2, Math.ceil((ymax - ymin) / cell));
+  /* the points the interpolator sees: measured depths first, then (optionally) the shoreline pinned to 0 */
+  const Q = P.map(p => ({ x:p.x, y:p.y, v:p.v })), nm = Q.length; let nb = 0;
+  if(usePoly && G.dpZero){
+    let per = 0; for(let i = 0; i < polyXY.length; i++){ const a = polyXY[i], b = polyXY[(i + 1) % polyXY.length]; per += Math.hypot(b[0] - a[0], b[1] - a[1]); }
+    const step = Math.max(med * .5, per / 70), guard = med * .4;
+    for(let i = 0; i < polyXY.length; i++){ const a = polyXY[i], b = polyXY[(i + 1) % polyXY.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]), k = Math.max(1, Math.round(len / step));
+      for(let j = 0; j < k; j++){ const x = a[0] + (b[0] - a[0]) * j / k, y = a[1] + (b[1] - a[1]) * j / k; if(P.some(p => Math.hypot(p.x - x, p.y - y) < guard)) continue; Q.push({ x, y, v:0 }); nb++; } }
+  }
+  const N = Q.length, X = Q.map(q => q.x), Y = Q.map(q => q.y), V = Q.map(q => q.v), vmaxM = Math.max(...P.map(p => p.v));
+  const cx = (xmin + xmax) / 2, cy = (ymin + ymax) / 2, sc = Math.max(xmax - xmin, ymax - ymin) / 2 || 1;
+  const models = {};
+  /* ---- IDW */
+  const idwAt = (x, y, p, skip, floor) => { let sw = 0, sv = 0; for(let i = 0; i < N; i++){ if(i === skip) continue; const d = Math.max(floor, Math.hypot(x - X[i], y - Y[i])), w = p === 2 ? 1 / (d * d) : 1 / Math.pow(d, p); sw += w; sv += w * V[i]; } return sv / sw; };
+  { const cands = G.dpM === 'idw' ? [G.idwP] : [1.5, 2, 3]; let best = null;
+    cands.forEach(p => { let s2 = 0, s1 = 0; for(let i = 0; i < nm; i++){ const e = V[i] - idwAt(X[i], Y[i], p, i, 1e-6); s2 += e * e; s1 += Math.abs(e); } const r = { p, rmse:Math.sqrt(s2 / nm), mae:s1 / nm }; if(!best || r.rmse < best.rmse) best = r; });
+    models.idw = { rmse:best.rmse, mae:best.mae, at:(x, y) => idwAt(x, y, best.p, -1, cell * .5), note:`p = ${best.p}` }; }
+  /* ---- ordinary Kriging (spherical variogram fitted to the points) */
+  if(N >= 4){
+    const vg = fitVariogram(Q);
+    if(vg){ const n1 = N + 1, A = []; for(let i = 0; i < N; i++){ const r = new Array(n1); for(let j = 0; j < N; j++) r[j] = i === j ? 0 : sph(Math.hypot(X[i] - X[j], Y[i] - Y[j]), vg); r[N] = 1; A.push(r); } A.push(new Array(N).fill(1).concat([0]));
+      const Ai = invertM(A);
+      if(Ai){ const q = new Float64Array(n1); for(let c = 0; c < n1; c++){ let s = 0; for(let r = 0; r < N; r++) s += Ai[r][c] * V[r]; q[c] = s; }
+        let s2 = 0, s1 = 0; for(let i = 0; i < nm; i++){ const e = q[i] / Ai[i][i]; s2 += e * e; s1 += Math.abs(e); }
+        models.krig = { rmse:Math.sqrt(s2 / nm), mae:s1 / nm, at:(x, y) => { let e = q[N]; for(let i = 0; i < N; i++) e += q[i] * sph(Math.hypot(x - X[i], y - Y[i]), vg); return e; }, note:`range ≈ ${Math.round(vg.a)} m · nugget ${(vg.c0 / (vg.c0 + vg.c) * 100).toFixed(0)}%` }; } }
+  }
+  /* ---- thin-plate spline (tiny smoothing keeps the system well conditioned) */
+  if(N >= 3){
+    const phi = r => r <= 1e-12 ? 0 : r * r * Math.log(r), lam = 1e-5, n3 = N + 3, A = [], nx = X.map(x => (x - cx) / sc), ny = Y.map(y => (y - cy) / sc);
+    for(let i = 0; i < N; i++){ const r = new Array(n3); for(let j = 0; j < N; j++) r[j] = phi(Math.hypot(nx[i] - nx[j], ny[i] - ny[j])) + (i === j ? lam : 0); r[N] = 1; r[N + 1] = nx[i]; r[N + 2] = ny[i]; A.push(r); }
+    A.push(new Array(N).fill(1).concat([0, 0, 0])); A.push(nx.concat([0, 0, 0])); A.push(ny.concat([0, 0, 0]));
+    const Ai = invertM(A);
+    if(Ai){ const q = new Float64Array(n3); for(let c = 0; c < n3; c++){ let s = 0; for(let r = 0; r < N; r++) s += Ai[r][c] * V[r]; q[c] = s; }
+      let s2 = 0, s1 = 0; for(let i = 0; i < nm; i++){ const e = q[i] / Ai[i][i]; s2 += e * e; s1 += Math.abs(e); }
+      models.tps = { rmse:Math.sqrt(s2 / nm), mae:s1 / nm, at:(x, y) => { const xx = (x - cx) / sc, yy = (y - cy) / sc; let e = q[N] + q[N + 1] * xx + q[N + 2] * yy; for(let i = 0; i < N; i++) e += q[i] * phi(Math.hypot(xx - nx[i], yy - ny[i])); return e; }, note:'' }; }
+  }
+  /* ---- TIN (linear on a Delaunay triangulation); outside the hull it falls back to IDW */
+  { const T = dpDelaunay(Q);
+    if(T && T.length){ let s2 = 0, s1 = 0, n = 0;
+      for(let i = 0; i < nm; i++){ const keep = []; for(let k = 0; k < N; k++) if(k !== i) keep.push(k); const Qs = keep.map(k => Q[k]), Ts = dpDelaunay(Qs); let v = NaN; if(Ts){ const Xs = keep.map(k => X[k]), Ys = keep.map(k => Y[k]), Vs = keep.map(k => V[k]); v = dpTinAt(Xs, Ys, Vs, Ts, X[i], Y[i]); } if(!(v === v)) v = idwAt(X[i], Y[i], 2, i, 1e-6); const e = V[i] - v; s2 += e * e; s1 += Math.abs(e); n++; }
+      models.tin = { rmse:Math.sqrt(s2 / n), mae:s1 / n, tri:T, at:(x, y) => { const v = dpTinAt(X, Y, V, T, x, y); return v === v ? v : idwAt(x, y, 2, -1, cell * .5); }, note:`${T.length} ${th ? 'สามเหลี่ยม' : 'triangles'}` }; }
+  }
+  const order = ['krig', 'tps', 'idw', 'tin'].filter(k => models[k]);
+  let method = G.dpM && G.dpM !== 'auto' && models[G.dpM] ? G.dpM : null;
+  const cmp = order.map(k => ({ m:k, rmse:models[k].rmse })).sort((a, b) => a.rmse - b.rmse);
+  if(!method) method = cmp[0].m;
+  const M = models[method], cap = G.dpClamp ? vmaxM * 1.25 : Infinity;
+  /* ---- evaluate on the grid */
+  const val = new Float32Array(gw * gh).fill(NaN), al = new Float32Array(gw * gh);
+  for(let gy = 0; gy < gh; gy++) for(let gx = 0; gx < gw; gx++){
+    const x = xmin + (gx + .5) * cell, y = ymax - (gy + .5) * cell; if(usePoly && !inPoly(x, y, polyXY)) continue;
+    let a = 1; if(!usePoly){ let dmin = 1e12; for(let i = 0; i < nm; i++){ const d = Math.hypot(x - X[i], y - Y[i]); if(d < dmin) dmin = d; } a = clamp(1 - (dmin - d0) / (d1 - d0), 0, 1); if(a <= 0) continue; }
+    let v = M.at(x, y); if(!(v === v)) continue; v = Math.min(cap, Math.max(0, v)); const k = gy * gw + gx; val[k] = v; al[k] = a;
+  }
+  /* ---- statistics (area / volume only mean something when the shoreline is drawn) */
+  let mn = 1e18, mx = -1e18, sum = 0, cnt = 0; for(let k = 0; k < val.length; k++){ const v = val[k]; if(v !== v || al[k] <= 0) continue; if(v < mn) mn = v; if(v > mx) mx = v; sum += v; cnt++; }
+  const area = usePoly ? cnt * cell * cell : null, vol = usePoly ? sum * cell * cell : null, mean = cnt ? sum / cnt : 0;
+  const step = niceStep(Math.max(1e-6, mx) / 4), dmax = Math.max(step, Math.ceil(mx / step - 1e-9) * step);
+  const north = lat0 + ymax / mLat, south = lat0 + (ymax - gh * cell) / mLat, west = lon0 + xmin / mLon, east = lon0 + (xmin + gw * cell) / mLon;
+  const u = unitOf(it.p) || 'm', f2 = v => fmt(v), nameOf = k => DP_NAME[k][th ? 0 : 1];
+  const info = `${nameOf(method)}${G.dpM === 'auto' || !G.dpM ? (th ? ' (เลือกอัตโนมัติ)' : ' (auto-selected)') : ''}${M.note ? ' · ' + M.note : ''}<br>${th ? 'ความคลาดเคลื่อนจากการตัดจุดออกทีละจุด (leave-one-out)' : 'Leave-one-out error'}: RMSE ${f2(M.rmse)} ${u} · MAE ${f2(M.mae)} ${u} (n = ${nm})${cmp.length > 1 ? `<br>${th ? 'เทียบวิธี' : 'Compared'}: ${cmp.map(c => `${nameOf(c.m)} ${f2(c.rmse)}`).join(' · ')}` : ''}${nb ? `<br>${th ? `ขอบน้ำ = 0 ${u} (${nb} จุดเสมือน)` : `Shoreline pinned to 0 ${u} (${nb} virtual points)`}` : ''}`;
+  return { gw, gh, val, al, north, south, west, east, method, info, off:null, fadeM:Math.round(d1), depth:true, vmin:mn, vmax:mx, mean, area, vol, dmax, unit:u, cmp, rmse:M.rmse, mae:M.mae, n:nm, nb, cell, vmaxM };
+}
+const depthCol = (l, it, v) => { const F = lastSurf[l.id], dm = F && F.depth ? F.dmax : (it.mx || 1); const g = effG(l), t = clamp(v / (dm || 1), 0, 1); return lerpStops(SEQ[g.seq] || SEQ.bathy, g.seqRev ? 1 - t : t); };
+function drawDepth(ctx, l, it, B, proj, zoom){
+  const G = effG(l), key = JSON.stringify([l.id, l.ds, it.p.id, G.nd, G.dpM, G.dpZero, G.dpClamp, G.idwP, G.fade, G.clip, S.poly[l.ds] || [], G.seq, G.seqRev, l.single]) + it.nv.join(',') + B.pts.map(p => p.lat + ',' + p.lon).join(';');
+  let f = fieldCache.get(l.id);
+  if(!f || f.key !== key){ f = { key, f:buildDepthField(l, it, B) }; fieldCache.set(l.id, f); }
+  const F = f.f; lastSurf[l.id] = F; if(!F) return;
+  if(!F.off){
+    const off = document.createElement('canvas'); off.width = F.gw; off.height = F.gh; const o = off.getContext('2d'), img = o.createImageData(F.gw, F.gh), st = SEQ[G.seq] || SEQ.bathy;
+    for(let k = 0; k < F.val.length; k++){ const v = F.val[k]; if(v !== v) continue; const t = clamp(v / F.dmax, 0, 1), c = lerpStops(st, G.seqRev ? 1 - t : t), a = F.al[k] * G.surf; img.data[k * 4] = c[0]; img.data[k * 4 + 1] = c[1]; img.data[k * 4 + 2] = c[2]; img.data[k * 4 + 3] = Math.round(255 * clamp(a, 0, 1)); }
+    o.putImageData(img, 0, 0); F.off = off;
+  }
+  const p1 = proj(F.north, F.west), p2 = proj(F.south, F.east), w = p2.x - p1.x, h = p2.y - p1.y;
+  ctx.save(); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'; ctx.globalAlpha = 1; ctx.drawImage(F.off, p1.x, p1.y, w, h); ctx.restore();
+  if(G.contour){
+    const step = niceStep(F.dmax / Math.max(2, G.contN)), lv = []; for(let v = step; v < F.vmax - step * .05; v += step) lv.push(Math.round(v / step) * step);
+    drawContours(ctx, F, B, p1.x, p1.y, w, h, { levels:lv, label:v => fmt(v) + ' ' + F.unit });
+  }
+}
+
 function niceStep(raw){ const e = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / e; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * e; }
 function contourLevels(f, norm){
   let mn = 1e9, mx = -1e9; for(const v of f.val) if(v === v){ if(v < mn) mn = v; if(v > mx) mx = v; }
@@ -7945,9 +8109,10 @@ function drawSurface(ctx, l, it, B, proj, zoom){
   ctx.save(); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'; ctx.globalAlpha = 1; ctx.drawImage(F.off, p1.x, p1.y, w, h); ctx.restore();
   if(G.contour) drawContours(ctx, F, B, p1.x, p1.y, w, h);
 }
-function drawContours(ctx, F, B, X0, Y0, W, H){
-  const { gw, gh, val } = F, levels = contourLevels(F, B.norm), sx = W / gw, sy = H / gh, at = (i, j) => val[j * gw + i];
-  levels.forEach(Lv => {
+function drawContours(ctx, F, B, X0, Y0, W, H, opt){
+  const LBL = [];
+  const { gw, gh, val } = F, levels = opt && opt.levels ? opt.levels : contourLevels(F, B.norm), sx = W / gw, sy = H / gh, at = (i, j) => val[j * gw + i];
+  levels.forEach((Lv, li) => {
     const isStd = B.norm === 'std' && Math.abs(Lv - 1) < 1e-6, segs = [];
     for(let j = 0; j < gh - 1; j++) for(let i = 0; i < gw - 1; i++){
       const a = at(i, j), b = at(i + 1, j), c = at(i + 1, j + 1), d = at(i, j + 1); if(a !== a || b !== b || c !== c || d !== d) continue;
@@ -7960,8 +8125,13 @@ function drawContours(ctx, F, B, X0, Y0, W, H){
     if(!segs.length) return;
     ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.strokeStyle = isStd ? '#ff1744' : 'rgba(255,255,255,.9)'; ctx.lineWidth = isStd ? 2.4 : 1.2;
     ctx.beginPath(); segs.forEach(s => { ctx.moveTo(s[0][0], s[0][1]); ctx.lineTo(s[1][0], s[1][1]); }); ctx.stroke(); ctx.restore();
-    const m = segs[Math.floor(segs.length / 2)], lx = (m[0][0] + m[1][0]) / 2, ly = (m[0][1] + m[1][1]) / 2;
-    haloText(ctx, B.norm === 'std' ? (isStd ? Lg('มาตรฐาน', 'standard') : fmt(Lv) + '×') : (Math.round(Lv * 100) + '%'), lx, ly, Math.max(9, S.g.font * .8), isStd ? '#ffb3ad' : S.g.tc.axis, 700);
+    const txt = opt && opt.label ? opt.label(Lv) : B.norm === 'std' ? (isStd ? Lg('มาตรฐาน', 'standard') : fmt(Lv) + '×') : (Math.round(Lv * 100) + '%'), fsz = Math.max(9, S.g.font * .8);
+    ctx.font = `700 ${fsz}px ${FONT}`; const tw = ctx.measureText(txt).width + 6, th = fsz + 4;
+    let pick = null;                                                          /* spread the labels: first free candidate along the line, never on top of another label */
+    for(let t = 0; t < 14 && !pick; t++){ const k = Math.floor(segs.length * ((.12 + li * .382 + t * .11) % 1)), m = segs[clamp(k, 0, segs.length - 1)], lx = (m[0][0] + m[1][0]) / 2, ly = (m[0][1] + m[1][1]) / 2; if(!LBL.some(q => Math.abs(q[0] - lx) < (q[2] + tw) / 2 && Math.abs(q[1] - ly) < (q[3] + th) / 2)) pick = [lx, ly]; }
+    if(!pick){ const m = segs[Math.floor(segs.length / 2)]; pick = [(m[0][0] + m[1][0]) / 2, (m[0][1] + m[1][1]) / 2]; }
+    LBL.push([pick[0], pick[1], tw, th]);
+    haloText(ctx, txt, pick[0], pick[1], fsz, isStd ? '#ffb3ad' : S.g.tc.axis, 700);
   });
 }
 const lastSurf = {};
@@ -7982,14 +8152,14 @@ function autoLayout(anchors, R, ext){
 function glyphRadius(l, zoom){ const G = S.g; return l.glyph * (G.zoomScale ? Math.pow(2, (zoom - G.zoomRef) * .55) : 1); }
 const ptsKey = ds => ds._pk || (ds._pk = ds.points.map(p => p.id).join(','));
 function sideOffset(l, R){                /* layers drawn on the same points (e.g. before / after the rains) sit next to each other */
-  if(S.g.sideBy === false || l.mode === 'surface') return 0;
-  const k0 = ptsKey(getDs(l.ds)), sib = S.layers.filter(x => x.on && x.mode !== 'surface' && ptsKey(getDs(x.ds)) === k0), k = sib.indexOf(l);
+  if(S.g.sideBy === false || l.mode === 'surface' || l.mode === 'depth') return 0;
+  const k0 = ptsKey(getDs(l.ds)), sib = S.layers.filter(x => x.on && x.mode !== 'surface' && x.mode !== 'depth' && ptsKey(getDs(x.ds)) === k0), k = sib.indexOf(l);
   return sib.length > 1 && k >= 0 ? (k - (sib.length - 1) / 2) * R * 2.25 : 0;
 }
 function placements(l, B, anchors0, vis, R, zoom, proj){
   const G = S.g, single = SINGLE.has(l.mode), n = anchors0.length, off = sideOffset(l, R), anchors = off ? anchors0.map(a => ({ x:a.x + off, y:a.y })) : anchors0;
   const ext = anchors.map((a, i) => {
-    if(single) return l.mode === 'surface' ? R * .4 : Math.max(R * .62 * Math.sqrt(G.cap) * .6, R * .5);
+    if(single) return l.mode === 'surface' || l.mode === 'depth' ? R * .4 : Math.max(R * .62 * Math.sqrt(G.cap) * .6, R * .5);
     let m = 1; B.items.forEach(it => { const v = it.gv[i]; if(v != null) m = Math.max(m, fscale(v, G.cap)); });
     return l.mode === 'bars' || l.mode === 'pie' || l.mode === 'rings' ? R * 1.05 : R * (.55 + .55 * m);
   });
@@ -8013,9 +8183,19 @@ function placements(l, B, anchors0, vis, R, zoom, proj){
 
 /* ---------------------------------------------------------------- text boxes (drawn on the canvas) */
 function wrapLines(ctx, text, maxW){
-  const words = text.split(/(\s+)/); const lines = []; let line = '';
-  for(const w of words){ const t = line + w; if(ctx.measureText(t).width > maxW && line){ lines.push(line.trim()); line = w.trimStart(); } else line = t; }
-  if(line.trim()) lines.push(line.trim()); return lines;
+  const lines = [], W = t => ctx.measureText(t).width; let line = '';
+  const flush = () => { const t = line.trim(); if(t) lines.push(t); line = ''; };
+  for(const tok of String(text).split(/(\s+)/)){
+    if(!tok) continue;
+    if(W(line + tok) <= maxW){ line += tok; continue; }
+    flush(); let t = tok.trimStart();
+    while(t && W(t) > maxW){                                   /* a word wider than the box (Thai has no spaces) → break it by characters */
+      let k = t.length; while(k > 1 && W(t.slice(0, k)) > maxW) k--;
+      lines.push(t.slice(0, k)); t = t.slice(k);
+    }
+    line = t;
+  }
+  flush(); return lines;
 }
 function fitText(ctx, tx, maxW){ if(ctx.measureText(tx).width <= maxW) return tx; let s = tx; while(s.length > 1 && ctx.measureText(s + '…').width > maxW) s = s.slice(0, -1); return s + '…'; }
 function wrapText(ctx, text, maxW){ const out = []; String(text || '').split('\n').forEach(l => { if(!l.trim()) out.push(''); else wrapLines(ctx, l, maxW).forEach(x => out.push(x)); }); return out; }
@@ -8047,8 +8227,12 @@ function mkBoxes(ctx, models, sl, opts){
       if(SINGLE.has(l.mode)){
         const it = B.items[0], std = B.norm === 'std', bw = 170;
         const lab = std ? Lg('สี = ค่า ÷ มาตรฐาน', 'colour = value ÷ standard') : B.norm === 'max' ? Lg('สี = % ของค่าสูงสุด', 'colour = % of maximum') : B.norm === 'minmax' ? 'colour = Min–Max' : Lg('สี = ค่าจริง', 'colour = actual value');
-        const nt = std ? Lg('ขอบแดง = เกินมาตรฐาน · มาตรฐาน ', 'red edge = over the standard · standard ') + stdText(it.p) : '';
-        secs.push({ type:'ramp', Gl, head, lab, it, B, bw, nt, h:u * 1.55 + u * 1.2 + 20 + u * 1.2 + (nt ? u * 1.1 : 0) + 8 }); w = Math.max(w, bw + 28, ctx.measureText(head).width + 28);
+        let nt = std ? Lg('ขอบแดง = เกินมาตรฐาน · มาตรฐาน ', 'red edge = over the standard · standard ') + stdText(it.p) : '', dm = 0, ntc = '', lab2 = lab;
+        if(l.mode === 'depth'){ const F = lastSurf[l.id], u = unitOf(it.p) || 'm'; lab2 = Lg(`ความลึก (${u})`, `Depth (${u})`); ntc = bc.body;
+          if(F && F.depth){ dm = F.dmax; const lines = [Lg(`ลึกสุด ${fmt(F.vmax)} · เฉลี่ย ${fmt(F.mean)} ${u}`, `max ${fmt(F.vmax)} · mean ${fmt(F.mean)} ${u}`)];
+            if(F.area != null){ const a = F.area >= 1e5 ? fmt(F.area / 1e6) + ' km²' : fmt(F.area) + ' m²', v = F.vol >= 1e6 ? fmt(F.vol / 1e6) + Lg(' ล้าน ม³', ' million m³') : fmt(F.vol) + ' m³'; lines.push(Lg(`พื้นที่ ${a} · ปริมาตร ${v}`, `area ${a} · volume ${v}`)); }
+            lines.push(Lg(`ประมาณค่าด้วย ${DP_NAME[F.method][0]} · RMSE ${fmt(F.rmse)} ${u}`, `${DP_NAME[F.method][1]} · RMSE ${fmt(F.rmse)} ${u}`)); nt = lines.join('\n'); } else nt = ''; }
+        secs.push({ type:'ramp', Gl, head, lab:lab2, it, B, bw, nt, dm, ntc, h:u * 1.55 + 20 + u * 1.2 + 8 }); ctx.font = `500 ${u * .85}px ${FONT}`; const lw0 = ctx.measureText(lab2).width + 28; ctx.font = `600 ${u * .8}px ${FONT}`; const nw0 = nt ? Math.max(...nt.split('\n').map(q => ctx.measureText(q).width)) + 28 : 0; w = Math.max(w, bw + 28, Math.min(Math.max(lw0, nw0), 340), ctx.measureText(head).width + 28);
       } else {
         const rows = B.items.slice(); ctx.font = `600 ${sz}px ${FONT}`;
         const lab = it => (l.mode === 'rings' ? (B.items.indexOf(it) + 1) + '. ' : '') + (lblOv(l, it.p) || it.p.name.replace(/\s*\(on site\)/i, '')) + (unitOf(it.p) ? `  (${unitOf(it.p)})` : '');
@@ -8068,6 +8252,10 @@ function mkBoxes(ctx, models, sl, opts){
       const noSub = !!(BX.legend.head || '').trim() && secs.length === 1;      /* a custom legend title replaces the single layer's own heading */
       ctx.font = `700 ${u}px ${FONT}`; secs.forEach(s => { if(!noSub) w = Math.max(w, ctx.measureText(s.head).width + 28); });
       w = Math.min(w, 440); const wholeW = w + 4; ctx.font = `500 ${u * .8}px ${FONT}`;
+      secs.forEach(s => { if(s.type === 'ramp'){
+        ctx.font = `500 ${u * .85}px ${FONT}`; s.labl = wrapLines(ctx, s.lab, wholeW - 28);
+        ctx.font = `600 ${u * .8}px ${FONT}`; s.ntl = s.nt ? s.nt.split('\n').flatMap(q => wrapLines(ctx, q, wholeW - 28)) : [];
+        s.h += s.labl.length * u * 1.1 + s.ntl.length * u * 1.1; } });
       secs.forEach(s => { if(s.notes){ const nl = []; s.notes.forEach(n => wrapLines(ctx, n, wholeW - 28).forEach(q => nl.push(q))); s.nl = nl; s.h += (nl.length - s.notes.length) * u * 1.05; } });
       const head0 = expandTokens((BX.legend.head || '').trim(), sl) || (!BX.title.on && models.length > 1 ? composeTitle(models.map(q => q.l)) : ''), hh = head0 ? u * 1.4 : 0, h = 10 + hh + secs.reduce((a, s) => a + s.h, 0) - (noSub ? u * 1.55 : 0) + 6;
       boxes.push({ key:'legend', pos:BX.legend.pos, sc:sc('legend'), w:wholeW, h, draw(x, y){
@@ -8076,26 +8264,27 @@ function mkBoxes(ctx, models, sl, opts){
         secs.forEach(s => {
           if(!noSub){ ctx.fillStyle = bc.head; ctx.font = `700 ${u}px ${FONT}`; ctx.textAlign = 'left'; ctx.fillText(fitText(ctx, s.head, wholeW - 28), x + 14, yy + u * .55); yy += u * 1.55; }
           if(s.type === 'ramp'){
-            ctx.fillStyle = bc.body; ctx.font = `500 ${u * .85}px ${FONT}`; ctx.fillText(s.lab, x + 14, yy + u * .4); yy += u * 1.1;
+            ctx.fillStyle = bc.body; ctx.font = `500 ${u * .85}px ${FONT}`; s.labl.forEach(q => { ctx.fillText(q, x + 14, yy + u * .4); yy += u * 1.1; });
             const gx = x + 14, gy = yy, grad = ctx.createLinearGradient(gx, 0, gx + s.bw, 0), std = s.B.norm === 'std';
-            for(let k = 0; k <= 24; k++){ const t = k / 24, v = std ? t * s.Gl.cap : t; grad.addColorStop(t, rgb(rampColor(s.B.norm, v, s.Gl.seq))); }
+            for(let k = 0; k <= 24; k++){ const t = k / 24, v = std ? t * s.Gl.cap : t; grad.addColorStop(t, rgb(rampColor(s.B.norm, v, s.Gl.seq, !!s.Gl.seqRev))); }
             ctx.fillStyle = grad; rrect(ctx, gx, gy, s.bw, 14, 4); ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 1; ctx.stroke();
             ctx.font = `500 ${u * .78}px ${FONT}`; ctx.fillStyle = bc.body; ctx.textAlign = 'center';
             const ticks = std ? [1, 2, 3, Math.min(s.Gl.cap, 5)].filter((v, k, a) => v <= s.Gl.cap && a.indexOf(v) === k) : [0, .25, .5, .75, 1];
             let edge = -1e9;                                          /* right edge of the previous label: never let two labels touch */
             ticks.forEach((t, ti) => { const px = gx + (std ? t / s.Gl.cap : t) * s.bw; ctx.beginPath(); ctx.moveTo(px, gy + 14); ctx.lineTo(px, gy + 17); ctx.stroke();
-              const lab = std ? (t === 1 ? Lg('=มาตรฐาน', '=std') : String(t)) : (s.B.norm === 'raw' ? fmt(t * s.it.mx) : s.B.norm === 'minmax' ? fmt(s.it.mn + (s.it.mx - s.it.mn) * t) : Math.round(t * 100) + '%');
+              const lab = std ? (t === 1 ? Lg('=มาตรฐาน', '=std') : String(t)) : (s.B.norm === 'raw' ? fmt(t * (s.dm || s.it.mx)) : s.B.norm === 'minmax' ? fmt(s.it.mn + (s.it.mx - s.it.mn) * t) : Math.round(t * 100) + '%');
               const tw = ctx.measureText(lab).width, first = ti === 0, last = ti === ticks.length - 1;
               let lx = first && !std ? gx : last && !std ? gx + s.bw - tw : clamp(px - tw / 2, gx - 4, gx + s.bw - tw + 4);
               if(!last && lx < edge + 5) return; if(last && lx < edge + 5) lx = edge + 5;
               ctx.textAlign = 'left'; ctx.fillText(lab, lx, gy + 17 + u * .6); edge = lx + tw; });            yy = gy + 17 + u * 1.3; ctx.textAlign = 'left';
-            if(s.nt){ ctx.fillStyle = '#ffb3ad'; ctx.font = `600 ${u * .8}px ${FONT}`; ctx.fillText(s.nt, x + 14, yy + u * .4); yy += u * 1.1; }
+            if(s.ntl.length){ ctx.fillStyle = s.ntc || '#ffb3ad'; ctx.font = `600 ${u * .8}px ${FONT}`; s.ntl.forEach(q => { ctx.fillText(q, x + 14, yy + u * .4); yy += u * 1.1; }); }
             yy += 8;
           } else {
             s.rows.forEach(it => {
               ctx.fillStyle = it.color; rrect(ctx, x + 14, yy - s.sz * .5 + s.sz * .35, s.sz * 1.1, s.sz, 3); ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 1; ctx.stroke();
-              ctx.fillStyle = bc.body; ctx.font = `600 ${s.sz}px ${FONT}`; ctx.textAlign = 'left'; ctx.fillText(s.lab(it), x + 14 + s.sz * 1.6, yy + s.sz * .35);
-              if(it.p.std){ const tw = ctx.measureText(s.lab(it)).width; ctx.fillStyle = bc.mute; ctx.font = `500 ${s.sz * .8}px ${FONT}`; ctx.fillText('  (' + stdText(it.p) + ')', x + 14 + s.sz * 1.6 + tw, yy + s.sz * .35); }
+              const room = wholeW - 28 - s.sz * 1.6; ctx.font = `500 ${s.sz * .8}px ${FONT}`; const stdT = it.p.std ? '  (' + stdText(it.p) + ')' : '', stdW = stdT ? ctx.measureText(stdT).width : 0;
+              ctx.fillStyle = bc.body; ctx.font = `600 ${s.sz}px ${FONT}`; ctx.textAlign = 'left'; const lt = fitText(ctx, s.lab(it), Math.max(40, room - (stdW < room * .45 ? stdW : 0))); ctx.fillText(lt, x + 14 + s.sz * 1.6, yy + s.sz * .35);
+              if(stdT){ const tw = ctx.measureText(lt).width; if(tw + stdW <= room){ ctx.fillStyle = bc.mute; ctx.font = `500 ${s.sz * .8}px ${FONT}`; ctx.fillText(stdT, x + 14 + s.sz * 1.6 + tw, yy + s.sz * .35); } }
               yy += s.sz * 1.4;
             });
             if(s.swOn){ const sw = (wholeW - 28) / BINS.length; yy += 2; BINS.forEach((b, q) => { ctx.fillStyle = b[1]; rrect(ctx, x + 14 + q * sw, yy, sw - 3, u * .6, 3); ctx.fill(); ctx.fillStyle = bc.body; ctx.font = `500 ${u * .62}px ${FONT}`; ctx.textAlign = 'center'; ctx.fillText(BINL[q], x + 14 + q * sw + (sw - 3) / 2, yy + u * 1.1); }); ctx.textAlign = 'left'; yy += u * 1.7; }
@@ -8140,7 +8329,15 @@ function mkBoxes(ctx, models, sl, opts){
   if(BX.summary.on && slm && slm.B.items.length){
     const B = slm.B, items = B.items.slice(0, 12), sz = u * .86, rowH = sz * 1.85, barW = 110 * G.text; ctx.font = `700 ${sz}px ${FONT}`;
     const snm = it => lblOv(slm.l, it.p) || sname(it.p), labW = Math.max(50, ...items.map(it => ctx.measureText(snm(it)).width)) + sz * 1.2 + 10, hasStd = B.norm === 'std';
-    const w = 14 + labW + barW + 10 + sz * 9.5 + 14, hdr = expandTokens(BX.summary.head, sl) || ((hasStd ? Lg('ค่าสูงสุด ÷ มาตรฐาน', 'Maximum ÷ standard') : Lg('ค่าสูงสุดของแต่ละพารามิเตอร์', 'Maximum of each parameter')) + (models.length > 1 ? ' · ' + legendHead(slm.l, models.map(q => q.l)) : '')), h = 10 + u * 1.3 + items.length * rowH + 8;
+    const rowTx = items.map(it => {
+      const vals = it.nv.map((v, i) => ({ v, i })).filter(o => o.v != null), best = vals.length ? vals.reduce((a, b) => b.v > a.v ? b : a) : null, nbad = it.st.filter(q => q === 'bad').length;
+      if(best && !it.st.every(q => q === 'nd' || q === 'cen' || q === 'na')){ const pid = ptId(B.ds, B.pts[best.i]), raw = it.pv[best.i]; return { best, nbad, tx:hasStd ? `${fmtR(best.v)}× @${pid}${nbad ? ` · ${Lg('เกิน', 'over')} ${nbad}/${it.pv.length}` : ''}` : `${fmt(raw)} ${unitOf(it.p)} @${pid}` }; }
+      return { best:null, tx:it.st.some(q => q === 'nd' || q === 'cen') ? Lg('ND / ต่ำกว่า LOD ทุกจุด', 'ND / below LOD everywhere') : Lg('ไม่มีค่า', 'no value') };
+    });
+    ctx.font = `700 ${sz * .9}px ${FONT}`; const txW = Math.max(...rowTx.map(r => ctx.measureText(r.tx).width));
+    const hdr0 = expandTokens(BX.summary.head, sl) || ((hasStd ? Lg('ค่าสูงสุด ÷ มาตรฐาน', 'Maximum ÷ standard') : Lg('ค่าสูงสุดของแต่ละพารามิเตอร์', 'Maximum of each parameter')) + (models.length > 1 ? ' · ' + legendHead(slm.l, models.map(q => q.l)) : ''));
+    ctx.font = `700 ${u}px ${FONT}`; const hdrW = ctx.measureText(hdr0).width + 28;
+    const w = Math.max(14 + labW + barW + 10 + txW + 14, hdrW), hdr = expandTokens(BX.summary.head, sl) || ((hasStd ? Lg('ค่าสูงสุด ÷ มาตรฐาน', 'Maximum ÷ standard') : Lg('ค่าสูงสุดของแต่ละพารามิเตอร์', 'Maximum of each parameter')) + (models.length > 1 ? ' · ' + legendHead(slm.l, models.map(q => q.l)) : '')), h = 10 + u * 1.3 + items.length * rowH + 8;
     boxes.push({ key:'summary', pos:BX.summary.pos, sc:sc('summary'), w, h, draw(x, y){
       ctx.textBaseline = 'middle'; ctx.textAlign = 'left'; ctx.fillStyle = bc.head; ctx.font = `700 ${u}px ${FONT}`; ctx.fillText(hdr, x + 14, y + 10 + u * .55);
       const yy = y + 10 + u * 1.3 + rowH * .35, bx = x + 14 + labW, capv = hasStd ? Math.max(2, Math.min(effG(slm.l).cap, Math.max(...items.map(q => Math.max(...q.nv.filter(v => v != null), 0)))) * 1.05) : 1;
@@ -8150,8 +8347,7 @@ function mkBoxes(ctx, models, sl, opts){
         if(best && !it.st.every(q => q === 'nd' || q === 'cen' || q === 'na')){
           const bw = clamp(best.v / capv, 0, 1) * barW; ctx.fillStyle = 'rgba(255,255,255,.12)'; ctx.fillRect(bx, cy - sz * .3, barW, sz * .6); ctx.fillStyle = it.color; ctx.fillRect(bx, cy - sz * .3, bw, sz * .6);
           if(hasStd){ const rx = bx + barW * (1 / capv); ctx.strokeStyle = '#ff6e6e'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(rx, cy - sz * .5); ctx.lineTo(rx, cy + sz * .5); ctx.stroke(); }
-          const pid = ptId(B.ds, B.pts[best.i]), raw = it.pv[best.i];
-          const tx = hasStd ? `${fmtR(best.v)}× @${pid}${nbad ? ` · ${Lg('เกิน', 'over')} ${nbad}/${it.pv.length}` : ''}` : `${fmt(raw)} ${unitOf(it.p)} @${pid}`;
+          const tx = rowTx[k].tx;
           ctx.fillStyle = nbad ? '#ffb3ad' : bc.body; ctx.font = `${nbad ? 700 : 500} ${sz * .9}px ${FONT}`; ctx.fillText(tx, bx + barW + 8, cy);
         } else { ctx.fillStyle = bc.mute; ctx.font = `500 ${sz * .9}px ${FONT}`; ctx.fillText(it.st.some(q => q === 'nd' || q === 'cen') ? Lg('ND / ต่ำกว่า LOD ทุกจุด', 'ND / below LOD everywhere') : Lg('ไม่มีค่า', 'no value'), bx + 4, cy); }
       });
@@ -8182,7 +8378,7 @@ function placeBoxes(ctx, boxes, W, H, hits, sel){
     if(hits){ hits.boxes.push({ key:b.key, x, y, w, h }); if(sel === b.key){ ctx.save(); ctx.setLineDash([6, 4]); ctx.lineWidth = 1.6; ctx.strokeStyle = '#5ce1ff'; rrect(ctx, x - 3, y - 3, w + 6, h + 6, 14); ctx.stroke(); ctx.restore(); } }
   };
   if(W < 560){ stack.tl = stack.tl.concat(stack.tr); stack.tr = []; stack.bl = stack.bl.concat(stack.br); stack.br = []; }   /* phones: one column */
-  const obs = hits ? OBST.slice() : [], GAP = 8, placed = [];
+  const obs = [], GAP = 8, placed = [];   /* boxes sit at their real corners — they are part of the map, so they never dodge the toolbars */
   const hit = (x, y, w, h, hard) => obs.concat(placed).find(o => (!hard || !o.soft) && x < o.r + GAP && x + w > o.l - GAP && y < o.b + GAP && y + h > o.t - GAP);
   const inb = (x, y, w, h) => x >= 4 && y >= 4 && x + w <= W - 4 && y + h <= H - 4;
   let HARD = false; const free = (x, y, w, h) => inb(x, y, w, h) && !hit(x, y, w, h, HARD);
@@ -8213,20 +8409,26 @@ function placeBoxes(ctx, boxes, W, H, hits, sel){
 function renderScene(ctx, W, H, proj, zoom, hits, opts){
   opts = opts || {}; const G = S.g, models = [];
   S.layers.forEach(l => { if(!l.on) return; const B = bundle(l); models.push({ l, B }); });
-  const polyDraw = (l) => { const P = S.poly[l.ds] || []; if(!P.length || effG(l).clip !== 'poly' || l.mode !== 'surface') return; ctx.save(); ctx.lineWidth = 2; ctx.strokeStyle = '#5ce1ff'; ctx.setLineDash([7, 5]); ctx.beginPath(); P.forEach((q, k) => { const p = proj(q[0], q[1]); k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }); if(P.length >= 3 && !opts.drawing) ctx.closePath(); ctx.stroke(); ctx.setLineDash([]); if(opts.drawing) P.forEach(q => { const p = proj(q[0], q[1]); ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, 7); ctx.fillStyle = '#5ce1ff'; ctx.fill(); ctx.lineWidth = 1; ctx.strokeStyle = '#06202b'; ctx.stroke(); }); ctx.restore(); };
-  models.filter(m => m.l.mode === 'surface' && m.B.items[0]).forEach(m => withG(m.l, () => { drawSurface(ctx, m.l, m.B.items[0], m.B, proj, zoom); polyDraw(m.l); }));
+  const polyDraw = l => {
+    const P = S.poly[l.ds] || [], Gp = effG(l); if(!P.length || Gp.clip !== 'poly' || (l.mode !== 'surface' && l.mode !== 'depth')) return; if(Gp.shoreOn === false && !opts.drawing) return;
+    const col = Gp.shoreC || '#5ce1ff', closed = P.length >= 3 && !opts.drawing; ctx.save(); ctx.lineWidth = Gp.shoreW || 2; ctx.strokeStyle = col; ctx.lineJoin = 'round'; ctx.setLineDash(Gp.shoreD === false ? [] : [7, 5]);
+    ctx.beginPath(); P.forEach((q, k) => { const p = proj(q[0], q[1]); k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }); if(closed) ctx.closePath();
+    if(closed && Gp.shoreFill > 0){ ctx.globalAlpha = Gp.shoreFill; ctx.fillStyle = col; ctx.fill(); ctx.globalAlpha = 1; }
+    ctx.stroke(); ctx.setLineDash([]); if(opts.drawing) P.forEach(q => { const p = proj(q[0], q[1]); ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, 7); ctx.fillStyle = '#5ce1ff'; ctx.fill(); ctx.lineWidth = 1; ctx.strokeStyle = '#06202b'; ctx.stroke(); }); ctx.restore();
+  };
+  models.filter(m => (m.l.mode === 'surface' || m.l.mode === 'depth') && m.B.items[0]).forEach(m => withG(m.l, () => { (m.l.mode === 'depth' ? drawDepth : drawSurface)(ctx, m.l, m.B.items[0], m.B, proj, zoom); polyDraw(m.l); }));
   const fs = G.font;
   models.forEach(m => withG(m.l, () => {
     const G = S.g; const { l, B } = m, ds = B.ds, pts = ds.points, single = SINGLE.has(l.mode), R = glyphRadius(l, zoom);
     const anchors = pts.map(p => proj(p.lat, p.lon)), vis = pts.map(p => !l.hidden[p.id]);
     const pos = placements(l, B, anchors, vis, R, zoom, proj); m.pos = pos; m.anchors = anchors; m.R = R;
     const mr = G.showGlyph ? G.mark : Math.max(G.mark, 5);
-    pts.forEach((p, i) => { if(!vis[i]) return; const g = pos[i], a = anchors[i], d = Math.hypot(g[0] - a.x, g[1] - a.y); if(G.showMarks && G.showGlyph && G.leader && d > R * .55 && l.mode !== 'surface'){ ctx.strokeStyle = 'rgba(255,255,255,.92)'; ctx.lineWidth = 1.3; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(g[0], g[1]); ctx.stroke(); } });
+    pts.forEach((p, i) => { if(!vis[i]) return; const g = pos[i], a = anchors[i], d = Math.hypot(g[0] - a.x, g[1] - a.y); if(G.showMarks && G.showGlyph && G.leader && d > R * .55 && l.mode !== 'surface' && l.mode !== 'depth'){ ctx.strokeStyle = 'rgba(255,255,255,.92)'; ctx.lineWidth = 1.3; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(g[0], g[1]); ctx.stroke(); } });
     pts.forEach((p, i) => { if(!vis[i]) return; if(G.showMarks && mr > 0){ const a = anchors[i]; ctx.beginPath(); ctx.arc(a.x, a.y, mr, 0, 7); ctx.fillStyle = G.markC; ctx.fill(); ctx.lineWidth = 1.4; ctx.strokeStyle = '#111'; ctx.stroke(); if(hits) hits.marks.push({ l:l.id, i, id:p.id, x:a.x, y:a.y }); } });
     pts.forEach((p, i) => {
       if(!vis[i] || !G.showGlyph) return; const [gx, gy] = pos[i];
       if(single){
-        const it = B.items[0]; if(!it) return; const v = it.nv[i]; if(v == null) return; const col = valueRamp(it, B, v), over = it.st[i] === 'bad' && B.norm === 'std';
+        const it = B.items[0]; if(!it) return; const v = it.nv[i]; if(v == null) return; const col = l.mode === 'depth' ? depthCol(l, it, v) : valueRamp(it, B, v), over = it.st[i] === 'bad' && B.norm === 'std';
         if(l.mode === 'bubble'){ const r = Math.max(3, R * .62 * fscale(v, G.cap)); ctx.beginPath(); ctx.arc(gx, gy, r, 0, 7); ctx.globalAlpha = G.alpha; ctx.fillStyle = rgb(col); ctx.fill(); ctx.globalAlpha = 1; ctx.lineWidth = over ? Math.max(G.lw, 1.5) : 1.4; ctx.strokeStyle = over ? '#ff1744' : 'rgba(255,255,255,.95)'; ctx.stroke(); if(hits) hits.glyphs.push({ l:l.id, i, id:p.id, x:gx, y:gy, r:Math.max(r, 10) }); }
         else if(l.mode === 'dots'){ const r = Math.max(5, R * .34); ctx.beginPath(); ctx.arc(gx, gy, r, 0, 7); ctx.fillStyle = rgb(col); ctx.fill(); ctx.lineWidth = over ? Math.max(G.lw, 1.5) : 2; ctx.strokeStyle = over ? '#ff1744' : '#fff'; ctx.stroke(); if(hits) hits.glyphs.push({ l:l.id, i, id:p.id, x:gx, y:gy, r:Math.max(r, 10) }); }
         else { const a = anchors[i]; ctx.beginPath(); ctx.arc(a.x, a.y, Math.max(5, G.mark + 2), 0, 7); ctx.fillStyle = rgb(col); ctx.fill(); ctx.lineWidth = over ? 3 : 2; ctx.strokeStyle = over ? '#ff1744' : '#fff'; ctx.stroke(); if(hits) hits.glyphs.push({ l:l.id, i, id:p.id, x:a.x, y:a.y, r:12, fixed:true }); }
@@ -8241,7 +8443,7 @@ function renderScene(ctx, W, H, proj, zoom, hits, opts){
           if(lv.length) B.items.forEach((it, k) => { const dn = Math.max(0, Math.sin(-angleOf(k, nn))); if(dn < .25) return; ext = Math.max(ext, (R * fscale(Math.max(...lv), G.cap) + fs * .62 * G.tickFs) * dn + fs * .9); });
         } }
       else if(l.mode === 'bubble'){ const v = B.items[0] && B.items[0].nv[i]; ext = Math.max(3, R * .62 * fscale(v, G.cap)); }
-      else if(l.mode === 'surface'){ gx = a.x; gy = a.y; ext = Math.max(5, G.mark + 2); }
+      else if(l.mode === 'surface' || l.mode === 'depth'){ gx = a.x; gy = a.y; ext = Math.max(5, G.mark + 2); }
       else ext = R * .34;
       let yy = gy + ext + fs * .9 + (+G.labelGap || 0);
       if(G.showId){ haloText(ctx, ptId(ds, p), gx, yy, fs, G.tc.id, 700); yy += fs * 1.15; }
@@ -8260,7 +8462,7 @@ function renderScene(ctx, W, H, proj, zoom, hits, opts){
 window.DGCore = {
   Lg, FONT, RES_N, MED_N, PERIOD_N, MODES, MODE_N, MODE_FULL, MODE_NOTE, GLYPHS, SINGLE, PALETTE, PRESETS, PRESET_N, SEQ, BINS, BINL,
   DS, buildBuiltin, prepDs, dsLabel, getDs, judge, statusOf, plotted, paramBad, fmt, fmtR, abbr, sname, stdText, unitOf, ptId,
-  get S(){ return S; }, set S(v){ S = v; }, persist, loadState, loadImports, saveImports, applyPtEdits, defaultState, defG, defBoxes, INSET, setObst, fixLayers, defLayers, setHover, autoCtx, autoName, expandTokens, HOOKS, joinNZ, cleanSec, facets, composeTitle, mapTitle, legendHead, legendAuto, autoFile, layerSub, visLayers, effG, mkSg, LKEYS,
+  get S(){ return S; }, set S(v){ S = v; }, persist, loadState, loadImports, saveImports, applyPtEdits, defaultState, defG, defBoxes, INSET, setObst, fixLayers, defLayers, setHover, autoCtx, autoName, expandTokens, HOOKS, joinNZ, cleanSec, buildDepthField, dpDelaunay, DEPTH_RE, DP_NAME, lastSurfRef:() => lastSurf, facets, composeTitle, mapTitle, legendHead, legendAuto, autoFile, layerSub, visLayers, effG, mkSg, LKEYS,
   mkLayer, getLayer, selLayer, layerName, ensureSel, defaultSel, selectedParams, bundle, colorOf, renderScene, lastSurf, fieldCache, layoutCache,
   setSC(v){ SC = v; }, hex2rgb, rampColor, valueRamp, lblOv, resolveNorm
 };
@@ -8297,6 +8499,7 @@ const MODE_SVG = {
   pie:'<path d="M12 3a9 9 0 0 1 8.3 12.4L12 12z" fill="currentColor"/><path d="M20.3 15.4A9 9 0 0 1 4 15.4L12 12z" fill="currentColor" opacity=".6"/><path d="M4 15.4A9 9 0 0 1 12 3v9z" fill="currentColor" opacity=".35"/><circle cx="12" cy="12" r="3" fill="var(--surface-2)"/>',
   bubble:'<circle cx="8" cy="15" r="5" fill="currentColor" opacity=".55"/><circle cx="16" cy="8" r="3.4" fill="currentColor"/><circle cx="17" cy="17" r="2.2" fill="currentColor" opacity=".8"/>',
   dots:'<circle cx="6" cy="8" r="2.6" fill="currentColor"/><circle cx="15" cy="6" r="2.6" fill="currentColor" opacity=".6"/><circle cx="10" cy="16" r="2.6" fill="currentColor" opacity=".85"/><circle cx="19" cy="15" r="2.6" fill="currentColor" opacity=".4"/>',
+  depth:'<path d="M3 8c3-2 6-2 9 0s6 2 9 0v10c-3 2-6 2-9 0s-6-2-9 0z" fill="currentColor" opacity=".3"/><path d="M5 11c2.4-1.3 4.6-1.3 7 0s4.6 1.3 7 0" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M7 14.5c1.7-.9 3.3-.9 5 0s3.3.9 5 0" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".75"/><circle cx="12" cy="17" r="1.4" fill="currentColor"/>',
   surface:'<path d="M3 15c3-8 7-9 10-6s5 1 8-3v12c-3 4-6 3-9 3s-6 2-9-6z" fill="currentColor" opacity=".35"/><path d="M5 15c2-5 5-6 8-3s5 2 7-1" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 18c2-3 4-3 6-1s4 1 6-1" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".7"/>'
 };
 const modeIcon = m => `<svg viewBox="0 0 24 24" class="dg-mi" aria-hidden="true">${MODE_SVG[m]}</svg>`;
@@ -8428,6 +8631,7 @@ function drawNow(){
   try{
     const r = C.renderScene(ctx, W, H, proj, D.map.getZoom(), D.hits, { selLayer:sel(), selBox:D.selBox, drawing:D.polyMode });
     D.models = r.models;
+    { const el = $('#dg-surfinfo'), sl = sel(); if(el && sl && sl.mode === 'depth') el.innerHTML = depthInfoHtml(sl); }
   }catch(e){ console.error('diagram render', e); }
 }
 
@@ -8534,7 +8738,135 @@ function showTip(g, e){
 function layoutReset(){ C.layoutCache.clear(); C.fieldCache.clear(); }
 
 /* ---------------------------------------------------------------- water-body polygon */
-function startPoly(){ const l = sel(); if(!l) return; D.polyMode = true; l.sg.clip = 'poly'; (st().poly[l.ds] = st().poly[l.ds] || []); polyBar(); draw(); renderPane(); }
+/* ---------------------------------------------------------------- shoreline: style + automatic detection from the street map
+   The street map paints water in one flat colour. We sample that colour at the sampling points, flood-fill the connected
+   water from the points, fill the holes (labels, islands), trace the outline and simplify it into a polygon. */
+const SHORE_TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
+D.prevPoly = {};
+function polyAreaM2(P){
+  if(!P || P.length < 3) return 0; const la0 = P.reduce((a, q) => a + q[0], 0) / P.length, kx = 111320 * Math.cos(la0 * Math.PI / 180), ky = 110574; let a = 0;
+  for(let i = 0; i < P.length; i++){ const p = P[i], q = P[(i + 1) % P.length]; a += (p[1] * kx) * (q[0] * ky) - (q[1] * kx) * (p[0] * ky); } return Math.abs(a) / 2;
+}
+const areaTxt = m2 => m2 >= 1e5 ? C.fmt(m2 / 1e6) + ' km²' : C.fmt(m2) + ' m²';
+function shoreBody(l, G){
+  const P = st().poly[l.ds] || [], has = P.length >= 3, prev = D.prevPoly[l.ds];
+  return `<div class="dg-shore">
+    <div class="dg-shore-h"><b>${ico('waves', 'sm')}${Lg('ขอบน้ำ', 'Shoreline')}</b><span>${has ? `${P.length} ${Lg('จุด', 'vertices')} · ${areaTxt(polyAreaM2(P))}` : Lg('ยังไม่มี', 'not set')}</span></div>
+    <button type="button" class="btn btn-primary btn-sm" data-act="shoreauto" id="dg-shoreauto">${ico('map', 'sm')}${Lg('สร้างอัตโนมัติจากแผนที่ถนน', 'Detect from the street map')}</button>
+    ${ctl.range(Lg('ความไวแยกสีน้ำ (มาก = รับสีใกล้เคียงมากขึ้น)', 'Water-colour tolerance (higher = looser)'), 'l', 'sg.shoreTol', 8, 70, 1)}
+    ${ctl.range(Lg('ตัดลำน้ำ/คลองที่แคบกว่า (ม.) — 0 = ไม่ตัด', 'Cut streams narrower than (m) — 0 = keep'), 'l', 'sg.shoreOpen', 0, 200, 5)}
+    <div class="dg-two"><button type="button" class="btn btn-sm" data-act="polystart">${ico('edit', 'sm')}${D.polyMode ? Lg('กำลังวาด…', 'Drawing…') : Lg('วาดเอง', 'Draw by hand')}</button><button type="button" class="btn btn-sm" data-act="polyclear" ${has ? '' : 'disabled'}>${Lg('ล้างขอบน้ำ', 'Clear')}</button></div>
+    ${prev ? `<button type="button" class="btn btn-sm" data-act="shoreundo">${ico('reset', 'sm')}${Lg('ย้อนกลับขอบน้ำก่อนหน้า', 'Restore the previous shoreline')}</button>` : ''}
+    ${has ? `<div class="dg-shore-s">${ctl.check(Lg('แสดงเส้นขอบน้ำ', 'Show the shoreline'), 'l', 'sg.shoreOn')}<div class="dg-two">${ctl.color(Lg('สีเส้น', 'Line colour'), 'l', 'sg.shoreC')}${ctl.check(Lg('เส้นประ', 'Dashed'), 'l', 'sg.shoreD')}</div>${ctl.range(Lg('ความหนาเส้น', 'Line width'), 'l', 'sg.shoreW', .5, 8, .5)}${ctl.range(Lg('สีพื้นในขอบน้ำ', 'Fill inside'), 'l', 'sg.shoreFill', 0, .6, .02)}</div>` : ''}
+    <div class="dg-hintx" id="dg-shoremsg">${Lg('ซ่อนเส้นแล้วขอบน้ำยังใช้ตัดแผนที่อยู่ · แผนที่ถนนแสดงพื้นน้ำชัดกว่าดาวเทียม จึงใช้เป็นตัวอ้างอิง', 'Hiding the line keeps the clipping · the street map shows water more clearly than satellite, so it is used as the reference')}</div></div>`;
+}
+const loadTileImg = (url, ms) => new Promise(res => { const im = new Image(); im.crossOrigin = 'anonymous'; const t = setTimeout(() => res(null), ms || 25000); im.onload = () => { clearTimeout(t); res(im); }; im.onerror = () => { clearTimeout(t); res(null); }; im.src = url; });
+function traceMask(mk, W, H){                                  /* Moore-neighbour boundary of the first blob (row-major) */
+  let s = -1; for(let i = 0; i < mk.length; i++) if(mk[i]){ s = i; break; } if(s < 0) return [];
+  const dx = [1, 1, 0, -1, -1, -1, 0, 1], dy = [0, 1, 1, 1, 0, -1, -1, -1], at = (x, y) => x >= 0 && y >= 0 && x < W && y < H && mk[y * W + x] === 1;
+  let cx = s % W, cy = (s / W) | 0, bd = 4; const out = [[cx, cy]], seen = new Set([(cy * W + cx) * 8 + bd]), sx = cx, sy = cy;
+  for(let guard = 0; guard < 4e6; guard++){
+    let moved = false;
+    for(let i = 1; i <= 8; i++){
+      const d = (bd + i) % 8, nx = cx + dx[d], ny = cy + dy[d];
+      if(at(nx, ny)){ const pd = (bd + i - 1) % 8, px = cx + dx[pd], py = cy + dy[pd]; let nb = 0; for(let k = 0; k < 8; k++) if(nx + dx[k] === px && ny + dy[k] === py){ nb = k; break; } cx = nx; cy = ny; bd = nb; moved = true; break; }
+    }
+    if(!moved) break; const key = (cy * W + cx) * 8 + bd; if(seen.has(key)) break; seen.add(key); out.push([cx, cy]); if(cx === sx && cy === sy && out.length > 3) break;
+  }
+  return out;
+}
+function dpSimplify(P, eps){
+  const n = P.length; if(n < 4) return P.slice(); const keep = new Uint8Array(n); keep[0] = keep[n - 1] = 1; const st0 = [[0, n - 1]];
+  while(st0.length){ const [a, b] = st0.pop(); const ax = P[a][0], ay = P[a][1], bx = P[b][0], by = P[b][1], L = Math.hypot(bx - ax, by - ay) || 1; let md = 0, mi = -1;
+    for(let i = a + 1; i < b; i++){ const d = Math.abs((by - ay) * P[i][0] - (bx - ax) * P[i][1] + bx * ay - by * ax) / L; if(d > md){ md = d; mi = i; } } if(md > eps && mi > 0){ keep[mi] = 1; st0.push([a, mi], [mi, b]); } }
+  return P.filter((_, i) => keep[i]);
+}
+function dpClosed(P, eps){
+  if(P.length < 6) return P; let f = 0, fd = 0; for(let i = 1; i < P.length; i++){ const d = Math.hypot(P[i][0] - P[0][0], P[i][1] - P[0][1]); if(d > fd){ fd = d; f = i; } }
+  const A = dpSimplify(P.slice(0, f + 1), eps), B = dpSimplify(P.slice(f).concat([P[0]]), eps); return A.concat(B.slice(1, -1));
+}
+function chamferZero(mk, W, H){            /* 3-4 chamfer distance (×3 px) from every 1-pixel to the nearest 0-pixel; the image edge does not count as background */
+  const INF = 1e9, d = new Int32Array(W * H); for(let i = 0; i < d.length; i++) d[i] = mk[i] ? INF : 0;
+  for(let y = 0; y < H; y++) for(let x = 0; x < W; x++){ const i = y * W + x; if(!d[i]) continue; let v = d[i]; if(x > 0) v = Math.min(v, d[i - 1] + 3); if(y > 0){ v = Math.min(v, d[i - W] + 3); if(x > 0) v = Math.min(v, d[i - W - 1] + 4); if(x < W - 1) v = Math.min(v, d[i - W + 1] + 4); } d[i] = v; }
+  for(let y = H - 1; y >= 0; y--) for(let x = W - 1; x >= 0; x--){ const i = y * W + x; if(!d[i]) continue; let v = d[i]; if(x < W - 1) v = Math.min(v, d[i + 1] + 3); if(y < H - 1){ v = Math.min(v, d[i + W] + 3); if(x < W - 1) v = Math.min(v, d[i + W + 1] + 4); if(x > 0) v = Math.min(v, d[i + W - 1] + 4); } d[i] = v; }
+  return d;
+}
+function openMask(mk, W, H, r){            /* morphological opening: drops water narrower than 2r px (streams, canals) */
+  const d1 = chamferZero(mk, W, H), R3 = r * 3, core = new Uint8Array(W * H); let any = false; for(let i = 0; i < core.length; i++) if(d1[i] > R3){ core[i] = 1; any = true; }
+  if(!any) return mk;
+  const inv = new Uint8Array(W * H); for(let i = 0; i < inv.length; i++) inv[i] = core[i] ? 0 : 1; const d2 = chamferZero(inv, W, H), out = new Uint8Array(W * H);
+  for(let i = 0; i < out.length; i++) if(mk[i] && d2[i] <= R3) out[i] = 1; return out;
+}
+async function shoreFromStreet(pts, padF, tol, openM){
+  const la0 = Math.min(...pts.map(p => p.lat)), la1 = Math.max(...pts.map(p => p.lat)), lo0 = Math.min(...pts.map(p => p.lon)), lo1 = Math.max(...pts.map(p => p.lon));
+  const sl = Math.max(la1 - la0, .004), so = Math.max(lo1 - lo0, .004), bb = { s:la0 - sl * padF, n:la1 + sl * padF, w:lo0 - so * padF, e:lo1 + so * padF };
+  const mx = lo => (lo + 180) / 360, my = la => { const s = Math.sin(la * Math.PI / 180); return .5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI); };
+  const tl = z => { const n = 2 ** z; return [Math.floor(mx(bb.w) * n), Math.floor(mx(bb.e) * n), Math.floor(my(bb.n) * n), Math.floor(my(bb.s) * n)]; };
+  let z = 17; for(; z > 12; z--){ const [a, b, c, d] = tl(z); if((b - a + 1) * (d - c + 1) <= 42) break; }
+  const [tx0, tx1, ty0, ty1] = tl(z), n = 2 ** z, W = (tx1 - tx0 + 1) * 256, H = (ty1 - ty0 + 1) * 256;
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const cx = cv.getContext('2d', { willReadFrequently:true }), jobs = [];
+  for(let ty = ty0; ty <= ty1; ty++) for(let tx = tx0; tx <= tx1; tx++) jobs.push(loadTileImg(SHORE_TILE.replace('{z}', z).replace('{y}', ty).replace('{x}', tx)).then(im => { if(im) cx.drawImage(im, (tx - tx0) * 256, (ty - ty0) * 256); return !!im; }));
+  const ok = (await Promise.all(jobs)).filter(Boolean).length; if(ok < jobs.length * .9) throw new Error('tiles');
+  let img; try{ img = cx.getImageData(0, 0, W, H).data; }catch(e){ throw new Error('cors'); }
+  const P = pts.map(p => ({ x:Math.round(mx(p.lon) * n * 256 - tx0 * 256), y:Math.round(my(p.lat) * n * 256 - ty0 * 256) })).filter(p => p.x >= 0 && p.y >= 0 && p.x < W && p.y < H);
+  if(!P.length) throw new Error('outside');
+  /* water colour = median of the 7×7 median colour around each point */
+  const chan = [[], [], []]; P.forEach(p => { const w = [[], [], []]; for(let yy = -3; yy <= 3; yy++) for(let xx = -3; xx <= 3; xx++){ const px = clamp(p.x + xx, 0, W - 1), py = clamp(p.y + yy, 0, H - 1), i = (py * W + px) * 4; for(let c = 0; c < 3; c++) w[c].push(img[i + c]); } for(let c = 0; c < 3; c++){ w[c].sort((a, b) => a - b); chan[c].push(w[c][24]); } });
+  const med = a => { a = a.slice().sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; }, ref = [med(chan[0]), med(chan[1]), med(chan[2])], t2 = tol * tol;
+  const mask = new Uint8Array(W * H); for(let i = 0, j = 0; i < W * H; i++, j += 4){ const a = img[j] - ref[0], b = img[j + 1] - ref[1], c = img[j + 2] - ref[2]; if(a * a + b * b + c * c <= t2 && img[j + 3] > 200) mask[i] = 1; }
+  const agree = P.filter(p => mask[p.y * W + p.x]).length / P.length, mpp0 = 156543.03392 * Math.cos((la0 + la1) / 2 * Math.PI / 180) / n;
+  let mk2 = mask; const rpx = Math.round((openM || 0) / 2 / mpp0); if(rpx >= 2) mk2 = openMask(mask, W, H, rpx);
+  const dr = Math.max(4, Math.round(25 / mpp0)); P.forEach(p => { for(let yy = -dr; yy <= dr; yy++) for(let xx = -dr; xx <= dr; xx++){ if(xx * xx + yy * yy > dr * dr) continue; const px = p.x + xx, py = p.y + yy; if(px >= 0 && py >= 0 && px < W && py < H) mk2[py * W + px] = 1; } });   /* a point is in the water by definition */
+
+  /* flood fill from the points; keep the blob that holds most of them */
+  const comp = new Int32Array(W * H), q = new Int32Array(W * H); let nc = 0; const seedCnt = [0];
+  const fill = (sx, sy) => { const id = ++nc; seedCnt[id] = 0; let h = 0, t = 0; q[t++] = sy * W + sx; comp[sy * W + sx] = id; while(h < t){ const i = q[h++], x = i % W, y = (i / W) | 0; if(x > 0 && mk2[i - 1] && !comp[i - 1]){ comp[i - 1] = id; q[t++] = i - 1; } if(x < W - 1 && mk2[i + 1] && !comp[i + 1]){ comp[i + 1] = id; q[t++] = i + 1; } if(y > 0 && mk2[i - W] && !comp[i - W]){ comp[i - W] = id; q[t++] = i - W; } if(y < H - 1 && mk2[i + W] && !comp[i + W]){ comp[i + W] = id; q[t++] = i + W; } } return id; };
+  const comps = P.map(p => { let best = null; for(let r = 0; r <= 9 && !best; r++) for(let yy = -r; yy <= r && !best; yy++) for(let xx = -r; xx <= r; xx++){ if(Math.max(Math.abs(xx), Math.abs(yy)) !== r) continue; const px = p.x + xx, py = p.y + yy; if(px >= 0 && py >= 0 && px < W && py < H && mk2[py * W + px]){ best = [px, py]; break; } } if(!best) return 0; const i = best[1] * W + best[0]; const id = comp[i] || fill(best[0], best[1]); seedCnt[id]++; return id; });
+  let bestC = 0; for(let id = 1; id <= nc; id++) if(!bestC || seedCnt[id] > seedCnt[bestC]) bestC = id; if(!bestC) throw new Error('nowater');
+  /* a sampling point on a shore / dam may sit in a separate blob: bridge it to the main body so it ends up inside the outline */
+  P.forEach((p, k) => { const id = comps[k]; if(!id || id === bestC) return; let tgt = null;
+    for(let r = 1; r <= 90 && !tgt; r++) for(let yy = -r; yy <= r && !tgt; yy++) for(let xx = -r; xx <= r; xx++){ if(Math.max(Math.abs(xx), Math.abs(yy)) !== r) continue; const px = p.x + xx, py = p.y + yy; if(px >= 0 && py >= 0 && px < W && py < H && comp[py * W + px] === bestC){ tgt = [px, py]; break; } }
+    if(!tgt) return; for(let i = 0; i < comp.length; i++) if(comp[i] === id) comp[i] = bestC;
+    const steps = Math.max(Math.abs(tgt[0] - p.x), Math.abs(tgt[1] - p.y)) || 1; for(let u = 0; u <= steps; u++){ const x = Math.round(p.x + (tgt[0] - p.x) * u / steps), y = Math.round(p.y + (tgt[1] - p.y) * u / steps); for(let yy = -2; yy <= 2; yy++) for(let xx = -2; xx <= 2; xx++){ const px = x + xx, py = y + yy; if(px >= 0 && py >= 0 && px < W && py < H) comp[py * W + px] = bestC; } } });
+  /* holes (labels, islands) are part of the water body: everything not reachable from the border is inside */
+  const bg = new Uint8Array(W * H); let h = 0, t = 0; const push = i => { if(!bg[i] && comp[i] !== bestC){ bg[i] = 1; q[t++] = i; } };
+  for(let x = 0; x < W; x++){ push(x); push((H - 1) * W + x); } for(let y = 0; y < H; y++){ push(y * W); push(y * W + W - 1); }
+  while(h < t){ const i = q[h++], x = i % W, y = (i / W) | 0; if(x > 0) push(i - 1); if(x < W - 1) push(i + 1); if(y > 0) push(i - W); if(y < H - 1) push(i + W); }
+  const fm = new Uint8Array(W * H); let area = 0, touch = false; for(let i = 0; i < fm.length; i++) if(!bg[i]){ fm[i] = 1; area++; const x = i % W, y = (i / W) | 0; if(x === 0 || y === 0 || x === W - 1 || y === H - 1) touch = true; }
+  const loop = traceMask(fm, W, H); if(loop.length < 8) throw new Error('trace');
+  let eps = 1.4, S2 = dpClosed(loop, eps); while(S2.length > 420 && eps < 40){ eps *= 1.35; S2 = dpClosed(loop, eps); }
+  const toLL = p => { const X = (p[0] + tx0 * 256) / (n * 256), Y = (p[1] + ty0 * 256) / (n * 256); return [+(Math.atan(Math.sinh(Math.PI * (1 - 2 * Y))) * 180 / Math.PI).toFixed(7), +(X * 360 - 180).toFixed(7)]; };
+  const poly = S2.map(toLL), inside = pts.filter(p => inPoly(p.lon, p.lat, poly.map(q => [q[1], q[0]]))).length;
+  const mpp = 156543.03392 * Math.cos((la0 + la1) / 2 * Math.PI / 180) / n;
+  return { poly, touch, zoom:z, ref, agree, inside, total:pts.length, comps:nc, area:area * mpp * mpp, simpl:eps };
+}
+function inPoly(x, y, P){ let c = false; for(let i = 0, j = P.length - 1; i < P.length; j = i++){ const xi = P[i][0], yi = P[i][1], xj = P[j][0], yj = P[j][1]; if(((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) c = !c; } return c; }
+async function autoShoreline(l){
+  const ds = C.getDs(l.ds), pts = ds.points.filter(p => isFinite(p.lat) && isFinite(p.lon)), msg = t => { const e = $('#dg-shoremsg'); if(e) e.textContent = t; };
+  if(pts.length < 2){ toast(Lg('ต้องมีจุดพิกัดอย่างน้อย 2 จุด', 'Need at least 2 sampling points'), 'err'); return; }
+  if(D.shoreBusy) return; D.shoreBusy = true; const btn = $('#dg-shoreauto'); if(btn) btn.disabled = true; msg(Lg('กำลังโหลดแผนที่ถนนและหาพื้นน้ำ…', 'Loading the street map and finding the water…'));
+  try{
+    let res = null, pad = .6;
+    for(let k = 0; k < 3; k++){ res = await shoreFromStreet(pts, pad, l.sg.shoreTol || 26, l.sg.shoreOpen === undefined ? 40 : l.sg.shoreOpen); if(!res.touch) break; pad *= 2.2; }
+    if(res.poly.length < 3) throw new Error('trace');
+    D.prevPoly[l.ds] = (st().poly[l.ds] || []).length >= 3 ? st().poly[l.ds].slice() : D.prevPoly[l.ds];
+    st().poly[l.ds] = res.poly; l.sg.clip = 'poly'; l.sg.shoreOn = true; D.polyMode = false; polyBar(); C.fieldCache.clear(); C.layoutCache.clear(); C.persist(); renderPane(); draw();
+    const out = res.total - res.inside;
+    toast(Lg(`ได้ขอบน้ำ ${res.poly.length} จุด · พื้นที่ ${areaTxt(res.area)}${out ? ` · มี ${out} จุดตัวอย่างอยู่นอกขอบ` : ''}`, `Shoreline: ${res.poly.length} vertices · area ${areaTxt(res.area)}${out ? ` · ${out} sampling point(s) fall outside` : ''}`), out || res.touch ? 'err' : undefined);
+    setTimeout(() => msg(res.touch ? Lg('น้ำต่อเนื่องไปชนขอบกรอบที่โหลด — ขอบอาจถูกตัด ลองลดความไวหรือวาดเอง', 'The water runs off the loaded area — the outline may be cut; lower the tolerance or draw it by hand') : res.agree < .5 ? Lg('สีน้ำที่จุดตัวอย่างต่างกันมาก — ถ้าขอบผิดปกติ ปรับความไวหรือวาดเอง', 'The colour at the points varies a lot — if the outline looks wrong adjust the tolerance or draw it by hand') : Lg(`โหลดแผนที่ซูม ${res.zoom} · สีน้ำ rgb(${res.ref.join(', ')}) · ตรวจแล้วบนแผนที่ว่าตรงกับอ่างจริง`, `Street map zoom ${res.zoom} · water rgb(${res.ref.join(', ')}) · check it matches the real reservoir`)), 60);
+  }catch(e){
+    console.error(e); const k = e && e.message;
+    toast(k === 'tiles' ? Lg('โหลดแผนที่ถนนไม่สำเร็จ — ตรวจอินเทอร์เน็ตแล้วลองใหม่', 'Could not load the street map — check the connection and retry') : k === 'cors' ? Lg('เบราว์เซอร์ไม่อนุญาตให้อ่านภาพแผนที่ — วาดขอบน้ำเองแทน', 'The browser blocked reading the map image — draw the shoreline by hand') : k === 'nowater' ? Lg('ไม่พบพื้นน้ำรอบจุดตัวอย่าง — ลองเพิ่มความไวหรือวาดเอง', 'No water found around the points — raise the tolerance or draw it by hand') : Lg('สร้างขอบน้ำอัตโนมัติไม่สำเร็จ — วาดเอง', 'Automatic detection failed — draw it by hand'), 'err'); msg('');
+  }finally{ D.shoreBusy = false; const b2 = $('#dg-shoreauto'); if(b2) b2.disabled = false; }
+}
+const PAL = ['bathy', 'ylgnbu', 'ocean', 'teal', 'blues', 'viridis', 'cividis', 'plasma', 'magma', 'inferno', 'turbo', 'jet', 'spectral', 'ylorrd'];
+const PAL_N = { bathy:['ฟ้า → น้ำเงินเข้ม', 'Light → deep blue'], ylgnbu:['เหลือง-เขียว-น้ำเงิน', 'Yellow-green-blue'], ocean:['มิ้นต์ → คราม', 'Mint → indigo'], teal:['เขียวน้ำทะเล', 'Teal'], blues:['ฟ้า', 'Blues'], viridis:['Viridis', 'Viridis'], cividis:['Cividis', 'Cividis'], plasma:['Plasma', 'Plasma'], magma:['Magma', 'Magma'], inferno:['Inferno', 'Inferno'], turbo:['Turbo (สายรุ้ง)', 'Turbo (rainbow)'], jet:['Jet (สายรุ้งคลาสสิก)', 'Jet (classic rainbow)'], spectral:['Spectral (น้ำเงิน→แดง)', 'Spectral (blue→red)'], ylorrd:['เหลือง-ส้ม-แดง', 'Yellow-orange-red'] };
+function seqPicker(G){
+  const cur = G.seq || 'viridis';
+  return `<div class="dg-pal">${PAL.map(k => `<button type="button" class="dg-palb${cur === k ? ' on' : ''}" data-act="seqpick" data-k="${k}" title="${esc(nm(PAL_N[k]))}"><i style="background:linear-gradient(90deg,${C.SEQ[k].map(([t, c]) => c + ' ' + Math.round(t * 100) + '%').join(',')})"></i><span>${esc(nm(PAL_N[k]))}</span></button>`).join('')}</div>${ctl.check(Lg('กลับสี (น้อย ↔ มาก)', 'Reverse the colours'), 'l', 'sg.seqRev')}`;
+}
+
+function startPoly(){ const l = sel(); if(!l) return; const P0 = st().poly[l.ds]; if(P0 && P0.length >= 3) D.prevPoly[l.ds] = P0.slice(); D.polyMode = true; l.sg.clip = 'poly'; st().poly[l.ds] = []; C.fieldCache.clear(); polyBar(); draw(); renderPane(); }
 function addPolyPoint(ll){ const l = sel(); if(!l) return; (st().poly[l.ds] = st().poly[l.ds] || []).push([+ll.lat.toFixed(7), +ll.lng.toFixed(7)]); C.fieldCache.clear(); C.persist(); polyBar(); draw(); }
 function polyBar(){
   const b = $('#dg-poly'), l = sel(); if(!b || !l) return;
@@ -8588,7 +8920,7 @@ function addMenu(btn){
   m.onclick = ev => { const b = ev.target.closest('[data-ai]'); if(!b) return; closeLibMenu(); const it = items[+b.dataset.ai];
     if(it.k === 'cmp') newLayerFrom(it.ds, sel(), true); else if(it.k === 'new') newLayerFrom(it.ds, null); else if(it.k === 'dup') dupLayer(sel().id);
     else { newLayerFrom(sel() ? sel().ds : 'BP|water', null); D.tab = 'data'; st().tab = 'data'; if(st().panelOff){ st().panelOff = false; if(oneCard()) st().dockOff = true; applyFloat(); } renderPane(); setTimeout(() => { const s2 = $('#dg-ds'); if(s2){ s2.focus(); try{ s2.showPicker && s2.showPicker(); }catch(_){ } } }, 80); } };
-  setTimeout(() => { document.addEventListener('mousedown', e => { if(!e.target.closest('#dg-cm')) closeLibMenu(); }, { once:true, capture:true }); }, 0);
+  setTimeout(() => { document.addEventListener('mousedown', outsideLibMenu, true); document.addEventListener('touchstart', outsideLibMenu, true); }, 0);
 }
 function newLayerFrom(dsId, src, compare){
   const S = st(); if(!C.DS.has(dsId)) return; const d = C.getDs(dsId); let l;
@@ -8622,8 +8954,14 @@ function sanitizeAccess(){
   S.layers.forEach(l => { if(!ok.has(l.ds)){ l.ds = first; l.sel = null; l.single = null; l.hidden = {}; l.manual = {}; l.refv = {}; C.ensureSel(l); ch = true; } });
   if(ch){ layoutReset(); C.persist(); }
 }
+function depthInit(l, quiet){
+  const ds = C.getDs(l.ds), p = ds.params.find(q => C.DEPTH_RE.test(q.name) && q.nPlot >= 3), g = l.sg;
+  if(p) l.single = p.id; else if(!quiet) toast(Lg('ไม่พบพารามิเตอร์ความลึกในชุดข้อมูลนี้ — เลือกพารามิเตอร์ที่เป็นความลึก (ม.) ที่แท็บข้อมูล หรือนำเข้าไฟล์ที่มีคอลัมน์ Depth', 'No depth parameter in this dataset — pick the depth (m) parameter in the Data tab, or import a file with a Depth row'), 'err');
+  g.seq = 'bathy'; g.contour = true; g.surf = Math.max(g.surf || 0, .9); if(S_poly(l.ds)) g.clip = 'poly';
+}
+const S_poly = dsId => { const P = st().poly[dsId]; return P && P.length >= 3; };
 function setLayerDs(id){
-  const l = sel(); if(!l) return; l.ds = id; l.sel = null; l.single = null; l.hidden = {}; l.manual = {}; l.refv = {}; C.ensureSel(l);
+  const l = sel(); if(!l) return; l.ds = id; l.sel = null; l.single = null; l.hidden = {}; l.manual = {}; l.refv = {}; C.ensureSel(l); if(l.mode === 'depth') depthInit(l, true);
   const m = l.mode; if(!C.SINGLE.has(m)){ const n = l.sel.length, g = C.GLYPHS[m]; if(g && (n < g[0])) l.mode = n >= 3 ? 'rose' : n === 2 ? 'bars' : 'bubble'; }
   layoutReset(); C.persist(); renderAll(); fitPoints(true);
 }
@@ -8654,7 +8992,7 @@ function onCtl(e){
   let v; if(el.type === 'checkbox') v = el.checked; else if(el.type === 'range' || el.type === 'number') v = parseFloat(el.value); else v = el.value;
   setPath(t, k, v);
   if(el.type === 'range'){ const o = el.parentElement.querySelector('output'); if(o) o.textContent = el.dataset.fm ? v : (Math.abs(v) < 10 && v % 1 ? (+v.toFixed(2)) : v); }
-  const keys = ['surfM', 'idwP', 'fade', 'clip', 'nd', 'cap', 'scaleFn', 'seq', 'norm', 'glyph', 'zoomScale', 'zoomRef', 'auto', 'contN'];
+  const keys = ['surfM', 'idwP', 'fade', 'clip', 'nd', 'cap', 'scaleFn', 'seq', 'seqRev', 'norm', 'glyph', 'zoomScale', 'zoomRef', 'auto', 'contN', 'dpM', 'dpZero', 'dpClamp'];
   if(keys.includes(k) || sc === 'l') { C.fieldCache.clear(); if(sc !== 'l' || ['norm', 'glyph'].includes(k) || /^(top|sg)\./.test(k)) C.layoutCache.clear(); }
   if(sc === 'g' && ['dim', 'sat'].includes(k)) applyFilter();
   if(sc === 'g' && ['base', 'labels'].includes(k)){ setBase(); syncTools(); }
@@ -8711,10 +9049,15 @@ function topBody(l, ds){
     ${ctl.select(Lg('เลือกจากกลุ่ม', 'From the group'), 'l', 'top.sec', [['', Lg('พารามิเตอร์ที่ติ๊กไว้', 'the ticked parameters')], ...secs.map(x => [x, C.cleanSec(x)])], true)}` : ''}
     <div class="dg-hintx">${Lg('แต่ละจุดวาดเฉพาะพารามิเตอร์ที่ติดอันดับ (หลังปรับให้เทียบกันได้) · เลือกกลุ่มแล้วระบบหยิบพารามิเตอร์ในกลุ่มให้เอง', 'Each point draws only its ranked parameters (after normalising) · pick a group and its parameters are chosen for you')}</div>`;
 }
+function depthReco(l, ds){
+  const p = ds.params.find(q => q.id === l.single), n = p ? p.nPlot : 0, isD = p && C.DEPTH_RE.test(p.name);
+  if(!p || n < 3) return `${ico('warn', 'sm')}<span>${Lg('แผนที่ความลึกต้องมีจุดที่วัดความลึกได้อย่างน้อย 3 จุด — เลือกพารามิเตอร์ความลึก (ม.) ด้านล่าง', 'A depth map needs at least 3 points with a depth value — pick the depth (m) parameter below')}</span>`;
+  return `${isD ? ico('check', 'sm') : ico('warn', 'sm')}<span>${isD ? Lg(`ใช้ “${esc(p.name)}” (${n} จุด) สร้างแผนที่ความลึก`, `Using “${esc(p.name)}” (${n} points) for the depth map`) : Lg(`“${esc(p.name)}” ไม่ใช่ชื่อความลึก — ตรวจว่าเป็นค่าความลึก (ม.) จริง`, `“${esc(p.name)}” does not look like a depth — make sure it is a depth in metres`)}</span>`;
+}
 function paneData(){
   const l = sel(); if(!l) return ''; const ds = C.getDs(l.ds), single = C.SINGLE.has(l.mode), n = C.selectedParams(l).length, g = C.GLYPHS[l.mode];
   const okList = Object.keys(C.GLYPHS).filter(k => n >= C.GLYPHS[k][0] && n <= C.GLYPHS[k][1]).map(ML).join(', ');
-  const reco = single ? `${ico('info', 'sm')}<span>${Lg('ชนิดนี้แสดงทีละ 1 พารามิเตอร์ · ถ้าต้องการเทียบหลายตัวในจุดเดียว เลือก Maucha / Radar / Rose / แท่ง', 'This type shows one parameter · to compare several at a point pick Maucha / Radar / Rose / Bars')}</span>`
+  const reco = l.mode === 'depth' ? depthReco(l, ds) : single ? `${ico('info', 'sm')}<span>${Lg('ชนิดนี้แสดงทีละ 1 พารามิเตอร์ · ถ้าต้องการเทียบหลายตัวในจุดเดียว เลือก Maucha / Radar / Rose / แท่ง', 'This type shows one parameter · to compare several at a point pick Maucha / Radar / Rose / Bars')}</span>`
     : !n ? `${ico('warn', 'sm')}<span>${Lg('ยังไม่ได้เลือกพารามิเตอร์', 'No parameter selected yet')}</span>`
     : g && (n < g[0] || n > g[1]) ? `${ico('warn', 'sm')}<span>${ML(l.mode)} ${Lg('เหมาะกับ', 'suits')} ${g[0]}–${g[1]} ${Lg('พารามิเตอร์ · ตอนนี้', 'parameters · now')} ${n}${okList ? ` · ${Lg('ลอง', 'try')} ${esc(okList)}` : ''}</span>`
     : `${ico('check', 'sm')}<span>${n} ${Lg('พารามิเตอร์ เหมาะกับ', 'parameters suit')} ${ML(l.mode)}</span>`;
@@ -8763,16 +9106,36 @@ function lyEdit(el){
   else if(k === 'v'){ const v = parseFloat(el.value); if(!(v > 0) || !isFinite(v)) return; L.v = v; }
   C.persist(); draw();
 }
+function depthInfoHtml(l){
+  const F = C.lastSurfRef()[l.id];
+  return `${F && F.depth ? `<b>${Lg('ความแม่นยำ', 'Accuracy')}</b><br>${F.info}${F.area != null ? `<br>${Lg('พื้นที่', 'Area')} ${F.area >= 1e5 ? esc(C.fmt(F.area / 1e6)) + ' km²' : esc(C.fmt(F.area)) + ' m²'} · ${Lg('ปริมาตร', 'Volume')} ${F.vol >= 1e6 ? esc(C.fmt(F.vol / 1e6)) + Lg(' ล้าน ม³', ' million m³') : esc(C.fmt(F.vol)) + ' m³'}` : ''}<br>${Lg('ลึกสุด', 'Max')} ${esc(C.fmt(F.vmax))} · ${Lg('เฉลี่ย', 'Mean')} ${esc(C.fmt(F.mean))} ${esc(F.unit)}` : Lg('ยังไม่มีข้อมูลพอสร้างแผนที่ความลึก', 'Not enough data for a depth map yet')}`;
+}
+function depthBody(l, G){
+  const hasPoly = S_poly(l.ds), F = C.lastSurfRef()[l.id];
+  const ms = [['auto', Lg('อัตโนมัติ — เลือกวิธีที่คลาดเคลื่อนน้อยที่สุด', 'Automatic — the lowest cross-validation error')], ['krig', Lg('Kriging (spherical variogram)', 'Kriging (spherical variogram)')], ['tps', Lg('Thin-plate spline — พื้นผิวเรียบ', 'Thin-plate spline — smooth')], ['idw', Lg('IDW — ถ่วงน้ำหนักตามระยะ', 'IDW — inverse distance')], ['tin', Lg('TIN — เชิงเส้นระหว่างจุด', 'TIN — linear between points')]];
+  return `${ctl.select(Lg('วิธีประมาณค่าระหว่างจุด', 'Interpolation'), 'l', 'sg.dpM', ms, true)}
+    ${G.dpM === 'idw' ? ctl.range(Lg('กำลังของระยะทาง (p)', 'Distance power (p)'), 'l', 'sg.idwP', 1, 5, .5) : ''}
+    ${ctl.select(Lg('ขอบเขตแผนที่ความลึก', 'Extent'), 'l', 'sg.clip', [['none', Lg('รอบจุดวัด (จางตามระยะ)', 'Around the points (fades with distance)')], ['poly', Lg('ตามขอบน้ำที่วาด (แม่นที่สุด)', 'Follow the drawn shoreline (most accurate)')]], true)}
+    ${G.clip === 'none' ? ctl.range(Lg('ระยะจาง (× ระยะห่างจุดเฉลี่ย)', 'Fade distance (× point spacing)'), 'l', 'sg.fade', .5, 5, .1) : ''}
+    ${shoreBody(l, G)}
+    ${hasPoly && G.clip === 'poly' ? ctl.check(Lg('ขอบน้ำ = ความลึก 0 ม.', 'Shoreline = depth 0 m'), 'l', 'sg.dpZero', true) : ''}
+    ${ctl.check(Lg('จำกัดค่าไม่ให้เกิน 1.25× ของที่วัดได้ และไม่ติดลบ', 'Keep values within 0 … 1.25× the measured maximum'), 'l', 'sg.dpClamp')}
+    ${ctl.range(Lg('ความทึบ', 'Opacity'), 'l', 'sg.surf', .2, 1, .05)}
+    <div class="dg-f"><span>${Lg('โทนสี', 'Colour ramp')}</span>${seqPicker(G)}</div>
+    ${ctl.check(Lg('เส้นชั้นความลึก (isobath)', 'Depth contours (isobaths)'), 'l', 'sg.contour', true)}${G.contour ? ctl.range(Lg('จำนวนเส้นโดยประมาณ', 'Approximate count'), 'l', 'sg.contN', 3, 14, 1) : ''}
+    <div class="dg-depthinfo" id="dg-surfinfo">${depthInfoHtml(l)}</div>`;
+}
 function paneStyle(){
   const S = st(), l = sel(); if(!l) return ''; const G = Object.assign({}, S.g, l.sg), m = l.mode, radial = ['maucha', 'radar', 'rose'].includes(m), single = C.SINGLE.has(m), sp = single ? [] : C.selectedParams(l);
   const norms = [['auto', Lg('อัตโนมัติ (เทียบมาตรฐานถ้าทุกตัวมี)', 'Auto (vs. standard when all have one)')], ['std', Lg('เทียบค่ามาตรฐาน (ค่า ÷ มาตรฐาน)', 'vs. standard (value ÷ standard)')], ['max', Lg('% ของค่าสูงสุดในพื้นที่', '% of the maximum')], ['minmax', 'Min–Max (0–1)'], ['raw', Lg('ค่าจริง (พารามิเตอร์เดียว)', 'Actual value (one parameter)')]];
   return `<div class="dg-acts"><span>${Lg('มีผลเฉพาะชั้นนี้', 'This layer only')}</span>${S.layers.length > 1 ? `<button type="button" class="btn btn-sm" data-act="sgall">${ico('copy', 'sm')}${Lg('ใช้รูปแบบนี้กับทุกชั้น', 'Use for every layer')}</button>` : ''}</div>
     ${sec('val', 'gauge', Lg('การแสดงค่า', 'Values'), `
-      ${ctl.select(Lg('ปรับค่าให้เทียบกันได้โดย', 'Normalise by'), 'l', 'norm', norms, true)}
+      ${m === 'depth' ? '' : ctl.select(Lg('ปรับค่าให้เทียบกันได้โดย', 'Normalise by'), 'l', 'norm', norms, true)}
       ${ctl.range(Lg('ขนาดสัญลักษณ์ (px)', 'Symbol size (px)'), 'l', 'glyph', 14, 110, 1)}
-      ${m !== 'surface' && m !== 'dots' ? `${ctl.range(Lg('เพดานค่าที่แสดง (เท่าของวงอ้างอิง)', 'Display cap (× reference)'), 'l', 'sg.cap', 1.5, 12, .5)}${ctl.select(Lg('ขนาดแปรตามค่าแบบ', 'Size follows the value as'), 'l', 'sg.scaleFn', [['sqrt', Lg('รากที่สอง (พื้นที่ ∝ ค่า)', 'square root (area ∝ value)')], ['linear', Lg('เส้นตรง (ความยาว ∝ ค่า)', 'linear (length ∝ value)')]])}` : ''}
+      ${m !== 'surface' && m !== 'dots' && m !== 'depth' ? `${ctl.range(Lg('เพดานค่าที่แสดง (เท่าของวงอ้างอิง)', 'Display cap (× reference)'), 'l', 'sg.cap', 1.5, 12, .5)}${ctl.select(Lg('ขนาดแปรตามค่าแบบ', 'Size follows the value as'), 'l', 'sg.scaleFn', [['sqrt', Lg('รากที่สอง (พื้นที่ ∝ ค่า)', 'square root (area ∝ value)')], ['linear', Lg('เส้นตรง (ความยาว ∝ ค่า)', 'linear (length ∝ value)')]])}` : ''}
       ${ctl.select(Lg('ค่า ND / ต่ำกว่า LOD ให้เป็น', 'Treat ND / below LOD as'), 'l', 'sg.nd', [['zero', '0'], ['half', Lg('ครึ่งหนึ่งของ LOD', 'half of the LOD')], ['full', Lg('เท่ากับ LOD', 'the LOD')]])}`, true)}
-    ${sec('look', 'layers', Lg('หน้าตาสัญลักษณ์', 'Symbol look'), `
+    ${m === 'depth' ? sec('depth', 'waves', Lg('แผนที่ความลึก', 'Depth map'), depthBody(l, G), true) : ''}
+    ${m === 'depth' ? '' : sec('look', 'layers', Lg('หน้าตาสัญลักษณ์', 'Symbol look'), `
       <div class="dg-tgs">${m !== 'surface' ? ctl.check(Lg('พื้นหลังสัญลักษณ์', 'Background'), 'l', 'sg.back') : ''}${radial || m === 'bars' ? ctl.check(Lg('ชื่อแกน/กลีบ', 'Axis labels'), 'l', 'sg.axisLab') + ctl.check(Lg('ค่าที่ปลายแกน', 'Values at tips'), 'l', 'sg.valLab') : ''}</div>
       ${ctl.range(Lg('ความทึบสี', 'Opacity'), 'l', 'sg.alpha', .3, 1, .05)}${ctl.range(Lg('ขอบแดงเมื่อเกินมาตรฐาน', 'Red edge when over the standard'), 'l', 'sg.lw', 0, 6, .2)}
       ${m === 'rose' ? ctl.select(Lg('สีของกลีบ', 'Petal colour'), 'l', 'sg.wcolor', [['param', Lg('ตามพารามิเตอร์', 'by parameter')], ['status', Lg('ตามระดับเทียบมาตรฐาน', 'by standard class')]]) : ''}`, true)}
@@ -8782,13 +9145,14 @@ function paneStyle(){
       <button type="button" class="btn btn-sm" data-act="resetref">${Lg('ล้างค่าที่ตั้งเอง', 'Clear custom values')}</button>`, false) : ''}
     ${radial || m === 'bars' ? sec('rings', 'gauge', Lg('วงอ้างอิงและตัวเลขสเกล', 'Reference rings & scale numbers'), ringsBody(), false, G.tick !== 'off' ? Lg('มีตัวเลข', 'numbers') : '') : ''}
     ${radial ? sec('div', 'sliders', Lg('เส้นแบ่งวง', 'Dividers'), divBody(), false, G.div ? Lg('เปิด', 'on') : '') : ''}
-    ${single ? sec('ramp', 'chart', Lg('โทนสี', 'Colour ramp'), ctl.select(Lg('โทนสี (เมื่อไม่เทียบมาตรฐาน)', 'Ramp (when not vs. the standard)'), 'l', 'sg.seq', [['viridis', 'Viridis'], ['ylorrd', Lg('เหลือง–ส้ม–แดง', 'Yellow–orange–red')], ['blues', Lg('ฟ้า', 'Blues')], ['magma', 'Magma']]), true) : ''}
+    ${single && m !== 'depth' ? sec('ramp', 'chart', Lg('โทนสี', 'Colour ramp'), seqPicker(G), true) : ''}
     ${m === 'surface' ? sec('surf', 'waves', Lg('พื้นผิว', 'Surface'), `
       ${ctl.range(Lg('ความทึบพื้นผิว', 'Surface opacity'), 'l', 'sg.surf', .2, 1, .05)}
       ${ctl.select(Lg('วิธีประมาณค่าระหว่างจุด', 'Interpolation'), 'l', 'sg.surfM', [['idw', Lg('IDW — ถ่วงน้ำหนักตามระยะทาง', 'IDW — inverse distance')], ['krig', Lg('Kriging — semivariogram', 'Kriging — semivariogram')]], true)}
       ${G.surfM === 'idw' ? ctl.range(Lg('กำลังของระยะทาง (p)', 'Distance power (p)'), 'l', 'sg.idwP', 1, 5, .5) : ''}
       ${ctl.select(Lg('ตัดพื้นผิวให้อยู่ในขอบน้ำ', 'Clip to the water body'), 'l', 'sg.clip', [['none', Lg('ไม่ตัด (จางตามระยะจากจุด)', 'No clip (fade with distance)')], ['poly', Lg('วาดขอบน้ำเองบนแผนที่', 'Draw the shoreline on the map')]], true)}
-      ${G.clip === 'none' ? ctl.range(Lg('ระยะจาง (× ระยะห่างจุดเฉลี่ย)', 'Fade distance (× point spacing)'), 'l', 'sg.fade', .5, 5, .1) : `<div class="dg-pre"><button type="button" class="btn btn-sm" data-act="polystart">${ico('edit', 'sm')}${D.polyMode ? Lg('กำลังวาด…', 'Drawing…') : Lg('วาด/วาดใหม่ขอบน้ำ', 'Draw / redraw shoreline')}</button><button type="button" class="btn btn-sm" data-act="polyclear">${Lg('ล้างขอบน้ำ', 'Clear shoreline')}</button></div>`}
+      ${G.clip === 'none' ? ctl.range(Lg('ระยะจาง (× ระยะห่างจุดเฉลี่ย)', 'Fade distance (× point spacing)'), 'l', 'sg.fade', .5, 5, .1) : ''}
+      ${shoreBody(l, G)}
       ${ctl.check(Lg('เส้นชั้นค่า (contour)', 'Contour lines'), 'l', 'sg.contour', true)}${G.contour ? ctl.range(Lg('จำนวนเส้นโดยประมาณ', 'Approximate count'), 'l', 'sg.contN', 3, 14, 1) : ''}
       <div class="dg-hintx" id="dg-surfinfo">${(() => { const f = C.lastSurf[l.id]; return f ? esc(f.info) : ''; })()}</div>`, true) : ''}`;
 }
@@ -8885,7 +9249,7 @@ function bindPanel(){
   });
   pane.addEventListener('click', e => {
     const sm = e.target.closest('summary'); if(sm){ const dt = sm.parentElement; setTimeout(() => { D.open[dt.dataset.acc] = dt.open; }, 0); return; }
-    const md = e.target.closest('[data-mode]'); if(md){ const l = sel(); l.mode = md.dataset.mode; if(C.SINGLE.has(l.mode)) C.ensureSel(l); C.fieldCache.clear(); C.layoutCache.clear(); C.persist(); renderAll(); return; }
+    const md = e.target.closest('[data-mode]'); if(md){ const l = sel(); l.mode = md.dataset.mode; if(C.SINGLE.has(l.mode)) C.ensureSel(l); if(l.mode === 'depth') depthInit(l); C.fieldCache.clear(); C.layoutCache.clear(); C.persist(); renderAll(); return; }
     const b = e.target.closest('[data-act]'); if(b && b.tagName !== 'INPUT') action(b.dataset.act, b); });
   $('#dg-phead').addEventListener('click', e => { const b = e.target.closest('[data-act]'); if(b) action(b.dataset.act, b); });
   bindLib();
@@ -8946,7 +9310,10 @@ async function action(a, b){
   else if(a === 'ptinv'){ C.getDs(l.ds).points.forEach(p => { if(l.hidden[p.id]) delete l.hidden[p.id]; else l.hidden[p.id] = true; }); ptsChanged(); }
   else if(a === 'ptreset'){ l.manual = {}; ptsChanged(); }
   else if(a === 'polystart') startPoly();
-  else if(a === 'polyclear'){ delete S.poly[l.ds]; C.fieldCache.clear(); D.polyMode = false; polyBar(); C.persist(); draw(); renderPane(); }
+  else if(a === 'shoreauto') autoShoreline(l);
+  else if(a === 'shoreundo'){ const pv = D.prevPoly[l.ds]; if(pv){ D.prevPoly[l.ds] = st().poly[l.ds]; st().poly[l.ds] = pv; l.sg.clip = 'poly'; D.polyMode = false; polyBar(); C.fieldCache.clear(); C.persist(); renderPane(); draw(); } }
+  else if(a === 'seqpick'){ l.sg.seq = b.dataset.k; C.fieldCache.clear(); C.persist(); renderPaneKeepList(); draw(); }
+  else if(a === 'polyclear'){ if((S.poly[l.ds] || []).length >= 3) D.prevPoly[l.ds] = S.poly[l.ds].slice(); delete S.poly[l.ds]; C.fieldCache.clear(); D.polyMode = false; polyBar(); C.persist(); draw(); renderPane(); }
   else if(a === 'addtext' || a === 'tool-addtext') addText();
   else if(a === 'tok'){ const f = document.activeElement; if(f && (f.tagName === 'TEXTAREA' || (f.tagName === 'INPUT' && f.type === 'text')) && f.closest('#dg-pane')){ const t = b.dataset.t, i = f.selectionStart || f.value.length; f.value = f.value.slice(0, i) + t + f.value.slice(f.selectionEnd || i); f.dispatchEvent(new Event('input', { bubbles:true })); f.focus(); } else { try{ navigator.clipboard.writeText(b.dataset.t); }catch(_){ } toast(Lg('คลิกช่องข้อความก่อน แล้วกดตัวแปรเพื่อแทรก (คัดลอกให้แล้ว)', 'Click a text field first, then a variable to insert it (copied)')); } }
   else if(a === 'ctext' || a === 'cedit') openTextEdit(id);
@@ -9292,10 +9659,10 @@ function libList(){
   const cell = n => { const [pt, pa, nf] = nodeStats(n), [ak, at] = accChip(n), pth = q ? lpath(n.p).map(lname).join(' › ') : '';
     return `<div class="dg-lr${L.sel.has(n.id) ? ' sel' : ''}${n.t === 'd' ? ' fold' : ''}" role="row" data-id="${esc(n.id)}" ${lcanManage(n) ? 'draggable="true"' : ''} ${n.t === 'd' ? `data-drop="${esc(n.id)}"` : ''}>
       <span class="dg-lc nm"><i class="dg-fi ${n.t === 'd' ? 'd' : 'f'}${n.virt ? ' v' : ''}">${ico(n.t === 'd' ? (n.virt ? 'db' : 'folder') : 'table')}</i><span class="dg-nm"><b>${esc(lname(n))}</b>${q && pth ? `<small>${esc(pth)}</small>` : (n.t === 'f' ? `<small>${pt} ${Lg('จุด', 'pts')} · ${pa} ${Lg('พารามิเตอร์', 'params')}</small>` : `<small>${nf} ${Lg('ไฟล์', 'files')}</small>`)}</span></span>
-      <span class="dg-lc n">${pt ?? '—'}</span><span class="dg-lc n">${pa ?? '—'}</span><span class="dg-lc dt">${dateTxt(n.mt || n.at)}</span><span class="dg-lc ow">${esc(ownerName(n))}</span><span class="dg-lc ac"><em class="dg-ac ${ak}">${esc(at)}</em></span><button type="button" class="dg-more" data-more="${esc(n.id)}" aria-label="${esc(Lg('ตัวเลือก', 'Options'))}">${ico('more', 'sm')}</button></div>`; };
+      <span class="dg-lc n">${pt ?? '—'}</span><span class="dg-lc n">${pa ?? '—'}</span><span class="dg-lc dt">${dateTxt(n.mt || n.at)}</span><span class="dg-lc ow">${esc(ownerName(n))}</span><span class="dg-lc ac"><em class="dg-ac ${ak}">${esc(at)}</em></span></div>`; };
   box.innerHTML = L.view === 'list'
-    ? `<div class="dg-lh" role="row"><span class="dg-lc nm">${sortBtn('name', Lg('ชื่อ', 'Name'))}</span><span class="dg-lc n">${sortBtn('points', Lg('จุด', 'Points'))}</span><span class="dg-lc n">${sortBtn('params', Lg('พารามิเตอร์', 'Params'))}</span><span class="dg-lc dt">${sortBtn('date', Lg('แก้ไขล่าสุด', 'Modified'))}</span><span class="dg-lc ow">${Lg('เจ้าของ', 'Owner')}</span><span class="dg-lc ac">${Lg('สิทธิ์ของคุณ', 'Your access')}</span><span class="dg-lc mo"></span></div>${items.map(cell).join('')}`
-    : `<div class="dg-grid2">${items.map(n => { const [pt, pa, nf] = nodeStats(n), [ak, at] = accChip(n); return `<div class="dg-gc${L.sel.has(n.id) ? ' sel' : ''}" data-id="${esc(n.id)}" ${lcanManage(n) ? 'draggable="true"' : ''} ${n.t === 'd' ? `data-drop="${esc(n.id)}"` : ''}><i class="dg-fi big ${n.t === 'd' ? 'd' : 'f'}${n.virt ? ' v' : ''}">${ico(n.t === 'd' ? (n.virt ? 'db' : 'folder') : 'table')}</i><b>${esc(lname(n))}</b><small>${n.t === 'f' ? `${pt} ${Lg('จุด', 'pts')} · ${pa} ${Lg('พารามิเตอร์', 'params')}` : `${nf} ${Lg('ไฟล์', 'files')}`}</small><em class="dg-ac ${ak}">${esc(at)}</em><button type="button" class="dg-more" data-more="${esc(n.id)}" aria-label="${esc(Lg('ตัวเลือก', 'Options'))}">${ico('more', 'sm')}</button></div>`; }).join('')}</div>`;
+    ? `<div class="dg-lh" role="row"><span class="dg-lc nm">${sortBtn('name', Lg('ชื่อ', 'Name'))}</span><span class="dg-lc n">${sortBtn('points', Lg('จุด', 'Points'))}</span><span class="dg-lc n">${sortBtn('params', Lg('พารามิเตอร์', 'Params'))}</span><span class="dg-lc dt">${sortBtn('date', Lg('แก้ไขล่าสุด', 'Modified'))}</span><span class="dg-lc ow">${Lg('เจ้าของ', 'Owner')}</span><span class="dg-lc ac">${Lg('สิทธิ์ของคุณ', 'Your access')}</span></div>${items.map(cell).join('')}`
+    : `<div class="dg-grid2">${items.map(n => { const [pt, pa, nf] = nodeStats(n), [ak, at] = accChip(n); return `<div class="dg-gc${L.sel.has(n.id) ? ' sel' : ''}" data-id="${esc(n.id)}" ${lcanManage(n) ? 'draggable="true"' : ''} ${n.t === 'd' ? `data-drop="${esc(n.id)}"` : ''}><i class="dg-fi big ${n.t === 'd' ? 'd' : 'f'}${n.virt ? ' v' : ''}">${ico(n.t === 'd' ? (n.virt ? 'db' : 'folder') : 'table')}</i><b>${esc(lname(n))}</b><small>${n.t === 'f' ? `${pt} ${Lg('จุด', 'pts')} · ${pa} ${Lg('พารามิเตอร์', 'params')}` : `${nf} ${Lg('ไฟล์', 'files')}`}</small><em class="dg-ac ${ak}">${esc(at)}</em></div>`; }).join('')}</div>`;
 }
 function libStatus(){
   const L = D.lib, box = $('#dg-lstat'); if(!box) return; const items = libItems(), cwd = lget(L.cwd);
@@ -9354,9 +9721,10 @@ function libMenu(e, id){
   m.innerHTML = items.map(i => i.sep ? '<hr>' : `<button type="button" data-cm="${i.k}" ${i.off ? 'disabled' : ''} class="${i.danger ? 'danger' : ''}">${ico(i.ic, 'sm')}<span>${i.t}</span></button>`).join('');
   document.body.appendChild(m); const w = m.offsetWidth, h = m.offsetHeight; m.style.left = Math.max(8, Math.min(e.clientX, innerWidth - w - 8)) + 'px'; m.style.top = Math.max(8, Math.min(e.clientY, innerHeight - h - 8)) + 'px';
   m.onclick = ev => { const b = ev.target.closest('[data-cm]'); if(!b) return; closeLibMenu(); libAction(b.dataset.cm, null); };
-  setTimeout(() => { document.addEventListener('mousedown', closeLibMenu, { once:true, capture:true }); }, 0);
+  setTimeout(() => { document.addEventListener('mousedown', outsideLibMenu, true); document.addEventListener('touchstart', outsideLibMenu, true); }, 0);
 }
-const closeLibMenu = () => { const m = $('#dg-cm'); if(m) m.remove(); };
+const outsideLibMenu = e => { if(!e.target.closest || !e.target.closest('#dg-cm')) closeLibMenu(); };   /* a press INSIDE the menu must not close it before the click lands */
+const closeLibMenu = () => { document.removeEventListener('mousedown', outsideLibMenu, true); document.removeEventListener('touchstart', outsideLibMenu, true); const m = $('#dg-cm'); if(m) m.remove(); };
 function bindLib(){
   const box = $('#dg-tablewrap'); if(!box) return;
   box.addEventListener('click', e => {
@@ -9369,9 +9737,10 @@ function bindLib(){
     const cr = e.target.closest('[data-cr]'); if(cr){ D.lib.cwd = cr.dataset.cr === '' ? null : cr.dataset.cr; D.lib.sel.clear(); D.lib.q = ''; renderLib(); return; }
     const car = e.target.closest('[data-tcar]'); if(car){ const id = car.dataset.tcar, X = D.lib.exp; X.has(id) ? X.delete(id) : X.add(id); libTree(); return; }
     const tn = e.target.closest('[data-tn]'); if(tn){ D.lib.cwd = tn.dataset.tn === '' ? null : tn.dataset.tn; D.lib.sel.clear(); D.lib.q = ''; if(D.lib.cwd) D.lib.exp.add(D.lib.cwd); renderLib(); return; }
-    const mo = e.target.closest('[data-more]'); if(mo){ const r = mo.getBoundingClientRect(); libMenu({ preventDefault(){}, clientX:r.left, clientY:r.bottom + 4 }, mo.dataset.more); return; }
     const row = e.target.closest('[data-id]'); const L = D.lib;
-    if(row && (matchMedia('(pointer:coarse)').matches || innerWidth < 760)){ libOpen(row.dataset.id); return; }
+    if(row && !e.ctrlKey && !e.metaKey && !e.shiftKey){          /* open on a quick second click on the same item — the list is re-drawn after the first click, so the browser's own dblclick is unreliable */
+      const now = performance.now(), id0 = row.dataset.id, T = L.lastTap; if(T && T.id === id0 && now - T.t < 450){ L.lastTap = null; libOpen(id0); return; } L.lastTap = { id:id0, t:now };
+    }
     if(row){ const id = row.dataset.id;
       if(e.ctrlKey || e.metaKey){ L.sel.has(id) ? L.sel.delete(id) : L.sel.add(id); }
       else if(e.shiftKey && L.last){ const ids = libItems().map(n => n.id), a = ids.indexOf(L.last), b = ids.indexOf(id); if(a >= 0 && b >= 0) L.sel = new Set(ids.slice(Math.min(a, b), Math.max(a, b) + 1)); }
@@ -9379,7 +9748,6 @@ function bindLib(){
       L.last = id; libTools(); libList(); libStatus(); $('#dg-llist') && $('#dg-llist').focus({ preventScroll:true }); return; }
     if(e.target.closest('#dg-llist')){ L.sel.clear(); libTools(); libList(); libStatus(); }
   });
-  box.addEventListener('dblclick', e => { const row = e.target.closest('[data-id]'); if(row && e.target.closest('#dg-llist')) libOpen(row.dataset.id); });
   box.addEventListener('contextmenu', e => { if(!e.target.closest('#dg-llist')) return; const row = e.target.closest('[data-id]'); libMenu(e, row ? row.dataset.id : null); });
   box.addEventListener('input', e => { if(e.target.id === 'dg-lq'){ D.lib.q = e.target.value; clearTimeout(D.lib.qt); D.lib.qt = setTimeout(() => { libCrumb(); libTools(); libList(); libStatus(); }, 120); } });
   box.addEventListener('keydown', e => {
@@ -9696,19 +10064,32 @@ function syncImp(){
   IMP.res = IMP.wb && IMP.rs ? { file:IMP.file, wb:IMP.wb, sheet:IMP.rs } : null;
 }
 function importedList(){ return Array.from(C.DS.values()).filter(d => d.imported); }
+function importPreview(r){
+  const pv = IMP.pv === 'res' ? 'res' : 'pts', th = LANG === 'th';
+  const cell = (p, v) => { const [x, f] = v; if(f === 'ND') return ['ND', 'nd']; if(f === '?') return ['?', 'unk']; if(x == null) return ['–', 'na'];
+    let bad = false; if(p.std && (f === '' || f === '>')){ try{ const j = C.judge(p, x); bad = !!(j && j.fail); }catch(_){ } }
+    return [(f === '<' ? '<' : f === '>' ? '>' : '') + C.fmt(x), bad ? 'bad' : 'ok']; };
+  let body;
+  if(pv === 'pts') body = `<table class="dg-table dgi-prev"><thead><tr><th>#</th><th>${Lg('จุด', 'Point')}</th><th>${Lg('ชื่อ', 'Name')}</th><th>lat</th><th>lon</th></tr></thead><tbody>${r.points.map((p, i) => `<tr><td>${i + 1}</td><td><b>${esc(p.id)}</b></td><td class="pn">${esc(p.name)}</td><td class="v">${p.lat}</td><td class="v">${p.lon}</td></tr>`).join('')}</tbody></table>`;
+  else { let sec = null; const rows = r.params.map(p => { let h = ''; if(p.sec && p.sec !== sec){ sec = p.sec; h = `<tr class="dgi-sec"><td colspan="${r.points.length + 5}">${esc(C.cleanSec(p.sec))}</td></tr>`; }
+      return h + `<tr><td>${p.no ?? ''}</td><td class="pn" title="${esc(p.name)}">${esc(p.name)}</td><td>${esc(p.unit || '')}</td>${p.vals.map(v => { const [t, c] = cell(p, v); return `<td class="v ${c}">${esc(t)}</td>`; }).join('')}<td>${esc(p.stdRaw && p.stdRaw !== '-' ? p.stdRaw : '–')}</td><td>${p.lod ?? ''}</td></tr>`; }).join('');
+    body = `<table class="dg-table dgi-prev"><thead><tr><th>#</th><th>${Lg('พารามิเตอร์', 'Parameter')}</th><th>${Lg('หน่วย', 'Unit')}</th>${r.points.map(p => `<th title="${esc(p.name || '')}">${esc(p.id)}</th>`).join('')}<th>${Lg('มาตรฐาน', 'Standard')}</th><th>LOD</th></tr></thead><tbody>${rows}</tbody></table>`; }
+  const bad = r.params.reduce((a, p) => a + p.vals.filter(v => v[1] === '?').length, 0);
+  return `<div class="dgi-pv"><div class="dgi-pvh"><div class="seg" id="dgi-pvt"><button type="button" data-pv="pts" class="${pv === 'pts' ? 'active' : ''}">${ico('pin', 'sm')}${Lg('พิกัดจุด', 'Points')} <i>${r.points.length}</i></button><button type="button" data-pv="res" class="${pv === 'res' ? 'active' : ''}">${ico('flask', 'sm')}${Lg('ผลพารามิเตอร์', 'Results')} <i>${r.params.length}</i></button></div>${pv === 'res' ? `<span class="dgi-pvk"><b class="bad">${Lg('แดง', 'red')}</b> = ${Lg('เกินมาตรฐาน', 'over the standard')} · <b>ND</b> · <b class="unk">?</b> ${Lg('อ่านค่าไม่ได้', 'unreadable')}${bad ? ` (${bad})` : ''}</span>` : ''}</div><div class="dgi-pvs">${body}</div></div>`;
+}
 function renderImport(){
   syncImp();
   const body = $('#dgi-body'), r = IMP.res ? buildImport() : null; IMP.built = r;
-  const prev = r && !r.error ? `<table class="dg-table dgi-prev"><thead><tr><th>${Lg('จุด', 'Point')}</th><th>${Lg('ชื่อ', 'Name')}</th><th>lat</th><th>lon</th></tr></thead><tbody>${r.points.slice(0, 6).map(p => `<tr><td>${esc(p.id)}</td><td>${esc(p.name)}</td><td>${p.lat}</td><td>${p.lon}</td></tr>`).join('')}${r.points.length > 6 ? `<tr><td colspan="4" class="hint">… +${r.points.length - 6}</td></tr>` : ''}</tbody></table>` : '';
+  const prev = r && !r.error ? importPreview(r) : '';
   const stdN = r && !r.error ? r.params.filter(p => p.std).length : 0;
   body.innerHTML = `
     <div class="dgi-card">
       <h4><span class="n">1</span>${Lg('เลือกไฟล์ Excel / CSV เพียงไฟล์เดียว', 'Choose one Excel / CSV file')} <small>${Lg('มีชีตชื่อ “Coordinates” และ “Results”', 'with sheets named “Coordinates” and “Results”')}</small></h4>
       ${IMP.wb ? impSheetSelect() : `<label class="dgi-drop" data-drop="file">${ico('file')}<span>${Lg('ลากไฟล์มาวาง หรือคลิกเลือก', 'Drop a file or click to browse')}</span><small>.xlsx · .xls · .csv<br>${Lg('ชีต Coordinates: Symbol, Name, latitude, longitude', 'Sheet Coordinates: Symbol, Name, latitude, longitude')}<br>${Lg('ชีต Results: แถว = พารามิเตอร์, คอลัมน์ = รหัสจุด', 'Sheet Results: rows = parameters, columns = point IDs')}</small><input type="file" accept=".xlsx,.xls,.csv,.txt" data-imp="file" hidden></label>`}
     </div>
+    ${r ? (r.error ? `<div class="callout alarm" style="margin-top:12px">${ico('warn')}<div>${esc(r.error)}</div></div>` : `<div class="callout ok" style="margin-top:12px">${ico('check')}<div><b>${Lg(`พบ ${r.points.length} จุด · ${r.params.length} พารามิเตอร์ (${stdN} ตัวมีค่ามาตรฐาน)`, `${r.points.length} points · ${r.params.length} parameters (${stdN} with a standard)`)}</b>${Lg('รูปแบบผลตรวจ: ', 'Layout: ')}${r.layout === 'table' ? Lg('แถว = พารามิเตอร์ · คอลัมน์ = จุด', 'rows = parameters · columns = points') : Lg('แถว = จุด · คอลัมน์ = พารามิเตอร์', 'rows = points · columns = parameters')}</div></div>${r.warn.length ? `<div class="callout warn" style="margin-top:10px">${ico('warn')}<div><b>${Lg('ข้อควรตรวจสอบ', 'Please check')}</b><ul class="dgi-warn">${r.warn.slice(0, 8).map(w => `<li>${esc(w)}</li>`).join('')}${r.warn.length > 8 ? `<li>… +${r.warn.length - 8}</li>` : ''}</ul></div></div>` : ''}${prev}`) : `<div class="dg-hintx" style="margin-top:12px">${IMP.wb ? Lg('ไม่พบชีตผลพารามิเตอร์ — ตั้งชื่อชีตว่า “Results” หรือเลือกชีตด้านบน', 'No results sheet found — name a sheet “Results” or pick one above') : Lg('ไม่มีไฟล์? กด “ดาวน์โหลดแม่แบบ Excel” ด้านล่างเพื่อได้ไฟล์ตัวอย่าง · ค่า ND, “<0.05”, “>1600” และมาตรฐานแบบ “5-9”, “>6”, “≤0.3” อ่านได้อัตโนมัติ', 'No file yet? Use “Download Excel template” below · ND, “<0.05”, “>1600” and standards like “5-9”, “>6”, “≤0.3” are understood automatically')}</div>`}
     <div class="field" style="margin-top:14px"><label>${Lg('ชื่อไฟล์ข้อมูล', 'Data file name')}</label><input class="input" id="dgi-name" value="${esc(IMP.name)}" placeholder="${esc(Lg('เช่น อ่างเก็บน้ำ… · น้ำ ธ.ค. 2569', 'e.g. Reservoir … · water Dec 2026'))}"></div>
-    ${destBlock()}
-    ${r ? (r.error ? `<div class="callout alarm" style="margin-top:12px">${ico('warn')}<div>${esc(r.error)}</div></div>` : `<div class="callout ok" style="margin-top:12px">${ico('check')}<div><b>${Lg(`พบ ${r.points.length} จุด · ${r.params.length} พารามิเตอร์ (${stdN} ตัวมีค่ามาตรฐาน)`, `${r.points.length} points · ${r.params.length} parameters (${stdN} with a standard)`)}</b>${Lg('รูปแบบผลตรวจ: ', 'Layout: ')}${r.layout === 'table' ? Lg('แถว = พารามิเตอร์ · คอลัมน์ = จุด', 'rows = parameters · columns = points') : Lg('แถว = จุด · คอลัมน์ = พารามิเตอร์', 'rows = points · columns = parameters')}</div></div>${r.warn.length ? `<div class="callout warn" style="margin-top:10px">${ico('warn')}<div><b>${Lg('ข้อควรตรวจสอบ', 'Please check')}</b><ul class="dgi-warn">${r.warn.slice(0, 8).map(w => `<li>${esc(w)}</li>`).join('')}${r.warn.length > 8 ? `<li>… +${r.warn.length - 8}</li>` : ''}</ul></div></div>` : ''}${prev}`) : `<div class="dg-hintx" style="margin-top:12px">${IMP.wb ? Lg('ไม่พบชีตผลพารามิเตอร์ — ตั้งชื่อชีตว่า “Results” หรือเลือกชีตด้านบน', 'No results sheet found — name a sheet “Results” or pick one above') : Lg('ไม่มีไฟล์? กด “ดาวน์โหลดแม่แบบ Excel” ด้านล่างเพื่อได้ไฟล์ตัวอย่าง · ค่า ND, “<0.05”, “>1600” และมาตรฐานแบบ “5-9”, “>6”, “≤0.3” อ่านได้อัตโนมัติ', 'No file yet? Use “Download Excel template” below · ND, “<0.05”, “>1600” and standards like “5-9”, “>6”, “≤0.3” are understood automatically')}</div>`}`;
+    ${destBlock()}`;
   $('#dgi-go').disabled = !(r && !r.error);
 }
 function destBlock(){
@@ -9729,6 +10110,7 @@ function openImport(dest){
     <div class="modal-body" id="dgi-body"></div>
     <div class="modal-foot"><button class="btn" data-dgi="tpl">${ico('download', 'sm')}<span>${Lg('ดาวน์โหลดแม่แบบ Excel', 'Download Excel template')}</span></button><span class="spacer"></span><button class="btn btn-ghost" data-dgi="close">${Lg('ยกเลิก', 'Cancel')}</button><button class="btn btn-primary" id="dgi-go" data-dgi="go" disabled>${ico('check', 'sm')}${Lg('นำเข้า', 'Import')}</button></div></div>`;
   ov.onclick = e => {
+    const pvb = e.target.closest('[data-pv]'); if(pvb){ const keep = $('.dgi-pvs'), sc = keep ? keep.scrollTop : 0; IMP.pv = pvb.dataset.pv; renderImport(); return; }
     const b = e.target.closest('[data-dgi],[data-imp]'); if(!b) return; const a = b.dataset.dgi;
     if(a === 'close') closeOverlay('overlay-dg-import');
     else if(a === 'tpl') downloadTemplate();
@@ -9778,7 +10160,7 @@ function commitImport(){
   const S = st(); closeOverlay('overlay-dg-import');
   const where = lpath(node.id).slice(0, -1).map(lname).join(' › ') || Lg('ราก', 'Root');
   if(S.layers.length >= MAXL){ setLayerDs(id); toast(Lg(`นำเข้า “${node.name}” ลงใน ${where} แล้ว — ครบ ${MAXL} ชั้น จึงใช้กับชั้นที่เลือกอยู่`, `Imported “${node.name}” into ${where} — ${MAXL} layers already, so it replaces the selected layer's data`)); }
-  else { const nl = C.mkLayer(id, ds.params.filter(p => p.nPlot > 0).length >= 3 ? 'rose' : 'bubble'); S.layers.push(nl); S.sel = nl.id; layoutReset(); C.persist(); renderAll(); fitPoints(true); toast(Lg(`นำเข้า “${node.name}” ลงใน ${where} แล้ว — เพิ่มเป็นชั้นใหม่`, `Imported “${node.name}” into ${where} — added as a new layer`)); }
+  else { const num = ds.params.filter(p => p.nPlot > 0), onlyDepth = num.length === 1 && C.DEPTH_RE.test(num[0].name) && num[0].nPlot >= 3, nl = C.mkLayer(id, onlyDepth ? 'depth' : num.length >= 3 ? 'rose' : 'bubble'); if(onlyDepth) depthInit(nl, true); S.layers.push(nl); S.sel = nl.id; layoutReset(); C.persist(); renderAll(); fitPoints(true); toast(Lg(`นำเข้า “${node.name}” ลงใน ${where} แล้ว — เพิ่มเป็นชั้นใหม่`, `Imported “${node.name}” into ${where} — added as a new layer`)); }
   logAct('diagram.import', `${node.name} → ${where} (${ds.points.length} pts, ${ds.params.length} params)`);
   if(D.view === 'table') renderTable();
 }
@@ -9793,8 +10175,8 @@ const delDataset = () => { const d = C.getDs(sel().ds); return d.imported ? remo
 function downloadTemplate(){
   const wb = XLSX.utils.book_new();
   const coord = [['Point', 'Symbol', 'Name', 'latitude', 'longitude'], [1, 'P1', 'Dam crest', 13.213739, 100.963043], [2, 'P2', 'Pump station', 13.220719, 100.970445], [3, 'P3', 'Canal mouth', 13.21777, 100.983237]];
-  const res = [['ลำดับ', 'พารามิเตอร์ (Parameter)', 'หน่วย', 'P1', 'P2', 'P3', 'ค่ามาตรฐาน', 'LOD', 'LOQ'], ['1. Field parameters'], [1, 'Temperature', '°C', 31.2, 32.5, 33.1, '-', null, null], [2, 'pH', '-', 7.4, 8.9, 9.3, '5-9', null, null], [3, 'DO', 'mg/L', 5.2, 6.5, 7.9, '>6', null, null], ['2. Heavy metals'], [4, 'Arsenic (As)', 'mg/kg', 'Not Detected', 12.5, '<0.5', '≤23', 0.1, 0.3], [5, 'Lead (Pb)', 'mg/kg', 8.1, 15.2, 31.4, '≤36', 0.1, 0.3]];
-  const wide = [['Symbol', 'Name', 'latitude', 'longitude', 'Temperature [°C]', 'pH', 'DO [mg/L]', 'Arsenic (As) [mg/kg]'], ['standard', '', '', '', '', '5-9', '>6', '≤23'], ['P1', 'Dam crest', 13.213739, 100.963043, 31.2, 7.4, 5.2, 'Not Detected'], ['P2', 'Pump station', 13.220719, 100.970445, 32.5, 8.9, 6.5, 12.5], ['P3', 'Canal mouth', 13.21777, 100.983237, 33.1, 9.3, 7.9, '<0.5']];
+  const res = [['ลำดับ', 'พารามิเตอร์ (Parameter)', 'หน่วย', 'P1', 'P2', 'P3', 'ค่ามาตรฐาน', 'LOD', 'LOQ'], ['1. Field parameters'], [1, 'Temperature', '°C', 31.2, 32.5, 33.1, '-', null, null], [2, 'pH', '-', 7.4, 8.9, 9.3, '5-9', null, null], [3, 'DO', 'mg/L', 5.2, 6.5, 7.9, '>6', null, null], ['2. Heavy metals'], [4, 'Arsenic (As)', 'mg/kg', 'Not Detected', 12.5, '<0.5', '≤23', 0.1, 0.3], [5, 'Lead (Pb)', 'mg/kg', 8.1, 15.2, 31.4, '≤36', 0.1, 0.3], ['3. Bathymetry (for the Depth map)'], [6, 'Depth', 'm', 2.4, 5.8, 7.1, '-', null, null]];
+  const wide = [['Symbol', 'Name', 'latitude', 'longitude', 'Temperature [°C]', 'pH', 'DO [mg/L]', 'Arsenic (As) [mg/kg]', 'Depth [m]'], ['standard', '', '', '', '', '5-9', '>6', '≤23', ''], ['P1', 'Dam crest', 13.213739, 100.963043, 31.2, 7.4, 5.2, 'Not Detected', 2.4], ['P2', 'Pump station', 13.220719, 100.970445, 32.5, 8.9, 6.5, 12.5, 5.8], ['P3', 'Canal mouth', 13.21777, 100.983237, 33.1, 9.3, 7.9, '<0.5', 7.1]];
   const help = [[Lg('วิธีใช้แม่แบบ', 'How to use this template')], [Lg('นำเข้าไฟล์เดียว: ไฟล์ต้องมี 2 ชีตชื่อ “Coordinates” (ตำแหน่งจุด) และ “Results” (ผลพารามิเตอร์ แถว = พารามิเตอร์, คอลัมน์ = รหัสจุด Symbol)', 'One file only: it needs two sheets named “Coordinates” (point locations) and “Results” (rows = parameters, columns = point Symbols)')], [Lg('ทางเลือก: ชีต “Wide” (แถว = จุด มีพิกัดในชีตเดียว) — เปลี่ยนชื่อเป็น “Results” แล้วลบชีต Coordinates ได้', 'Alternative: sheet “Wide” (rows = points, coordinates in the same sheet) — rename it “Results” and drop the Coordinates sheet')], [Lg('ค่าที่อ่านได้: ตัวเลข · Not Detected / ND · <0.05 · >1600 · ว่าง/“-” = ไม่มีค่า', 'Readable values: numbers · Not Detected / ND · <0.05 · >1600 · blank / “-” = no value')], [Lg('ค่ามาตรฐาน: 38 หรือ <38 หรือ ≤38 (ไม่เกิน) · >6 หรือ ≥6 (ไม่ต่ำกว่า) · 5-9 (ช่วง) · - (ไม่มี)', 'Standards: 38 or <38 or ≤38 (maximum) · >6 or ≥6 (minimum) · 5-9 (range) · - (none)')]];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(help), 'README');
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(coord), 'Coordinates');
