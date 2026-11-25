@@ -8227,7 +8227,7 @@ function glyphAt(x, y){
 function markAt(x, y){ let best = null, bd = 1e9; for(const m of D.hits.marks){ const d = Math.hypot(x - m.x, y - m.y); if(d <= 11 && d < bd){ bd = d; best = m; } } return best; }
 function onDown(e){
   if(e.button !== 0 || D.view !== 'map' || e.target.closest('.dg-tools,.dg-poly,.leaflet-control,.dg-hint')) return;
-  const [x, y] = localXY(e); D.lpx = [e.clientX, e.clientY]; clearTimeout(D.lp); if(e.pointerType === 'touch') hideTip();
+  const [x, y] = localXY(e); D.lastPT = e.pointerType; D.lpx = [e.clientX, e.clientY]; clearTimeout(D.lp); if(e.pointerType === 'touch') hideTip();
   if(D.polyMode){ return; }
   const bh = boxAt(x, y);
   if(bh){ D.selBox = bh.key; D.drag = { t:'box', key:bh.key, dx:x - bh.x, dy:y - bh.y, moved:false }; lockMap(e); draw(); syncTextPane(); return; }
@@ -8290,6 +8290,7 @@ function hidePoint(g){
 }
 function onCtx(e){
   if(D.view !== 'map') return;
+  if(D.lastPT === 'touch' || e.pointerType === 'touch'){ e.preventDefault(); return; }   /* touch long-press must not hide a point */
   const [x, y] = localXY(e); if(boxAt(x, y)) return;
   const g = glyphAt(x, y) || (() => { const m = markAt(x, y); return m ? { l:m.l, i:m.i, id:m.id } : null; })();
   if(!g) return; e.preventDefault(); hidePoint(g);
